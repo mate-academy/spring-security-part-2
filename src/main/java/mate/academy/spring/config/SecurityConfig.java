@@ -1,6 +1,8 @@
 package mate.academy.spring.config;
 
+import mate.academy.spring.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,6 +28,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers("/register").permitAll()
+                .antMatchers("/orders/***", "/shopping-cart/***")
+                .hasRole(Role.RoleName.USER.name())
+                .antMatchers("/movie-sessions/***", "/movies/***", "/cinema-halls/***")
+                .hasRole(Role.RoleName.ADMIN.name())
+                .antMatchers(HttpMethod.GET, "/cinema-halls", "/movies", "/movie-sessions/***")
+                .hasRole(Role.RoleName.USER.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
