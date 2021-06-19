@@ -18,7 +18,8 @@ public class AuthenticationController {
     private final RoleService roleService;
     private final UserMapper userMapper;
 
-    public AuthenticationController(AuthenticationService authService, RoleService roleService, UserMapper userMapper) {
+    public AuthenticationController(AuthenticationService authService,
+                                    RoleService roleService, UserMapper userMapper) {
         this.authService = authService;
         this.roleService = roleService;
         this.userMapper = userMapper;
