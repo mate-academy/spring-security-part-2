@@ -29,16 +29,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
-                .antMatchers("/orders/***", "/shopping-cart/***")
-                .hasRole(Role.RoleName.USER.name())
-                .antMatchers("/movie-sessions/***", "/movies/***", "/cinema-halls/***")
+                .antMatchers(HttpMethod.GET,
+                        "/shopping-carts/by-user/*",
+                        "/orders/*").hasRole(Role.RoleName.USER.name())
+                .antMatchers(HttpMethod.POST,
+                        "/shopping-carts/movie-sessions/*",
+                        "/orders/complete/*").hasRole(Role.RoleName.USER.name())
+                .antMatchers(HttpMethod.GET,
+                        "/users/by-email").hasRole(Role.RoleName.ADMIN.name())
+                .antMatchers(HttpMethod.POST,
+                        "/movies/*",
+                        "/movie-sessions/*",
+                        "/cinema-halls/*").hasRole(Role.RoleName.ADMIN.name())
+                .antMatchers(HttpMethod.PUT, "/movie-sessions")
                 .hasRole(Role.RoleName.ADMIN.name())
-                .antMatchers(HttpMethod.GET, "/cinema-halls", "/movies", "/movie-sessions/***")
-                .hasRole(Role.RoleName.USER.name())
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions")
+                .hasRole(Role.RoleName.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .permitAll()
+                .formLogin().permitAll()
                 .and()
                 .httpBasic()
                 .and()
