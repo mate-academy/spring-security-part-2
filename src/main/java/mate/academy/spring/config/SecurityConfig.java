@@ -29,6 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
+                .antMatchers(HttpMethod.GET, "/movies", "/cinema-halls",
+                        "/movie-sessions/available").permitAll()
                 .antMatchers(HttpMethod.GET,
                         "/shopping-carts/by-user/*",
                         "/orders/*").hasRole(Role.RoleName.USER.name())
