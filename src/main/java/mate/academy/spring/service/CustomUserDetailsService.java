@@ -22,11 +22,15 @@ public class CustomUserDetailsService implements UserDetailsService {
         try {
             user = userService.findByEmail(userName);
         } catch (DataProcessingException e) {
-            throw new UsernameNotFoundException(String.format("User %s doesn't exist", userName), e);
+            throw new UsernameNotFoundException(
+                    String.format("User %s doesn't exist", userName), e);
         }
-        UserBuilder builder = org.springframework.security.core.userdetails.User.withUsername(userName);
+        UserBuilder builder =
+                org.springframework.security.core.userdetails.User.withUsername(userName);
         builder.password(user.getPassword());
-        builder.authorities(user.getRoles().stream().map(role -> role.getRoleName().name()).toArray(String[]::new));
+        builder.authorities(user.getRoles().stream()
+                .map(role -> role.getRoleName().name())
+                .toArray(String[]::new));
         return builder.build();
     }
 }
