@@ -40,8 +40,8 @@ public class Role {
     }
 
     public enum RoleName {
-        USER,
-        ADMIN;
+        ROLE_USER,
+        ROLE_ADMIN
     }
 
     @Override
