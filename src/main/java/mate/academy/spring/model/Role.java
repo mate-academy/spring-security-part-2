@@ -18,8 +18,8 @@ public class Role {
     private RoleName name;
 
     public enum RoleName {
-        USER,
-        ADMIN;
+        ROLE_USER,
+        ROLE_ADMIN;
     }
 
     public Role() {
