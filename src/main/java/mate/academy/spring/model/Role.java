@@ -1,5 +1,6 @@
 package mate.academy.spring.model;
 
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,8 +19,8 @@ public class Role {
     private RoleName name;
 
     public enum RoleName {
-        USER,
-        ADMIN
+        ROLE_USER,
+        ROLE_ADMIN
     }
 
     public Long getId() {
@@ -36,5 +37,23 @@ public class Role {
 
     public void setName(RoleName name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Role)) {
+            return false;
+        }
+        Role role = (Role) o;
+        return Objects.equals(id, role.id)
+                && name == role.name;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }
