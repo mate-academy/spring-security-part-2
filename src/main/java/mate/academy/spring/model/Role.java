@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity()
+@Entity
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +17,10 @@ public class Role {
     private RoleName name;
 
     public Role() {
+    }
+
+    public enum RoleName {
+        ADMIN, USER
     }
 
     public Role(RoleName name) {
@@ -63,8 +67,8 @@ public class Role {
                 + ", name='" + name + '\''
                 + '}';
     }
-
-    public enum RoleName {
-        ADMIN, USER
-    }
 }
+
+
+
+
