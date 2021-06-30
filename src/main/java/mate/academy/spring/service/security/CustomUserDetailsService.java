@@ -1,5 +1,6 @@
 package mate.academy.spring.service.security;
 
+import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
 import org.springframework.security.core.userdetails.User.UserBuilder;
@@ -18,7 +19,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
-        User userByEmail = userService.findByEmail(userEmail);
+        User userByEmail;
+        try {
+            userByEmail = userService.findByEmail(userEmail);
+        } catch (DataProcessingException e) {
+            throw new UsernameNotFoundException("Can't find user by email " + userEmail, e);
+        }
         UserBuilder builder = org.springframework.security.core.userdetails
                 .User.withUsername(userEmail);
         builder.password(userByEmail.getPassword());
