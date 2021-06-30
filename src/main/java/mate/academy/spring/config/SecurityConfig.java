@@ -1,6 +1,5 @@
 package mate.academy.spring.config;
 
-import mate.academy.spring.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -30,21 +29,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/cinema-halls", "/movies",
                         "/movie-sessions")
-                .hasRole(Role.RoleName.ADMIN.toString())
+                .hasRole("ADMIN")
                 .antMatchers("/register", "/cinema-halls", "/movies",
                         "/movie-sessions/**")
                 .permitAll()
                 .antMatchers(HttpMethod.PUT, "/movie-sessions/**")
-                .hasRole(Role.RoleName.ADMIN.toString())
+                .hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/movie-sessions/**")
-                .hasRole(Role.RoleName.ADMIN.toString())
+                .hasRole("ADMIN")
                 .antMatchers("/orders", " /shopping-carts/by-user")
-                .hasRole(Role.RoleName.USER.toString())
+                .hasRole("USER")
                 .antMatchers(HttpMethod.POST,"/orders/complete",
                         "/shopping-carts/movie-sessions")
-                .hasRole(Role.RoleName.USER.toString())
-                .antMatchers("/inject", "/users/by-email")
-                .hasRole(Role.RoleName.ADMIN.toString())
+                .hasRole("USER")
+                .antMatchers("/users/by-email")
+                .hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
