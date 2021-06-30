@@ -1,6 +1,5 @@
 package mate.academy.spring.config;
 
-import mate.academy.spring.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -30,14 +29,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/register", "/inject").permitAll()
                 .antMatchers(HttpMethod.GET,"/cinema-halls", "/movies",
-                        "/movie-sessions/available", "/movie-sessions")
-                .hasAnyRole("ADMIN", "USER")
+                        "/movie-sessions/available").permitAll()
                 .antMatchers(HttpMethod.POST,"/cinema-halls", "/movies",
                         "/movie-sessions")
                 .hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT,"/movie-sessions/*")
+                .antMatchers(HttpMethod.PUT,"/movie-sessions")
                 .hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE,"/movie-sessions/*")
+                .antMatchers(HttpMethod.DELETE,"/movie-sessions")
                 .hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/orders", "/shopping-carts/by-user")
                 .hasRole("USER")
