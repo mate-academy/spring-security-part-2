@@ -13,16 +13,16 @@
 - Configure role access to specific resources for `ADMIN` and for `USER`.
   You should configure access to __all endpoints__ in your application. Example:
 ```
-POST: /register - all
-GET: /cinema-halls - user/admin
-POST: /cinema-halls - admin
-GET: /movies - user/admin
-POST: /movies - admin
-GET: /movie-sessions/available - user/admin
-GET: /movie-sessions/{id} - user/admin
-POST: /movie-sessions - admin
-PUT: /movie-sessions/{id} - admin
-DELETE: /movie-sessions/{id} - admin
+~~POST: /register - all~~
+~~GET: /cinema-halls - user/admin~~
+~~POST: /cinema-halls - admin~~
+~~GET: /movies - user/admin~~
+~~POST: /movies - admin~~
+~~GET: /movie-sessions/available - user/admin
+GET: /movie-sessions/{id} - user/admin~~
+~~POST: /movie-sessions - admin~~
+~~PUT: /movie-sessions/{id} - admin~~
+~~DELETE: /movie-sessions/{id} - admin~~
 GET: /orders - user
 POST: /orders/complete - user
 POST: /shopping-carts/movie-sessions - user
