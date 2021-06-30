@@ -1,6 +1,7 @@
 package mate.academy.spring.service.impl;
 
 import java.util.Set;
+import mate.academy.spring.model.RoleName;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.AuthenticationService;
 import mate.academy.spring.service.RoleService;
@@ -22,11 +23,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public User register(java.lang.String email, java.lang.String password) {
+    public User register(String email, String password) {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
-        user.setRoles(Set.of(roleService.getRoleByName("USER")));
+        user.setRoles(Set.of(roleService.getRoleByName(RoleName.ROLE_USER.name())));
         userService.add(user);
         shoppingCartService.registerNewShoppingCart(user);
         return user;
