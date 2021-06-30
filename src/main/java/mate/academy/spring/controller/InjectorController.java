@@ -37,13 +37,13 @@ public class InjectorController {
         User admin = new User();
         admin.setEmail("alice@gmail.com");
         admin.setPassword("12345");
-        admin.setRoles(Set.of(roleService.getByName(String.valueOf(RoleName.ROLE_ADMIN))));
+        admin.setRoles(Set.of(roleService.getByName("ADMIN")));
         userService.add(admin);
 
         User user = new User();
         user.setEmail("bob@gmail.com");
         user.setPassword("54321");
-        user.setRoles(Set.of(roleService.getByName(String.valueOf(RoleName.ROLE_USER))));
+        user.setRoles(Set.of(roleService.getByName("USER")));
         userService.add(user);
 
         return "Data was injected.";
