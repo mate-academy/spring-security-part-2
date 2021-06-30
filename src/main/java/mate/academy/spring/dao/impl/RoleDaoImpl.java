@@ -8,7 +8,7 @@ import mate.academy.spring.model.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class RoleDaoImpl extends AbstractDao<Role>  implements RoleDao {
+public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
     public RoleDaoImpl(SessionFactory factory) {
         super(factory, Role.class);
     }
