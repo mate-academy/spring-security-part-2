@@ -20,11 +20,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user;
         try {
-            user = userService.findByEmail(s);
+            user = userService.findByEmail(username);
         } catch (DataProcessingException e) {
-            throw new UsernameNotFoundException("Can not find user with with email " + s, e);
+            throw new UsernameNotFoundException("Can not find user with with email " + username, e);
         }
-        UserBuilder builder = org.springframework.security.core.userdetails.User.withUsername(s);
+        UserBuilder builder =
+                org.springframework.security.core.userdetails.User.withUsername(username);
         builder.password(user.getPassword());
         builder.authorities(user.getRoles().stream()
                 .map(role -> role.getRoleName().name())
