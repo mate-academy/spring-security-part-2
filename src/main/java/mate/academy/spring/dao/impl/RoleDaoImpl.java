@@ -24,7 +24,7 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
             getRoleByName.setParameter("roleName", Role.RoleName.valueOf(roleName));
             return getRoleByName.uniqueResultOptional();
         } catch (Exception e) {
-            throw new DataProcessingException("Role with name " + roleName + " not found", e);
+            throw new DataProcessingException("Role " + roleName + " not found", e);
         }
     }
 }
