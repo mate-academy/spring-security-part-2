@@ -17,7 +17,9 @@ public class InjectController {
     private final AuthenticationService authenticationService;
     private final UserService userService;
 
-    public InjectController(RoleService roleService, AuthenticationService authenticationService, UserService userService) {
+    public InjectController(RoleService roleService,
+                            AuthenticationService authenticationService,
+                            UserService userService) {
         this.roleService = roleService;
         this.authenticationService = authenticationService;
         this.userService = userService;
@@ -27,13 +29,12 @@ public class InjectController {
     public String inject() {
         roleService.add(new Role(Role.RoleName.ADMIN));
         roleService.add(new Role(Role.RoleName.USER));
-        authenticationService.register("bob@gmai.com", "1234");
+        authenticationService.register("bob@gmail.com", "1234");
 
         User alice = new User();
         alice.setEmail("alise@gmail.com");
         alice.setPassword("1234");
         alice.setRoles(Set.of(roleService.getRoleByName("ADMIN")));
-
         userService.add(alice);
         return "Done!!!";
     }

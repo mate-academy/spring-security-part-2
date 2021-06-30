@@ -19,9 +19,9 @@ public class RoleServiseDaoImpl extends AbstractDao<Role> implements RoleServise
     @Override
     public Role getRoleByName(String roleName) {
         try (Session session = factory.openSession()) {
-            Query<Role> query = session.createQuery("FROM Role WHERE roleName =: roleName", Role.class);
+            Query<Role> query = session.createQuery("FROM Role "
+                    + "WHERE roleName =: roleName", Role.class);
             query.setParameter("roleName", Role.RoleName.valueOf(roleName));
-            System.out.println(roleName + " Role.RoleName.valueOf(roleName) - " + Role.RoleName.valueOf(roleName));
             return query.getSingleResult();
         } catch (Exception e) {
             throw new DataProcessingException(" помилка в getRoleByName ", e);
