@@ -1,7 +1,6 @@
 package mate.academy.spring.controller;
 
 import mate.academy.spring.dto.response.UserResponseDto;
-import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
 import mate.academy.spring.service.mapper.UserMapper;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +21,6 @@ public class UserController {
 
     @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam String email) {
-        User user = userService.findByEmail(email);
-        return userMapper.mapToDto(user);
+        return userMapper.mapToDto(userService.findByEmail(email));
     }
 }
