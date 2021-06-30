@@ -1,9 +1,10 @@
 package mate.academy.spring.dao;
 
+import java.util.Optional;
 import mate.academy.spring.model.Role;
 
 public interface RoleDao {
     Role add(Role role);
 
-    Role getRoleByName(Role.RoleName roleName);
+    Optional<Role> getRoleByName(Role.RoleName roleName);
 }
