@@ -15,11 +15,17 @@ public class Role {
     @Enumerated(value = EnumType.STRING)
     private RoleName name;
 
-    public Role(RoleName name) {
-        this.name = name;
+    public enum RoleName {
+        ROLE_USER,
+        ROLE_ADMIN;
     }
 
     public Role() {
+
+    }
+
+    public Role(RoleName name) {
+        this.name = name;
     }
 
     public Long getId() {
