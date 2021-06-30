@@ -1,5 +1,6 @@
 package mate.academy.spring.service.impl;
 
+import java.util.Optional;
 import mate.academy.spring.dao.UserDao;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.User;
@@ -30,8 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByEmail(String email) {
-        return userDao.findByEmail(email).orElseThrow(
-                () -> new DataProcessingException("User with email " + email + " not found"));
+    public Optional<User> findByEmail(String email) {
+        return userDao.findByEmail(email);
     }
 }
