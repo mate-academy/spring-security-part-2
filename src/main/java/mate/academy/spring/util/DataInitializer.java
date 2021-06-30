@@ -30,6 +30,5 @@ public class DataInitializer {
         userService.add(new User("carl@gmail.com", "carl",
                 Set.of(roleService.getRoleByName(Role.RoleName.ROLE_USER),
                         roleService.getRoleByName(Role.RoleName.ROLE_ADMIN))));
-
     }
 }
