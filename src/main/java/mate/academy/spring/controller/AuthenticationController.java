@@ -29,7 +29,7 @@ public class AuthenticationController {
     }
 
     @GetMapping
-    public String helloLoggedUser(Authentication authentication) {
+    public String greetingsToLoggedUser(Authentication authentication) {
         return "Hello " + authentication.getName() + "!";
     }
 }
