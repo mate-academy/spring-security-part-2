@@ -1,4 +1,5 @@
 package mate.academy.spring.security;
+
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
