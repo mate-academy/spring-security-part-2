@@ -19,18 +19,17 @@ public class DataInitializer {
     }
 
     @PostConstruct
-    public String injectRoles() {
+    public void injectRoles() {
         Role adminRole = new Role();
         adminRole.setName(Role.RoleName.ADMIN);
         Role userRole = new Role();
         userRole.setName(Role.RoleName.USER);
         roleService.add(adminRole);
         roleService.add(userRole);
-        return "Roles were added successfully!";
     }
 
     @PostConstruct
-    public String injectUsers() {
+    public void injectUsers() {
         User bob = new User();
         bob.setEmail("bob@gmail.com");
         bob.setPassword("12345678");
@@ -43,6 +42,5 @@ public class DataInitializer {
         alice.setPassword("12345678");
         alice.setRoles(Set.of(userRole));
         userService.add(alice);
-        return "Users were added successfully!";
     }
 }
