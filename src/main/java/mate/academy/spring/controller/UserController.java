@@ -1,11 +1,9 @@
 package mate.academy.spring.controller;
 
 import mate.academy.spring.dto.response.UserResponseDto;
-import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
 import mate.academy.spring.service.mapper.UserMapper;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,12 +22,7 @@ public class UserController {
 
     @GetMapping("/by-email")
     public UserResponseDto getByEmail(@RequestParam String email) {
-        User user = null;
-        try {
-            user = userService.findByEmail(email);
-        } catch (DataProcessingException e) {
-            throw new UsernameNotFoundException("Can't find user by email=" + email, e);
-        }
+        User user = userService.findByEmail(email);
         return userMapper.mapToDto(user);
     }
 }
