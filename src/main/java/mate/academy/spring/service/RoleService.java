@@ -1,4 +1,4 @@
-package mate.academy.spring.service.mapper;
+package mate.academy.spring.service;
 
 import mate.academy.spring.model.Role;
 

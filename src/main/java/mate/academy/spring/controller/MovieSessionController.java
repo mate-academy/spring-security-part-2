@@ -3,6 +3,7 @@ package mate.academy.spring.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import mate.academy.spring.dto.request.MovieSessionRequestDto;
 import mate.academy.spring.dto.response.MovieSessionResponseDto;
@@ -33,7 +34,7 @@ public class MovieSessionController {
         this.movieSessionService = movieSessionService;
         this.movieSessionMapper = movieSessionMapper;
     }
-
+    @RolesAllowed("ADMIN")
     @PostMapping
     public MovieSessionResponseDto add(@RequestBody @Valid MovieSessionRequestDto requestDto) {
         MovieSession movieSession = movieSessionMapper.mapToModel(requestDto);
@@ -61,6 +62,7 @@ public class MovieSessionController {
         return movieSessionMapper.mapToDto(movieSession);
     }
 
+    @RolesAllowed("ADMIN")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         movieSessionService.delete(id);
