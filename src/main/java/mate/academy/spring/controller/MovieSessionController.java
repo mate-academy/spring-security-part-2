@@ -35,7 +35,6 @@ public class MovieSessionController {
         this.movieSessionMapper = movieSessionMapper;
     }
 
-    @RolesAllowed("ADMIN")
     @PostMapping
     public MovieSessionResponseDto add(@RequestBody @Valid MovieSessionRequestDto requestDto) {
         MovieSession movieSession = movieSessionMapper.mapToModel(requestDto);
@@ -63,7 +62,6 @@ public class MovieSessionController {
         return movieSessionMapper.mapToDto(movieSession);
     }
 
-    @RolesAllowed("ADMIN")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         movieSessionService.delete(id);
