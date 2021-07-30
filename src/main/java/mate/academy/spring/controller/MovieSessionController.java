@@ -34,6 +34,7 @@ public class MovieSessionController {
         this.movieSessionService = movieSessionService;
         this.movieSessionMapper = movieSessionMapper;
     }
+
     @RolesAllowed("ADMIN")
     @PostMapping
     public MovieSessionResponseDto add(@RequestBody @Valid MovieSessionRequestDto requestDto) {

@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.security.RolesAllowed;
-
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -36,6 +34,7 @@ public class OrderController {
         this.userService = userService;
         this.orderMapper = orderMapper;
     }
+
     @PostMapping("/complete")
     public OrderResponseDto completeOrder(Authentication auth) {
         UserDetails details = (UserDetails) auth.getPrincipal();
