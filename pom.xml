@@ -17,7 +17,8 @@
         <maven.checkstyle.plugin.configLocation>
             https://raw.githubusercontent.com/mate-academy/style-guides/master/java/checkstyle.xml
         </maven.checkstyle.plugin.configLocation>
-        <spring.version>5.2.2.RELEASE</spring.version>
+        <spring.version>5.3.8</spring.version>
+        <spring.security.version>5.3.8.RELEASE</spring.security.version>
     </properties>
 
     <dependencies>
@@ -39,17 +40,22 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring.security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring.security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.5.2</version>
         </dependency>
 
         <dependency>
