@@ -26,7 +26,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (userOptional.isPresent()) {
             userBuilder = org.springframework.security.core.userdetails.User.withUsername(email);
             userBuilder.password(userOptional.orElseThrow(
-                    () -> new DataProcessingException("User not found")).getPassword());
+                    () -> new DataProcessingException("User not found"))
+                    .getPassword());
             userBuilder.roles(userOptional.orElseThrow(
                     () -> new DataProcessingException("Role not found"))
                     .getRoles()
