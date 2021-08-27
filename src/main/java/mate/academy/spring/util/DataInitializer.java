@@ -30,11 +30,11 @@ public class DataInitializer {
         admin.setEmail("admin@i.ua");
         admin.setPassword("admin@i.ua");
         admin.setRoles(Set.of(adminRole));
-        authenticationService.register(admin.getEmail(), admin.getPassword(), admin.getRoles());
+        authenticationService.register(admin.getEmail(), admin.getPassword());
         User user = new User();
         user.setEmail("user@i.ua");
         user.setPassword("user@i.ua");
         user.setRoles(Set.of(userRole));
-        authenticationService.register(user.getEmail(), user.getPassword(), user.getRoles());
+        authenticationService.register(user.getEmail(), user.getPassword());
     }
 }

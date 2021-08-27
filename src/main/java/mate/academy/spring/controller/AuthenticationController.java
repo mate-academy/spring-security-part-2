@@ -1,14 +1,10 @@
 package mate.academy.spring.controller;
 
-import java.util.Set;
-import java.util.stream.Collectors;
 import javax.validation.Valid;
 import mate.academy.spring.dto.request.UserRequestDto;
 import mate.academy.spring.dto.response.UserResponseDto;
-import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.AuthenticationService;
-import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.mapper.UserMapper;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,22 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
     private final AuthenticationService authService;
     private final UserMapper userMapper;
-    private final RoleService roleService;
 
     public AuthenticationController(AuthenticationService authService,
-                                    UserMapper userMapper,
-                                    RoleService roleService) {
+                                    UserMapper userMapper) {
         this.authService = authService;
         this.userMapper = userMapper;
-        this.roleService = roleService;
     }
 
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody @Valid UserRequestDto requestDto) {
-        Set<Role> roles = requestDto.getRoles().stream()
-                .map(roleService::getByName)
-                .collect(Collectors.toSet());
-        User user = authService.register(requestDto.getEmail(), requestDto.getPassword(), roles);
+        User user = authService.register(requestDto.getEmail(), requestDto.getPassword());
         return userMapper.mapToDto(user);
     }
 }
