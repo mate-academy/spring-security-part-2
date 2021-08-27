@@ -1,8 +1,10 @@
 package mate.academy.spring.service.impl;
 
-import mate.academy.spring.exception.DataProcessingException;
+import static org.springframework.security.core.userdetails.User.withUsername;
+
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,9 +21,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userService.findByEmail(email)
-                .orElseThrow(() -> new DataProcessingException("Invalid email"));
-        org.springframework.security.core.userdetails.User.UserBuilder userBuilder;
-        userBuilder = org.springframework.security.core.userdetails.User.withUsername(email);
+                .orElseThrow(() -> new UsernameNotFoundException("Invalid email"));
+        UserBuilder userBuilder = withUsername(email);
         userBuilder.password(user.getPassword());
         userBuilder.roles(user.getRoles().stream()
                 .map(r -> r.getRoleName().name())
