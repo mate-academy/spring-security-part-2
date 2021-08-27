@@ -1,9 +1,11 @@
 package mate.academy.spring.service;
 
+import static org.springframework.security.core.userdetails.User.UserBuilder;
+import static org.springframework.security.core.userdetails.User.withUsername;
+
 import java.util.Optional;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.User;
-import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,7 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         UserBuilder userBuilder;
         if (userOptional.isPresent()) {
-            userBuilder = org.springframework.security.core.userdetails.User.withUsername(email);
+            userBuilder = withUsername(email);
             userBuilder.password(userOptional.orElseThrow(
                     () -> new DataProcessingException("User not found"))
                     .getPassword());
