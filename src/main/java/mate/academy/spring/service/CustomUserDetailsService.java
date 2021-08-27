@@ -2,7 +2,6 @@ package mate.academy.spring.service;
 
 import java.util.Optional;
 import mate.academy.spring.exception.DataProcessingException;
-import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                     () -> new DataProcessingException("Role not found"))
                     .getRoles()
                     .stream()
-                    .map(Role::getName)
+                    .map(r -> r.getName().name())
                     .toArray(String[]::new));
             return userBuilder.build();
         }

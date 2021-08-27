@@ -23,12 +23,12 @@ public class Role {
         this.id = id;
     }
 
-    public String getName() {
-        return name.name();
+    public RoleName getName() {
+        return name;
     }
 
-    public void setName(String name) {
-        this.name = RoleName.valueOf(name);
+    public void setName(RoleName name) {
+        this.name = name;
     }
 
     public enum RoleName {
