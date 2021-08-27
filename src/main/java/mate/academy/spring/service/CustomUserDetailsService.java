@@ -3,8 +3,6 @@ package mate.academy.spring.service;
 import static org.springframework.security.core.userdetails.User.UserBuilder;
 import static org.springframework.security.core.userdetails.User.withUsername;
 
-import java.util.Optional;
-import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,22 +19,14 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> userOptional = userService.findByEmail(email);
-
-        UserBuilder userBuilder;
-        if (userOptional.isPresent()) {
-            userBuilder = withUsername(email);
-            userBuilder.password(userOptional.orElseThrow(
-                    () -> new DataProcessingException("User not found"))
-                    .getPassword());
-            userBuilder.roles(userOptional.orElseThrow(
-                    () -> new DataProcessingException("Role not found"))
-                    .getRoles()
-                    .stream()
-                    .map(r -> r.getName().name())
-                    .toArray(String[]::new));
-            return userBuilder.build();
-        }
-        throw new UsernameNotFoundException("Can not found user with email : " + email);
+        User user = userService.findByEmail(email).orElseThrow(() ->
+                new UsernameNotFoundException("Can not found user with email : " + email));
+        UserBuilder userBuilder = withUsername(email)
+                .password(user.getPassword())
+                .roles(user.getRoles()
+                        .stream()
+                        .map(r -> r.getName().name())
+                        .toArray(String[]::new));
+        return userBuilder.build();
     }
 }
