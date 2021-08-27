@@ -1,6 +1,5 @@
 package mate.academy.spring.service;
 
-import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
