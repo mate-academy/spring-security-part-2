@@ -4,7 +4,6 @@ import static org.springframework.security.core.userdetails.User.UserBuilder;
 import static org.springframework.security.core.userdetails.User.withUsername;
 
 import java.util.Optional;
-import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
