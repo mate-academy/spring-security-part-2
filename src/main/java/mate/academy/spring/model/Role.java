@@ -12,7 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "roles")
-public class Role implements GrantedAuthority {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,11 +40,6 @@ public class Role implements GrantedAuthority {
 
     public void setRoleName(RoleName roleName) {
         this.roleName = roleName;
-    }
-
-    @Override
-    public String getAuthority() {
-        return "ROLE_" + getRoleName().name();
     }
 
     public enum RoleName {

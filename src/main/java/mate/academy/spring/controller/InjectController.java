@@ -25,7 +25,8 @@ public class InjectController {
         this.userService = userService;
     }
 
-    @GetMapping String injectData() {
+    @GetMapping
+    public String injectData() {
         roleService.add(new Role(Role.RoleName.USER));
         roleService.add(new Role(Role.RoleName.ADMIN));
         authenticationService.register("user@test.com", "1q2w3e4r");
