@@ -52,6 +52,5 @@ public class AppConfig {
     @Bean
     public PasswordEncoder getEncoder() {
         return new BCryptPasswordEncoder();
-
     }
 }
