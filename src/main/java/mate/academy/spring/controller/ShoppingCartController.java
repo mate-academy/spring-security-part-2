@@ -25,9 +25,9 @@ public class ShoppingCartController {
     private final UserService userService;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService,
-                                  ShoppingCartMapper shoppingCartMapper,
-                                  UserService userService,
-                                  MovieSessionService movieSessionService) {
+            ShoppingCartMapper shoppingCartMapper,
+            UserService userService,
+            MovieSessionService movieSessionService) {
         this.shoppingCartService = shoppingCartService;
         this.shoppingCartMapper = shoppingCartMapper;
         this.userService = userService;
