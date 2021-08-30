@@ -41,19 +41,19 @@ HINT:
 
 ```java
 @PostConstruct
-public void inject() {
-  Role adminRole = new Role();
-  adminRole.setName("ADMIN");
-  roleService.add(adminRole);
-  Role userRole = new Role();
-  userRole.setName("USER");
-  roleService.add(userRole);
-  User user = new User();
-  user.setEmail("admin@i.ua");
-  user.setPassword("admin123");
-  user.setRoles(Set.of(adminRole));
-  userService.add(user);
-}
+public void inject(){
+        Role adminRole=new Role();
+        adminRole.setName("ADMIN");
+        roleService.add(adminRole);
+        Role userRole=new Role();
+        userRole.setName("USER");
+        roleService.add(userRole);
+        User user=new User();
+        user.setEmail("admin@i.ua");
+        user.setPassword("admin123");
+        user.setRoles(Set.of(adminRole));
+        userService.add(user);
+        }
 ```
 
 - You can specify the different HTTP method access for the same endpoint. For example:
