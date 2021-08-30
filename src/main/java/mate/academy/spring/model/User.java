@@ -1,10 +1,13 @@
 package mate.academy.spring.model;
 
+import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class User {
@@ -14,6 +17,16 @@ public class User {
     @Column(unique = true)
     private String email;
     private String password;
+    @ManyToMany
+    private Set<Role> roles;
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     public Long getId() {
         return id;
@@ -40,9 +53,27 @@ public class User {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(email, user.email)
+                && Objects.equals(password, user.password) && Objects.equals(roles, user.roles);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email, password, roles);
+    }
+
+    @Override
     public String toString() {
-        return "User{"
-                + "id=" + id
-                + ", email='" + email + '\'' + '}';
+        return "User{" + "id=" + id
+                + ", email='" + email + '\''
+                + ", roles=" + roles + '}';
     }
 }
