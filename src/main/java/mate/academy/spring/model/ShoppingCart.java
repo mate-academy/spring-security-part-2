@@ -2,7 +2,6 @@ package mate.academy.spring.model;
 
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
@@ -12,7 +11,7 @@ import javax.persistence.OneToOne;
 public class ShoppingCart {
     @Id
     private Long id;
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany
     private List<Ticket> tickets;
     @MapsId
     @OneToOne

@@ -1,6 +1,5 @@
 package mate.academy.spring.config;
 
-import mate.academy.spring.model.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String ADMIN_ROLE = "ADMIN";
+    private static final String USER_ROLE = "USER";
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
@@ -32,28 +33,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/register", "/login").anonymous()
                 .antMatchers(HttpMethod.GET, "/cinema-halls")
-                    .hasAnyRole(UserRole.USER.name(), UserRole.ADMIN.name())
-                .antMatchers(HttpMethod.POST, "/cinema-halls").hasRole(UserRole.ADMIN.name())
+                    .hasAnyRole(USER_ROLE, ADMIN_ROLE)
+                .antMatchers(HttpMethod.POST, "/cinema-halls").hasRole(ADMIN_ROLE)
                 .antMatchers(HttpMethod.GET, "/movies")
-                    .hasAnyRole(UserRole.USER.name(), UserRole.ADMIN.name())
+                    .hasAnyRole(USER_ROLE, ADMIN_ROLE)
                 .antMatchers(HttpMethod.GET, "/movie-sessions/available")
-                    .hasAnyRole(UserRole.USER.name(), UserRole.ADMIN.name())
+                    .hasAnyRole(USER_ROLE, ADMIN_ROLE)
                 .antMatchers(HttpMethod.POST, "/movie-sessions")
-                    .hasRole(UserRole.ADMIN.name())
+                    .hasRole(ADMIN_ROLE)
                 .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}")
-                    .hasRole(UserRole.ADMIN.name())
+                    .hasRole(ADMIN_ROLE)
                 .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}")
-                    .hasRole(UserRole.ADMIN.name())
+                    .hasRole(ADMIN_ROLE)
                 .antMatchers(HttpMethod.GET, "/orders")
-                    .hasRole(UserRole.USER.name())
+                    .hasRole(USER_ROLE)
                 .antMatchers(HttpMethod.POST, "/orders/complete")
-                    .hasRole(UserRole.USER.name())
+                    .hasRole(USER_ROLE)
                 .antMatchers(HttpMethod.POST, "/shopping-carts/movie-sessions")
-                    .hasRole(UserRole.USER.name())
+                    .hasRole(USER_ROLE)
                 .antMatchers(HttpMethod.GET, "/shopping-carts/by-user")
-                    .hasRole(UserRole.USER.name())
+                    .hasRole(USER_ROLE)
                 .antMatchers(HttpMethod.GET, "/users/by-email")
-                    .hasRole(UserRole.ADMIN.name())
+                    .hasRole(ADMIN_ROLE)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
