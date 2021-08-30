@@ -30,9 +30,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/register").permitAll()
                 .antMatchers(HttpMethod.GET, "/cinema-halls").hasAnyRole(USER, ADMIN)
                 .antMatchers(HttpMethod.POST, "/cinema-halls").hasRole(ADMIN)
@@ -48,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/shopping-carts/movie-sessions").hasRole(USER)
                 .antMatchers(HttpMethod.GET, "/shopping-carts/by-user").hasRole(USER)
                 .antMatchers(HttpMethod.GET, "/users/by-email").hasRole(ADMIN)
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .permitAll()
