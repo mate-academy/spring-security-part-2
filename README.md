@@ -10,8 +10,9 @@
       }
     ```
 
-- Configure role access to specific resources for `ADMIN` and for `USER`.
-  You should configure access to __all endpoints__ in your application. Example:
+- Configure role access to specific resources for `ADMIN` and for `USER`. You should configure
+  access to __all endpoints__ in your application. Example:
+
 ```
 POST: /register - all
 GET: /cinema-halls - user/admin
@@ -32,24 +33,29 @@ GET: /users/by-email - admin
 ``` 
 
 HINT:
-- It's up to you what type for RoleName field to choose(String/Enum) but enum would be preferable in most cases.
-- Roles and first Admin user can be injected inside DataInitializer class using annotation @PostConstruct.
+
+- It's up to you what type for RoleName field to choose(String/Enum) but enum would be preferable in
+  most cases.
+- Roles and first Admin user can be injected inside DataInitializer class using annotation
+  @PostConstruct.
+
 ```java
 @PostConstruct
-public void inject() {
-  Role adminRole = new Role();
-  adminRole.setName("ADMIN");
-  roleService.add(adminRole);
-  Role userRole = new Role();
-  userRole.setName("USER");
-  roleService.add(userRole);
-  User user = new User();
-  user.setEmail("admin@i.ua");
-  user.setPassword("admin123");
-  user.setRoles(Set.of(adminRole));
-  userService.add(user);
-}
+public void inject(){
+        Role adminRole=new Role();
+        adminRole.setName("ADMIN");
+        roleService.add(adminRole);
+        Role userRole=new Role();
+        userRole.setName("USER");
+        roleService.add(userRole);
+        User user=new User();
+        user.setEmail("admin@i.ua");
+        user.setPassword("admin123");
+        user.setRoles(Set.of(adminRole));
+        userService.add(user);
+        }
 ```
+
 - You can specify the different HTTP method access for the same endpoint. For example:
 
 ```plainjava
@@ -71,4 +77,5 @@ public void inject() {
     }
 ```
 
-__You can check yourself using this__ [checklist](https://mate-academy.github.io/jv-program-common-mistakes/java-spring/security-part-2/jv-spring-security-checklist)
+__You can check yourself using
+this__ [checklist](https://mate-academy.github.io/jv-program-common-mistakes/java-spring/security-part-2/jv-spring-security-checklist)
