@@ -23,8 +23,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userService.findByEmail(email).orElseThrow(()
                 -> new UsernameNotFoundException("User not found"));
         UserBuilder userBuilder = withUsername(email)
-               .password(user.getPassword())
-               .roles(user.getRoles()
+                .password(user.getPassword())
+                .roles(user.getRoles()
                        .stream()
                        .map(r -> r.getName().toString())
                        .toArray(String[]::new));
