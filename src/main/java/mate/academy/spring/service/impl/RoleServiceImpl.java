@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RoleServiceImpl implements RoleService {
-    private RoleDao roleDao;
+    private final RoleDao roleDao;
 
     public RoleServiceImpl(RoleDao roleDao) {
         this.roleDao = roleDao;
@@ -21,7 +21,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getRoleByName(String roleName) {
-
         return roleDao.getRoleByName(roleName).orElseThrow(() ->
                 new DataProcessingException(("Role name: " + roleName + " not found")));
     }

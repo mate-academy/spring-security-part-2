@@ -36,6 +36,6 @@ public class DataInitializer {
         userTwo.setEmail("user@i.ua");
         userTwo.setPassword("user123");
         userTwo.setRoles(Set.of(userRole));
+        userService.add(userTwo);
     }
-
 }
