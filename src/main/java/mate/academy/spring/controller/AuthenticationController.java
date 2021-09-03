@@ -1,6 +1,7 @@
 package mate.academy.spring.controller;
 
 import javax.validation.Valid;
+import mate.academy.spring.dto.request.AdminUserRequestDto;
 import mate.academy.spring.dto.request.UserRequestDto;
 import mate.academy.spring.dto.response.UserResponseDto;
 import mate.academy.spring.model.User;
@@ -23,6 +24,13 @@ public class AuthenticationController {
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody @Valid UserRequestDto requestDto) {
         User user = authService.register(requestDto.getEmail(), requestDto.getPassword());
+        return userMapper.mapToDto(user);
+    }
+
+    @PostMapping("/register-admin")
+    public UserResponseDto register(@RequestBody @Valid AdminUserRequestDto requestDto) {
+        User user = authService.registerAdmin(requestDto.getEmail(),
+                requestDto.getPassword(), requestDto.getAdminKey());
         return userMapper.mapToDto(user);
     }
 }
