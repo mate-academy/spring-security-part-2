@@ -21,7 +21,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     public List<Order> getOrdersHistory(User user) {
         try (Session session = factory.openSession()) {
             Query<Order> getByUser = session.createQuery(
-                    "SELECT DISTINCT o FROM orders o "
+                    "SELECT DISTINCT o FROM Order o "
                             + "join fetch o.tickets t "
                             + "join fetch t.movieSession ms "
                             + "join fetch ms.cinemaHall "

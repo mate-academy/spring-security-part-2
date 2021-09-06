@@ -25,7 +25,7 @@ PUT: /movie-sessions/{id} - admin
 DELETE: /movie-sessions/{id} - admin
 GET: /orders - user
 POST: /orders/complete - user
-POST: /shopping-carts/movie-sessions - user
+PUT: /shopping-carts/movie-sessions - user
 GET: /shopping-carts/by-user - user
 GET: /users/by-email - admin
 ...
@@ -55,8 +55,6 @@ public void inject() {
 ```plainjava
         protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/movies/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/movies/**").permitAll()
