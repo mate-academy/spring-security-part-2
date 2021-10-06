@@ -27,9 +27,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user.isPresent()) {
             builder = withUsername(username);
             builder.password(user.get().getPassword());
-            builder.authorities(user.get().getRoles()
+            builder.roles(user.get().getRoles()
                     .stream()
                     .map(Role::getName)
+                    .map(Enum::toString)
                     .toArray(String[]::new));
             return builder.build();
         }
