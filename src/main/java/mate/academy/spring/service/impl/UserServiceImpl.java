@@ -1,6 +1,7 @@
 package mate.academy.spring.service.impl;
 
 import java.util.Optional;
+import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.dao.UserDao;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.User;
@@ -12,10 +13,12 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     private final PasswordEncoder encoder;
     private final UserDao userDao;
+    private final RoleDao roleDao;
 
-    public UserServiceImpl(PasswordEncoder encoder, UserDao userDao) {
+    public UserServiceImpl(PasswordEncoder encoder, UserDao userDao, RoleDao roleDao) {
         this.encoder = encoder;
         this.userDao = userDao;
+        this.roleDao = roleDao;
     }
 
     @Override
