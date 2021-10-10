@@ -1,7 +1,6 @@
 package mate.academy.spring.service.impl;
 
 import java.util.Optional;
-import java.util.stream.Collectors;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
@@ -17,7 +16,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     public CustomUserDetailsService(UserService userService) {
         this.userService = userService;
     }
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
