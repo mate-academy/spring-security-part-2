@@ -1,10 +1,7 @@
 package mate.academy.spring.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.Set;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -14,6 +11,16 @@ public class User {
     @Column(unique = true)
     private String email;
     private String password;
+    @ManyToMany
+    private Set<Role> userRoles;
+
+    public Set<Role> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<Role> userRoles) {
+        this.userRoles = userRoles;
+    }
 
     public Long getId() {
         return id;
