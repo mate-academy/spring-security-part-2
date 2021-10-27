@@ -1,6 +1,5 @@
 package mate.academy.spring.controller;
 
-import java.util.Set;
 import javax.validation.Valid;
 import mate.academy.spring.dto.request.UserRequestDto;
 import mate.academy.spring.dto.response.UserResponseDto;
@@ -18,7 +17,8 @@ public class AuthenticationController {
     private final UserMapper userMapper;
     private final RoleService roleService;
 
-    public AuthenticationController(AuthenticationService authService, UserMapper userMapper, RoleService roleService) {
+    public AuthenticationController(AuthenticationService authService, UserMapper userMapper,
+                                    RoleService roleService) {
         this.authService = authService;
         this.userMapper = userMapper;
         this.roleService = roleService;
