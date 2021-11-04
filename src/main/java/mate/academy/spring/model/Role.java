@@ -9,7 +9,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name = "roles_users")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
