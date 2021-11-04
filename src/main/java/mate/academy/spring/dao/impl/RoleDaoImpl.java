@@ -11,7 +11,7 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao{
+public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
     public RoleDaoImpl(SessionFactory factory) {
         super(factory, Role.class);
     }
@@ -19,7 +19,8 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao{
     @Override
     public Optional<Role> getRoleByName(String roleName) {
         try (Session session = factory.openSession()) {
-            Query<Role> roleQuery = session.createQuery("From Role where name = :roleName", Role.class);
+            Query<Role> roleQuery
+                    = session.createQuery("From Role where name = :roleName", Role.class);
             return roleQuery.setParameter("name",roleName).uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Can't find role by name", e);

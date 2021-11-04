@@ -4,7 +4,6 @@ import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.service.RoleService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service

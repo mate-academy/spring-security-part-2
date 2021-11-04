@@ -17,6 +17,7 @@ public class DataInitializer {
         this.userService = userService;
         this.roleService = roleService;
     }
+
     @PostConstruct
     public void inject() {
         Role adminRole = new Role();
