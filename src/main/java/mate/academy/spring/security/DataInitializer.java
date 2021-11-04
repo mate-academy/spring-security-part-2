@@ -1,6 +1,7 @@
 package mate.academy.spring.security;
 
 import java.util.Set;
+import javax.annotation.PostConstruct;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.RoleService;
@@ -16,7 +17,7 @@ public class DataInitializer {
         this.userService = userService;
         this.roleService = roleService;
     }
-
+    @PostConstruct
     public void inject() {
         Role adminRole = new Role();
         adminRole.setRoleName(Role.RoleName.ADMIN);
