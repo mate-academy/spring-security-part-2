@@ -37,8 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         String.valueOf(ADMIN), String.valueOf(USER))
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/**").hasAnyRole(
                         String.valueOf(ADMIN), String.valueOf(USER))
-                .antMatchers(HttpMethod.GET, "/shopping-carts/**").hasAnyRole(
-                        String.valueOf(ADMIN), String.valueOf(USER))
                 .antMatchers(HttpMethod.GET, "/orders").hasAnyRole(
                         String.valueOf(ADMIN))
                 .antMatchers(HttpMethod.POST, "/orders/complete").hasAnyRole(
