@@ -38,8 +38,4 @@ public class Role {
         this.rolename = rolename;
     }
 
-    public enum RoleName {
-        ADMIN,
-        USER
-    }
 }
