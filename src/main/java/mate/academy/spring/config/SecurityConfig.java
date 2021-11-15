@@ -28,33 +28,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/register").permitAll()
-                .antMatchers(HttpMethod.GET, "/cinema-halls").hasAnyAuthority(
-                        RoleName.ADMIN.name(), RoleName.USER.name())
-                .antMatchers(HttpMethod.POST, "/cinema-halls").hasAuthority(
-                        RoleName.ADMIN.name())
-                .antMatchers(HttpMethod.GET, "/movies").hasAnyAuthority(
-                        RoleName.ADMIN.name(), RoleName.USER.name())
-                .antMatchers(HttpMethod.POST, "/movies").hasAuthority(
-                        RoleName.ADMIN.name())
-                .antMatchers("/movie-sessions/*").hasAnyAuthority(
-                        RoleName.ADMIN.name(), RoleName.USER.name())
-                .antMatchers(HttpMethod.POST, "/movie-sessions").hasAuthority(
-                        RoleName.ADMIN.name())
-                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasAuthority(
-                        RoleName.ADMIN.name())
-                .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasAuthority(
-                        RoleName.ADMIN.name())
-                .antMatchers("/orders").hasAuthority(
+                .antMatchers("/register", "/login").permitAll()
+                .antMatchers(HttpMethod.GET,
+                        "/cinema-halls",
+                        "/movies",
+                        "/movie-sessions/**").hasAnyAuthority(RoleName.ADMIN.name(),
                         RoleName.USER.name())
-                .antMatchers(HttpMethod.POST, "/orders/complete").hasAuthority(
-                        RoleName.USER.name())
-                .antMatchers("/shopping-carts/movie-sessions").hasAuthority(
-                        RoleName.USER.name())
-                .antMatchers("/shopping-carts/by-user").hasAuthority(
-                        RoleName.USER.name())
-                .antMatchers("/users/by-email").hasAuthority(
-                        RoleName.ADMIN.name())
+                .antMatchers(HttpMethod.POST,
+                        "/cinema-halls",
+                        "/movies",
+                        "/movie-sessions").hasAuthority(RoleName.ADMIN.name())
+                .antMatchers(HttpMethod.PUT,
+                        "/movie-sessions/{id}").hasAuthority(RoleName.ADMIN.name())
+                .antMatchers(HttpMethod.DELETE,
+                        "/movie-sessions/{id}").hasAuthority(RoleName.ADMIN.name())
+                .antMatchers(HttpMethod.GET,
+                        "/orders",
+                        "/shopping-carts/movie-sessions",
+                        "/shopping-carts/by-user").hasAuthority(RoleName.USER.name())
+                .antMatchers(HttpMethod.POST,
+                        "/orders/complete").hasAuthority(RoleName.USER.name())
+                .antMatchers(HttpMethod.GET,
+                        "/users/by-email").hasAuthority(RoleName.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
