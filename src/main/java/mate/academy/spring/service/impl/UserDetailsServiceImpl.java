@@ -1,5 +1,7 @@
 package mate.academy.spring.service.impl;
 
+import static org.springframework.security.core.userdetails.User.withUsername;
+
 import java.util.Optional;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
@@ -22,8 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Optional<User> byEmail = userService.findByEmail(email);
         if (byEmail.isPresent()) {
             User user = byEmail.get();
-            UserBuilder builder =
-                    org.springframework.security.core.userdetails.User.withUsername(email);
+            UserBuilder builder = withUsername(email);
             builder.password(user.getPassword());
             builder.roles(user.getRoles().stream()
                     .map(r -> r.getRole().getName())
