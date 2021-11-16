@@ -16,6 +16,7 @@ public class UserRequestDto {
     private String password;
     private String repeatPassword;
 
+
     public String getEmail() {
         return email;
     }
