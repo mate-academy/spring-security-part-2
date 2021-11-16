@@ -1,7 +1,12 @@
 package mate.academy.spring.model;
 
-import javax.persistence.*;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class User {
@@ -12,7 +17,7 @@ public class User {
     private String email;
     private String password;
     @ManyToMany
-    Set<Role> roles;
+    private Set<Role> roles;
 
     public Long getId() {
         return id;
