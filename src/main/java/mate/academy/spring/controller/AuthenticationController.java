@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import mate.academy.spring.dto.request.UserRequestDto;
 import mate.academy.spring.dto.response.UserResponseDto;
 import mate.academy.spring.model.Role;
+import mate.academy.spring.model.RoleName;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.AuthenticationService;
 import mate.academy.spring.service.RoleService;
@@ -29,7 +30,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody @Valid UserRequestDto requestDto) {
-        Role userRole = roleService.getRoleByName("USER");
+        Role userRole = roleService.getRoleByName(RoleName.USER.toString());
         User user = authService.register(requestDto.getEmail(), requestDto.getPassword(),
                 Set.of(userRole));
         return userMapper.mapToDto(user);
