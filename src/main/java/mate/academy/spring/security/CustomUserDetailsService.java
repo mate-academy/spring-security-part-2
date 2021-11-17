@@ -22,7 +22,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         Optional<User> optionalUser = userService.findByEmail(email);
         User user = optionalUser.orElseThrow(() ->
                 new UsernameNotFoundException("Can't find user by email: " + email));
-        UserBuilder builder = org.springframework.security.core.userdetails.User.withUsername(email);
+        UserBuilder builder =
+                org.springframework.security.core.userdetails.User.withUsername(email);
         builder.password(user.getPassword());
         builder.authorities(user.getRoles()
                 .stream()
