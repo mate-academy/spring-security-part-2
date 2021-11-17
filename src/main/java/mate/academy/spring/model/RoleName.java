@@ -6,7 +6,7 @@ public enum RoleName {
     ADMIN("ADMIN"),
     USER("USER");
 
-    private String stringName;
+    private final String stringName;
 
     RoleName(String stringName) {
         this.stringName = stringName;

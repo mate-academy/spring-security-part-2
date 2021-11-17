@@ -12,31 +12,33 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
-    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder encoder;
 
     public SecurityConfig(UserDetailsService userDetailsService,
                           PasswordEncoder passwordEncoder) {
         this.userDetailsService = userDetailsService;
-        this.passwordEncoder = passwordEncoder;
+        this.encoder = passwordEncoder;
     }
 
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+        auth.userDetailsService(userDetailsService).passwordEncoder(encoder);
     }
 
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET,
-                        "/cinema-halls",
                         "/movies",
-                        "/movie-sessions/**").hasRole("ADMIN")
+                        "/cinema-halls",
+                        "/movie-sessions/available",
+                        "/movie-sessions/{id}").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.GET,
+                        "/movie-sessions",
+                        "/users/by-email").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,
                         "/orders",
                         "/shopping-carts/by-user").hasRole("USER")
-                .antMatchers(HttpMethod.GET,
-                        "/users/by-email").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST,
                         "/register").permitAll()
                 .antMatchers(HttpMethod.POST,
