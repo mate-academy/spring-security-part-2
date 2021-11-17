@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/movie-session")
+@RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private static final String DATE_PATTERN = DateTimePatternUtil.DATE_PATTERN;
     private final MovieSessionService movieSessionService;
