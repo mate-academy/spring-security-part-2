@@ -26,12 +26,12 @@ public class DataInitializer {
     @PostConstruct
     public void injectData() {
         Role adminRole = roleService.add(new Role(Role.RoleName.ADMIN));
-        roleService.add(new Role(Role.RoleName.USER));
         User userAlice = new User();
         userAlice.setEmail("alice12@mail.com");
         userAlice.setPassword("12345");
         userAlice.setRoles(Set.of(adminRole));
         userService.add(userAlice);
+        roleService.add(new Role(Role.RoleName.USER));
         authenticationService
                 .register("bobby@mail.ua", "qwerty");
     }

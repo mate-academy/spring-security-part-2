@@ -1,8 +1,6 @@
 package mate.academy.spring.model;
 
-import java.util.Collections;
 import java.util.Set;
-import java.util.stream.Collectors;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
