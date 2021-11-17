@@ -23,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (userOptional.isPresent()) {
             userBuilder = org.springframework.security.core.userdetails.User.withUsername(email);
             userBuilder.password(userOptional.get().getPassword());
-            userBuilder.roles(userOptional.get().getRoles()
+            userBuilder.authorities(userOptional.get().getRoles()
                     .stream()
                     .map(r -> r.getName().name())
                     .toArray(String[]::new));
