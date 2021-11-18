@@ -5,6 +5,7 @@ import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.Role;
+import mate.academy.spring.model.RoleName;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -13,8 +14,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
 
-    public RoleDaoImpl(SessionFactory factory, Class<Role> clazz) {
-        super(factory, clazz);
+    public RoleDaoImpl(SessionFactory factory) {
+        super(factory, Role.class);
     }
 
     @Override
@@ -22,7 +23,7 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
         try (Session session = factory.openSession()) {
             Query<Role> getByName = session.createQuery(
                     "from Role where roleName = :roleName", Role.class);
-            getByName.setParameter("roleName", roleName);
+            getByName.setParameter("roleName", RoleName.valueOf(roleName));
             return getByName.uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Role with name: " + roleName
