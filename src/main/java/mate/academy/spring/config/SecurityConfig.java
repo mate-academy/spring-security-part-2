@@ -32,12 +32,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,
                         "/movies",
                         "/movie-sessions",
-                        "/cinema-halls").hasAnyAuthority("ADMIN")
+                        "/cinema-halls").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET,
                         "/cinema-halls",
-                        "/movie-sessions/available",
                         "/movies",
-                        "/movie-sessions/{id}").hasAnyAuthority("ADMIN", "USER")
+                        "/movie-sessions/**").hasAnyAuthority("ADMIN", "USER")
                 .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions").hasAuthority("USER")
                 .antMatchers(HttpMethod.GET, "/users/by-email").hasAuthority("ADMIN")
