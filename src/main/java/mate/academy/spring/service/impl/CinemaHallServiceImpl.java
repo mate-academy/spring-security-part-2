@@ -31,3 +31,4 @@ public class CinemaHallServiceImpl implements CinemaHallService {
         return cinemaHallDao.getAll();
     }
 }
+
