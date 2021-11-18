@@ -8,7 +8,8 @@ import mate.academy.spring.model.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper implements ResponseDtoMapper<UserResponseDto, User>, RequestDtoMapper<UserRequestDto, User>{
+public class UserMapper implements ResponseDtoMapper<UserResponseDto, User>,
+        RequestDtoMapper<UserRequestDto, User> {
     @Override
     public UserResponseDto mapToDto(User user) {
         UserResponseDto responseDto = new UserResponseDto();

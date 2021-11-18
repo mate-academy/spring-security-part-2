@@ -4,7 +4,6 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
-import mate.academy.spring.service.AuthenticationService;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
 import org.springframework.stereotype.Component;
@@ -37,6 +36,5 @@ public class DataInitializer {
         userUserRole.setPassword("test");
         userUserRole.setRoles(Set.of(userRole));
         userService.add(userUserRole);
-
     }
 }

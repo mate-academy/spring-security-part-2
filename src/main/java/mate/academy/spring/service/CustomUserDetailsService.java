@@ -1,5 +1,7 @@
 package mate.academy.spring.service;
 
+import static org.springframework.security.core.userdetails.User.withUsername;
+
 import java.util.Arrays;
 import java.util.Optional;
 import mate.academy.spring.model.Role;
@@ -9,9 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import static org.springframework.security.core.userdetails.User.withUsername;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

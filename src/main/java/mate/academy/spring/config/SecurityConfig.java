@@ -31,10 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,
                         "/cinema-halls",
                         "/movie-sessions/**",
-                        "/movies").hasAnyAuthority(Role.RoleName.ADMIN.name(),
+                        "/movies").hasAnyRole(Role.RoleName.ADMIN.name(),
                         Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.POST,
-                        "/cinema-halls",
+                        "/cinema-halls/**",
                         "/movies",
                         "/movie-sessions").hasRole(Role.RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.GET, "/users/by-email")
