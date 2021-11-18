@@ -4,6 +4,7 @@ import java.util.Optional;
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.model.Role;
+import mate.academy.spring.model.RoleName;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -21,7 +22,7 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
                 + "WHERE name = : roleName";
         try (Session session = factory.openSession()) {
             Query queryRoleByName = session.createQuery(query);
-            queryRoleByName.setParameter("roleName", roleName);
+            queryRoleByName.setParameter("roleName", RoleName.valueOf(roleName));
             return queryRoleByName.uniqueResultOptional();
         }
     }
