@@ -31,21 +31,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/register", "/login").permitAll()
                 .antMatchers(HttpMethod.POST,
                         "/movies",
-                        "movie-sessions",
-                        "cinema-halls").hasRole("ADMIN")
+                        "/movie-sessions",
+                        "/cinema-halls").hasAnyAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET,
                         "/cinema-halls",
                         "/movie-sessions/available",
                         "/movies",
-                        "/movie-sessions/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions").hasRole("USER")
-                .antMatchers(HttpMethod.GET, "/users/by-email").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET,
-                        "/shopping-cart/by-user",
-                        "/orders").hasRole("USER")
-                .antMatchers(HttpMethod.POST, "/orders/complete").hasRole("USER")
+                        "/movie-sessions/{id}").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions").hasAuthority("USER")
+                .antMatchers(HttpMethod.GET, "/users/by-email").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/shopping-cart/by-user", "/orders").hasAuthority("USER")
+                .antMatchers(HttpMethod.POST, "/orders/complete").hasAuthority("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

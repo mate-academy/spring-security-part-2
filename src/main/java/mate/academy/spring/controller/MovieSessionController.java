@@ -65,4 +65,9 @@ public class MovieSessionController {
     public void delete(@PathVariable Long id) {
         movieSessionService.delete(id);
     }
+
+    @GetMapping("/{id}")
+    public MovieSessionResponseDto findById(@PathVariable Long id) {
+        return movieSessionMapper.mapToDto(movieSessionService.get(id));
+    }
 }
