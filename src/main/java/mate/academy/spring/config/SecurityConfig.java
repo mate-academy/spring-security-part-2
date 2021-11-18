@@ -44,8 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/movie-sessions/{id}").hasAuthority(RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.GET,
                         "/orders",
-                        "/shopping-carts/movie-sessions",
                         "/shopping-carts/by-user").hasAuthority(RoleName.USER.name())
+                .antMatchers(HttpMethod.PUT,
+                        "/shopping-carts/movie-sessions").hasAuthority(RoleName.USER.name())
                 .antMatchers(HttpMethod.POST,
                         "/orders/complete").hasAuthority(RoleName.USER.name())
                 .antMatchers(HttpMethod.GET,
