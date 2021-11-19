@@ -23,7 +23,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         Optional<User> userOptional = userService.findByEmail(email);
 
         if (userOptional.isPresent()) {
-            UserBuilder builder = org.springframework.security.core.userdetails.User.withUsername(email);
+            UserBuilder builder = org.springframework.security
+                    .core.userdetails.User.withUsername(email);
             builder.password(userOptional.get().getPassword());
             builder.roles(userOptional.get().getRoles()
                             .stream()
