@@ -15,7 +15,6 @@ public class DataInitializer {
     private final RoleService roleService;
     private final UserService userService;
 
-    @Autowired
     public DataInitializer(RoleService roleService,
                            UserService userService) {
         this.roleService = roleService;
