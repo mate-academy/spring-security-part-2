@@ -27,5 +27,4 @@ public class UserRequestDto {
     public String getRepeatPassword() {
         return repeatPassword;
     }
-
 }

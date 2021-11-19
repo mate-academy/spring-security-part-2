@@ -1,5 +1,6 @@
 package mate.academy.spring.config;
 
+import mate.academy.spring.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -37,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/movie-sessions/{id}").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/cinema-halls", "/movies", "/movie-sessions/available",
                         "/orders", "/shopping-carts/by-user","/users/by-email")
-                .hasAnyRole("ADMIN", "USER")
+                .hasAnyRole(String.valueOf(Role.RoleName.USER), String.valueOf(Role.RoleName.ADMIN))
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
