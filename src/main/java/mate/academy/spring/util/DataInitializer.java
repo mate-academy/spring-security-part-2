@@ -1,5 +1,6 @@
 package mate.academy.spring.util;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import mate.academy.spring.model.Role;
@@ -29,12 +30,16 @@ public class DataInitializer {
         User user = new User();
         user.setEmail("admin@i.ua");
         user.setPassword("admin123");
-        user.setRoles(Set.of(adminRole));
+        Set<Role> adminRoles = new HashSet<>();
+        adminRoles.add(adminRole);
+        Set<Role> userRoles = new HashSet<>();
+        userRoles.add(userRole);
+        user.setRoles(adminRoles);
         userService.add(user);
         User userUserRole = new User();
         userUserRole.setEmail("test@ukr.net");
         userUserRole.setPassword("test");
-        userUserRole.setRoles(Set.of(userRole));
+        userUserRole.setRoles(userRoles);
         userService.add(userUserRole);
     }
 }
