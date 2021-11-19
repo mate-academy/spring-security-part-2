@@ -25,9 +25,9 @@ public class DataInitializer {
 
     @PostConstruct
     public void inject() {
-        Role adminRole = roleService.add(new Role(Role.RoleName.ADMIN));
         Role userRole = roleService.add(new Role(Role.RoleName.USER));
-        authenticationService.register("bob@gmai.com", "123");
+        authenticationService.register("bob@gmail.com", "123");
+        Role adminRole = roleService.add(new Role(Role.RoleName.ADMIN));
         User admin = new User();
         admin.setEmail("alica@gmail.com");
         admin.setPassword("456");

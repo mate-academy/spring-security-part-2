@@ -16,7 +16,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final RoleService roleService;
 
     public AuthenticationServiceImpl(UserService userService,
-                                     ShoppingCartService shoppingCartService, RoleService roleService) {
+                                     ShoppingCartService shoppingCartService,
+                                     RoleService roleService) {
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
         this.roleService = roleService;
@@ -27,10 +28,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
-        userService.add(user);
-        shoppingCartService.registerNewShoppingCart(user);
         Role roleByName = roleService.getRoleByName(Role.RoleName.USER);
         user.setRoles(Set.of(roleByName));
+        userService.add(user);
+        shoppingCartService.registerNewShoppingCart(user);
         return user;
     }
 }
