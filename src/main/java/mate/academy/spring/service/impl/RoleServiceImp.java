@@ -3,7 +3,9 @@ package mate.academy.spring.service.impl;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.service.RoleService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RoleServiceImp implements RoleService {
     private final RoleDao roleDao;
 
@@ -18,7 +20,7 @@ public class RoleServiceImp implements RoleService {
     }
 
     @Override
-    public Role getRoleByName(String roleName) {
+    public Role getRoleByName(Role.RoleName roleName) {
         return roleDao.getRoleByName(roleName).get();
     }
 }

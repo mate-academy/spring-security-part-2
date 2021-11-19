@@ -4,6 +4,7 @@ import java.util.Optional;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,12 +26,12 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
         }
         User user = userOptional.orElseThrow();
-        org.springframework.security.core.userdetails.User.UserBuilder builder
-                = org.springframework.security.core.userdetails.User.withUsername(username);
+       UserBuilder builder = org.springframework.security.core.userdetails.User.withUsername(username);
         builder.password(user.getPassword());
         builder.authorities(user.getRoles()
                 .stream()
                 .map(Role::getRoleName)
+                .map(Enum::toString)
                 .toArray(String[]::new));
         return builder.build();
     }
