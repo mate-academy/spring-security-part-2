@@ -39,5 +39,11 @@ public class DataInitializer {
         user.setEmail("petro@gmail.com");
         user.setPassword("87654321");
         userService.add(user);
+
+        User userSecond = new User();
+        userSecond.setRoles(Set.of(userRole));
+        userSecond.setEmail("alice@gmail.com");
+        userSecond.setPassword("00000000");
+        userService.add(user);
     }
 }
