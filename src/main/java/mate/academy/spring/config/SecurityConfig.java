@@ -29,29 +29,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/register", "/login").permitAll()
                 .antMatchers(HttpMethod.GET,
-                        "/cinema-halls/**",
-                        "/movie-sessions/**",
-                        "/movies").hasAnyRole(Role.RoleName.ADMIN.name(),
-                        Role.RoleName.USER.name())
-                .antMatchers(HttpMethod.POST,
-                        "/cinema-halls/**",
+                        "/cinema-halls",
+                        "/movie-sessions/available",
                         "/movies",
-                        "/movie-sessions").hasRole(Role.RoleName.ADMIN.name())
+                        "/movie-sessions/{id}").hasAnyRole(Role.RoleName.ADMIN.toString(),
+                        Role.RoleName.USER.toString())
+                .antMatchers(HttpMethod.POST,
+                        "/cinema-halls",
+                        "/movies",
+                        "/movie-sessions").hasRole(Role.RoleName.ADMIN.toString())
                 .antMatchers(HttpMethod.GET, "/users/by-email")
-                .hasRole(Role.RoleName.ADMIN.name())
+                .hasRole(Role.RoleName.ADMIN.toString())
                 .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}")
-                .hasRole(Role.RoleName.ADMIN.name())
+                .hasRole(Role.RoleName.ADMIN.toString())
                 .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}")
-                .hasRole(Role.RoleName.ADMIN.name())
-                .antMatchers("/orders/**", "/shopping-carts/**")
-                .hasRole(Role.RoleName.USER.name())
+                .hasRole(Role.RoleName.ADMIN.toString())
+                .antMatchers(HttpMethod.GET,
+                        "/orders", "/shopping-carts/by-user")
+                .hasRole(Role.RoleName.USER.toString())
+                .antMatchers(HttpMethod.POST, "/orders/complete")
+                .hasRole(Role.RoleName.USER.toString())
+                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions")
+                .hasRole(Role.RoleName.USER.toString())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .permitAll()
+                 .permitAll()
                 .and()
-                .httpBasic()
-                 .and()
+                 .httpBasic()
+                .and()
                 .csrf().disable();
     }
 }
