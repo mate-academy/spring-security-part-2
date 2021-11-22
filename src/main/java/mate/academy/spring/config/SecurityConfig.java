@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/movie-sessions/{id}").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/cinema-halls", "/movies", "/movie-sessions/available",
-                        "/orders", "/shopping-carts/by-user","/users/by-email")
+                        "/orders", "/shopping-carts/by-user", "/users", "/users/by-email")
                 .hasAnyRole(String.valueOf(Role.RoleName.USER), String.valueOf(Role.RoleName.ADMIN))
                 .anyRequest().authenticated()
                 .and()
