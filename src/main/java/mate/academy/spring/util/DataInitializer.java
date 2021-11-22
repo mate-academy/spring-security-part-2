@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DataInitializer {
-    private UserService userService;
-    private RoleService roleService;
+    private final UserService userService;
+    private final RoleService roleService;
 
     public DataInitializer(UserService userService, RoleService roleService) {
         this.userService = userService;
@@ -44,6 +44,6 @@ public class DataInitializer {
         userSecond.setRoles(Set.of(userRole));
         userSecond.setEmail("alice@gmail.com");
         userSecond.setPassword("00000000");
-        userService.add(user);
+        userService.add(userSecond);
     }
 }
