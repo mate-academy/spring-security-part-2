@@ -36,5 +36,6 @@ public class DataInitializer {
         user.setRoles(Set.of(userRole));
         userService.add(admin);
         userService.add(user);
+
     }
 }
