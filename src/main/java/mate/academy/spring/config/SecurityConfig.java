@@ -1,30 +1,30 @@
 package mate.academy.spring.config;
 
 import mate.academy.spring.model.RoleName;
-import mate.academy.spring.security.CustomUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    public static final String ADMIN_ROLE = RoleName.ADMIN.toString();
-    public static final String USER_ROLE = RoleName.USER.toString();
-    private final CustomUserDetailsService customUserDetailsService;
+    private static final String ADMIN_ROLE = RoleName.ADMIN.toString();
+    private static final String USER_ROLE = RoleName.USER.toString();
+    private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
-    public SecurityConfig(CustomUserDetailsService customUserDetailsService,
-                          PasswordEncoder passwordEncoder) {
-        this.customUserDetailsService = customUserDetailsService;
+    public SecurityConfig(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
+        this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Override
+    @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder);
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 
     protected void configure(HttpSecurity http) throws Exception {
