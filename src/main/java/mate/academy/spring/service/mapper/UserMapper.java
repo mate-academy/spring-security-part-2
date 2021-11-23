@@ -1,9 +1,9 @@
 package mate.academy.spring.service.mapper;
 
+import java.util.stream.Collectors;
 import mate.academy.spring.dto.response.UserResponseDto;
 import mate.academy.spring.model.User;
 import org.springframework.stereotype.Component;
-import java.util.stream.Collectors;
 
 @Component
 public class UserMapper implements ResponseDtoMapper<UserResponseDto, User> {
