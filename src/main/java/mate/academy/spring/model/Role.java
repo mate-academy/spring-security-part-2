@@ -54,6 +54,13 @@ public class Role {
                     .filter(e -> e.getName().equals(name))
                     .findFirst().get();
         }
+
+        @Override
+        public String toString() {
+            return "RoleName{" +
+                    "name='" + name + '\'' +
+                    '}';
+        }
     }
 
     @Override
@@ -71,5 +78,13 @@ public class Role {
     @Override
     public int hashCode() {
         return Objects.hash(id, role);
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", role=" + role +
+                '}';
     }
 }
