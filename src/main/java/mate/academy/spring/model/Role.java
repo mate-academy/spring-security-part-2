@@ -1,6 +1,5 @@
 package mate.academy.spring.model;
 
-import java.util.Arrays;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -33,34 +32,6 @@ public class Role {
 
     public void setRole(RoleName role) {
         this.role = role;
-    }
-
-    public enum RoleName {
-        ADMIN("ADMIN"),
-        USER("USER");
-
-        private final String name;
-
-        RoleName(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public static RoleName getRoleByName(String name) {
-            return Arrays.stream(RoleName.values())
-                    .filter(e -> e.getName().equals(name))
-                    .findFirst().get();
-        }
-
-        @Override
-        public String toString() {
-            return "RoleName{" +
-                    "name='" + name + '\'' +
-                    '}';
-        }
     }
 
     @Override

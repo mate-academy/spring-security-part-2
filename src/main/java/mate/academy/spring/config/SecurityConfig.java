@@ -1,6 +1,6 @@
 package mate.academy.spring.config;
 
-import mate.academy.spring.model.Role;
+import mate.academy.spring.model.RoleName;
 import mate.academy.spring.security.CustomUserDetailsService;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,8 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    public static final String ADMIN_ROLE = Role.RoleName.ADMIN.getName();
-    public static final String USER_ROLE = Role.RoleName.USER.getName();
+    public static final String ADMIN_ROLE = RoleName.ADMIN.getName();
+    public static final String USER_ROLE = RoleName.USER.getName();
     private final CustomUserDetailsService customUserDetailsService;
     private final PasswordEncoder passwordEncoder;
 
