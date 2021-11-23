@@ -29,8 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         builder.password(user.getPassword());
         builder.roles(user.getRoles()
                 .stream()
-                .map(Role::getRole)
-                .map(Enum::toString)
+                .map(role -> role.getRole().toString())
                 .toArray(String[]::new));
         return builder.build();
     }
