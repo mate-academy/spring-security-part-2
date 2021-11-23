@@ -26,8 +26,6 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                             + "join fetch t.movieSession ms "
                             + "join fetch ms.cinemaHall "
                             + "join fetch ms.movie "
-                            + "join fetch o.user u "
-                            + "join fetch u.roles "
                             + "WHERE o.user = :user", Order.class);
             getByUser.setParameter("user", user);
             return getByUser.getResultList();
