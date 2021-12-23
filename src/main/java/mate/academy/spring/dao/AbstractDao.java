@@ -18,9 +18,7 @@ public abstract class AbstractDao<T> {
 
     public T add(T t) {
         Transaction transaction = null;
-        Session session = null;
-        try {
-            session = factory.openSession();
+        try (Session session = factory.openSession()) {
             transaction = session.beginTransaction();
             session.save(t);
             transaction.commit();
@@ -31,10 +29,6 @@ public abstract class AbstractDao<T> {
             }
             throw new DataProcessingException("Can't insert "
                     + clazz.getSimpleName() + " " + t, e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
         }
     }
 
@@ -58,9 +52,7 @@ public abstract class AbstractDao<T> {
 
     public T update(T t) {
         Transaction transaction = null;
-        Session session = null;
-        try {
-            session = factory.openSession();
+        try (Session session = factory.openSession()) {
             transaction = session.beginTransaction();
             session.update(t);
             transaction.commit();
@@ -71,21 +63,15 @@ public abstract class AbstractDao<T> {
             }
             throw new DataProcessingException("Can't update "
                     + clazz.getSimpleName() + " " + t, e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
         }
     }
 
     public void delete(Long id) {
         Transaction transaction = null;
-        Session session = null;
-        try {
-            session = factory.openSession();
+        try (Session session = factory.openSession()) {
             transaction = session.beginTransaction();
-            T movieSession = session.get(clazz, id);
-            session.delete(movieSession);
+            T t = session.get(clazz, id);
+            session.delete(t);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -93,10 +79,6 @@ public abstract class AbstractDao<T> {
             }
             throw new DataProcessingException("Can't delete "
                     + clazz.getSimpleName() + " with id: " + id, e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
         }
     }
 }
