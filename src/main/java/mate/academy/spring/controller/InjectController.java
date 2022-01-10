@@ -33,7 +33,7 @@ public class InjectController {
         authenticationService.register("goncharova@push.com", "mon_alex");
         User user = userService.findByEmail("pushkin@push.com").get();
         Set<Role> roles = user.getRoles();
-        roles.add(roleService.getRoleByName(Role.RoleName.ADMIN));
+        roles.add(roleService.getRoleByName(Role.RoleName.ADMIN.name()));
         userService.update(user);
         return "ok!";
     }

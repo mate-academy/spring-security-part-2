@@ -20,7 +20,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role getRoleByName(Enum<Role.RoleName> roleName) {
+    public Role getRoleByName(String roleName) {
         return roleDao.getRoleByName(roleName).orElseThrow(
                 () -> new DataProcessingException("Can't find role with name " + roleName));
     }
