@@ -27,13 +27,13 @@ public class InjectController {
 
     @GetMapping
     public String injectData() {
-        roleService.add(new Role(Role.RoleName.ROLE_ADMIN));
-        roleService.add(new Role(Role.RoleName.ROLE_USER));
+        roleService.add(new Role(Role.RoleName.ADMIN));
+        roleService.add(new Role(Role.RoleName.USER));
         authenticationService.register("pushkin@push.com", "mon_natalie");
         authenticationService.register("goncharova@push.com", "mon_alex");
         User user = userService.findByEmail("pushkin@push.com").get();
         Set<Role> roles = user.getRoles();
-        roles.add(roleService.getRoleByName("ROLE_ADMIN"));
+        roles.add(roleService.getRoleByName(Role.RoleName.ADMIN));
         userService.update(user);
         return "ok!";
     }

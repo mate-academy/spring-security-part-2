@@ -6,5 +6,5 @@ import mate.academy.spring.model.Role;
 public interface RoleDao {
     Role add(Role role);
 
-    Optional<Role> getRoleByName(String roleName);
+    Optional<Role> getRoleByName(Enum<Role.RoleName> roleName);
 }
