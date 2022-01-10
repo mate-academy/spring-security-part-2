@@ -8,5 +8,7 @@ public interface UserService {
 
     User get(Long id);
 
+    User update(User user);
+
     Optional<User> findByEmail(String email);
 }
