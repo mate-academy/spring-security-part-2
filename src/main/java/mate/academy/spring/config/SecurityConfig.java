@@ -28,25 +28,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,
                         "/cinema-halls",
                         "/movies",
-                        "/movie-sessions/**").hasAnyAuthority(Role.RoleType.ADMIN.name(),
-                        Role.RoleType.USER.name())
+                        "/movie-sessions/**").hasAnyAuthority(Role.RoleName.ADMIN.name(),
+                        Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.POST,
                         "/cinema-halls",
                         "/movies",
-                        "/movie-sessions").hasAuthority(Role.RoleType.ADMIN.name())
+                        "/movie-sessions").hasAuthority(Role.RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.PUT,
-                        "/movie-sessions/{id}").hasAuthority(Role.RoleType.ADMIN.name())
+                        "/movie-sessions/{id}").hasAuthority(Role.RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.DELETE,
-                        "/movie-sessions/{id}").hasAuthority(Role.RoleType.ADMIN.name())
+                        "/movie-sessions/{id}").hasAuthority(Role.RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.GET,
                         "/orders",
-                        "/shopping-carts/by-user").hasAuthority(Role.RoleType.USER.name())
+                        "/shopping-carts/by-user").hasAuthority(Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.PUT,
-                        "/shopping-carts/movie-sessions").hasAuthority(Role.RoleType.USER.name())
+                        "/shopping-carts/movie-sessions").hasAuthority(Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.POST,
-                        "/orders/complete").hasAuthority(Role.RoleType.USER.name())
+                        "/orders/complete").hasAuthority(Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.GET,
-                        "/users/by-email").hasAuthority(Role.RoleType.ADMIN.name())
+                        "/users/by-email").hasAuthority(Role.RoleName.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

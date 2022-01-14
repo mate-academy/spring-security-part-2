@@ -17,10 +17,10 @@ public class DataInitializer {
 
     @PostConstruct
     public void inject() {
-        Role adminRole = Role.builder().roleType(Role.RoleType.ADMIN).build();
+        Role adminRole = Role.builder().roleType(Role.RoleName.ADMIN).build();
         roleService.add(adminRole);
 
-        Role userRole = Role.builder().roleType(Role.RoleType.USER).build();
+        Role userRole = Role.builder().roleType(Role.RoleName.USER).build();
         roleService.add(userRole);
 
         userService.add(User.builder().email("admin@gmail.com")

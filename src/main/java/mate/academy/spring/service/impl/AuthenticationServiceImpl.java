@@ -20,9 +20,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public User register(String email, String password) {
-        Set<Role> rolesSet = new HashSet<>();
-        rolesSet.add(roleService.getRoleByName(Role.RoleType.USER.name()));
-        User user = User.builder().email(email).password(password).roles(rolesSet).build();
+        Set<Role> roles = new HashSet<>();
+        roles.add(roleService.getRoleByName(Role.RoleName.USER.name()));
+        User user = User.builder().email(email).password(password).roles(roles).build();
         userService.add(user);
         shoppingCartService.registerNewShoppingCart(user);
         return user;
