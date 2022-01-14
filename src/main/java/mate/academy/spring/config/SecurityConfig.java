@@ -1,7 +1,7 @@
 package mate.academy.spring.config;
 
 import lombok.AllArgsConstructor;
-import mate.academy.spring.model.RoleName;
+import mate.academy.spring.model.Role;
 import mate.academy.spring.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -14,8 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private static final String ROLE_ADMIN = RoleName.ADMIN.toString();
-    private static final String ROLE_USER = RoleName.USER.toString();
+    private static final String ROLE_ADMIN = Role.RoleName.ADMIN.name();
+    private static final String ROLE_USER = Role.RoleName.USER.name();
     private final PasswordEncoder passwordEncoder;
     private final CustomUserDetailsService userDetailsService;
 
@@ -43,13 +43,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,
                          "/cinema-halls",
                                     "/movies",
-                                    "/movie-sessions/available").hasAnyRole(ROLE_ADMIN, ROLE_USER)
+                                    "/movie-sessions/available",
+                                    "/movie-sessions/{id}").hasAnyRole(ROLE_ADMIN, ROLE_USER)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .permitAll()
-                .and()
-                .httpBasic()
                 .and()
                 .csrf().disable();
     }
