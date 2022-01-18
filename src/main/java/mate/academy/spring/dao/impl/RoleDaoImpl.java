@@ -3,6 +3,8 @@ package mate.academy.spring.dao.impl;
 import java.util.Optional;
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.RoleDao;
+import mate.academy.spring.enums.RoleName;
+import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,8 +22,10 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
         try (Session session = factory.openSession()) {
             Query<Role> roleQuery = session.createQuery(
                     "FROM Role WHERE roleName = :roleName", Role.class);
-            roleQuery.setParameter("roleName", roleName);
+            roleQuery.setParameter("roleName", RoleName.valueOf(roleName));
             return roleQuery.uniqueResultOptional();
+        } catch (Exception e) {
+            throw new DataProcessingException("Not found role by name " + roleName, e);
         }
     }
 }
