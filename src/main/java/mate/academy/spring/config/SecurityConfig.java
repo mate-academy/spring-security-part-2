@@ -33,7 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/users/by-email").hasRole(ROLE_ADMIN)
-                .antMatchers(HttpMethod.GET, "/shopping-carts/by-user", "/orders").hasRole(ROLE_USER)
+                .antMatchers(HttpMethod.GET, "/shopping-carts/by-user",
+                        "/orders").hasRole(ROLE_USER)
                 .antMatchers(HttpMethod.GET,
                         "/cinema-halls",
                         "/movies",
