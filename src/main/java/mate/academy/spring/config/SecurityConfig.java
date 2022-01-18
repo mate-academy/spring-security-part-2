@@ -32,24 +32,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/movies",
                         "/movie-sessions/available",
                         "/movie-sessions/{id}")
-                        .hasAnyRole(Role.RoleName.ADMIN.name(), Role.RoleName.USER.name())
+                .hasAnyRole(Role.RoleName.ADMIN.name(), Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.POST, "/cinema-halls",
                         "/movies",
                         "/movie-sessions")
-                        .hasRole(Role.RoleName.ADMIN.name())
+                .hasRole(Role.RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}")
-                        .hasRole(Role.RoleName.ADMIN.name())
+                .hasRole(Role.RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}")
-                        .hasRole(Role.RoleName.ADMIN.name())
+                .hasRole(Role.RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.GET, "/orders",
                         "/shopping-carts/by-user")
-                        .hasRole(Role.RoleName.USER.name())
+                .hasRole(Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.POST, "/orders/complete")
-                        .hasRole(Role.RoleName.USER.name())
+                .hasRole(Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.PUT, " /shopping-carts/movie-sessions")
-                        .hasRole(Role.RoleName.USER.name())
+                .hasRole(Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.GET, "/users/by-email")
-                        .hasRole(Role.RoleName.ADMIN.name())
+                .hasRole(Role.RoleName.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
