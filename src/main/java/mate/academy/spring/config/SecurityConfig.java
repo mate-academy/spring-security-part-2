@@ -32,8 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/movie-session/{id}").hasRole(ADMIN_ROLE)
-                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.DELETE, "/movie-session/**").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/**").hasRole(ADMIN_ROLE)
                 .antMatchers("/orders/**", "/shopping-carts/**").hasRole(USER_ROLE)
                 .antMatchers("/users/by-email").hasRole(ADMIN_ROLE)
                 .antMatchers(HttpMethod.GET, "/cinema-halls", "/movies",
