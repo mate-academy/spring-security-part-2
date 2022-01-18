@@ -23,7 +23,6 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
             Query<Role> getByName = session.createQuery(
                     "FROM Role WHERE roleName = :name", Role.class);
             getByName.setParameter("name", RoleEnum.valueOf(roleName));
-            System.out.println(getByName.uniqueResultOptional());
             return getByName.uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Not found role for name " + roleName, e);
