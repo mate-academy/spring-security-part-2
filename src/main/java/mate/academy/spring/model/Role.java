@@ -2,6 +2,8 @@ package mate.academy.spring.model;
 
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,7 +13,8 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    @Enumerated(value = EnumType.STRING)
+    private RoleType roleType;
 
     public Long getId() {
         return id;
@@ -21,12 +24,17 @@ public class Role {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public RoleType getRoleType() {
+        return roleType;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoleType(RoleType roleType) {
+        this.roleType = roleType;
+    }
+
+    public enum RoleType {
+        USER,
+        ADMIN;
     }
 
     @Override
@@ -38,11 +46,12 @@ public class Role {
             return false;
         }
         Role role = (Role) o;
-        return Objects.equals(id, role.id) && Objects.equals(name, role.name);
+        return Objects.equals(id, role.id) && roleType == role.roleType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, roleType);
     }
+
 }
