@@ -17,14 +17,14 @@ public class User {
     private String email;
     private String password;
     @ManyToMany
-    private Set<Role> role;
+    private Set<Role> roles;
 
-    public Set<Role> getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Set<Role> role) {
-        this.role = role;
+    public void setRoles(Set<Role> role) {
+        this.roles = role;
     }
 
     public Long getId() {
