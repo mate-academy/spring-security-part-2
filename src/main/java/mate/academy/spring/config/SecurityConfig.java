@@ -29,8 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
+        http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/orders/complete").hasRole(ROLE_USER)
                 .antMatchers(HttpMethod.POST,
@@ -38,8 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/movies",
                         "/movie-sessions").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions").hasRole(ROLE_USER)
-                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasRole(ROLE_ADMIN)
-                .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasRole(ROLE_ADMIN)
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/**").hasRole(ROLE_ADMIN)
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/**").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.GET,
                         "/shopping-carts/by-user",
                         "/orders").hasRole(ROLE_USER)
@@ -48,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/cinema-halls",
                         "/movies",
                         "/movie-sessions/available",
-                        "/movie-sessions/{id}").hasAnyRole(ROLE_ADMIN, ROLE_USER)
+                        "/movie-sessions/**").hasAnyRole(ROLE_ADMIN, ROLE_USER)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
