@@ -8,8 +8,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "shopping_carts")
 public class ShoppingCart {
     @Id
     private Long id;
