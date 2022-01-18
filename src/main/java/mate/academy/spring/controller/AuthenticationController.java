@@ -23,10 +23,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody @Valid UserRequestDto requestDto) {
-        User user = new User();
-        user.setEmail(requestDto.getEmail());
-        user.setPassword(requestDto.getPassword());
-        user = authService.register(requestDto.getEmail(), requestDto.getPassword());
+        User user = authService.register(requestDto.getEmail(), requestDto.getPassword());
         return userMapper.mapToDto(user);
     }
 }

@@ -1,5 +1,8 @@
 package mate.academy.spring.security;
 
+import static org.springframework.security.core.userdetails.User.UserBuilder;
+import static org.springframework.security.core.userdetails.User.withUsername;
+
 import java.util.Optional;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
@@ -23,8 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found by username " + userName);
         }
         User user = userOptional.get();
-        org.springframework.security.core.userdetails.User.UserBuilder builder =
-                org.springframework.security.core.userdetails.User.withUsername(userName);
+        UserBuilder builder = withUsername(userName);
         builder.password(user.getPassword());
         builder.roles(user.getRoles().stream()
                 .map(r -> r.getName().name())
