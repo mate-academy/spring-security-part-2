@@ -28,15 +28,5 @@ public class DataInitializer {
         admin.setPassword("1234");
         admin.setRoles(Set.of(adminRole));
         userService.add(admin);
-        User user = new User();
-        user.setEmail("user@i.ua");
-        user.setPassword("1234");
-        user.setRoles(Set.of(userRole));
-        userService.add(user);
-        User multi = new User();
-        multi.setEmail("multi@i.ua");
-        multi.setPassword("1234");
-        multi.setRoles(Set.of(userRole, adminRole));
-        userService.add(multi);
     }
 }
