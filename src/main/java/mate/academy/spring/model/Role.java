@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mate.academy.spring.lib.RoleName;
 
 @Entity
 @Data
@@ -21,4 +20,9 @@ public class Role {
     private Long id;
     @Enumerated(EnumType.STRING)
     private RoleName name;
+
+    public enum RoleName {
+        USER,
+        ADMIN
+    }
 }

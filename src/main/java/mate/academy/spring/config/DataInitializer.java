@@ -2,7 +2,6 @@ package mate.academy.spring.config;
 
 import java.util.Set;
 import javax.annotation.PostConstruct;
-import mate.academy.spring.lib.RoleName;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.RoleService;
@@ -22,10 +21,10 @@ public class DataInitializer {
     @PostConstruct
     public void inject() {
         Role adminRole = new Role();
-        adminRole.setName(RoleName.ADMIN);
+        adminRole.setName(Role.RoleName.ADMIN);
         roleService.add(adminRole);
         Role userRole = new Role();
-        userRole.setName(RoleName.USER);
+        userRole.setName(Role.RoleName.USER);
         roleService.add(userRole);
         User bob = new User();
         bob.setEmail("bob@gmail.com");
