@@ -1,5 +1,6 @@
 package mate.academy.spring.service.impl;
 
+import lombok.AllArgsConstructor;
 import mate.academy.spring.dao.ShoppingCartDao;
 import mate.academy.spring.dao.TicketDao;
 import mate.academy.spring.model.MovieSession;
@@ -9,15 +10,11 @@ import mate.academy.spring.model.User;
 import mate.academy.spring.service.ShoppingCartService;
 import org.springframework.stereotype.Service;
 
+@AllArgsConstructor
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final ShoppingCartDao shoppingCartDao;
     private final TicketDao ticketDao;
-
-    public ShoppingCartServiceImpl(ShoppingCartDao shoppingCartDao, TicketDao ticketDao) {
-        this.shoppingCartDao = shoppingCartDao;
-        this.ticketDao = ticketDao;
-    }
 
     @Override
     public void addSession(MovieSession movieSession, User user) {
