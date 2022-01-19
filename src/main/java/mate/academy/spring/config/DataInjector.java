@@ -9,11 +9,11 @@ import mate.academy.spring.service.UserService;
 import org.springframework.stereotype.Component;
 
 @Component
-public class InjectData {
+public class DataInjector {
     private final RoleService roleService;
     private final UserService userService;
 
-    public InjectData(RoleService roleService, UserService userService) {
+    public DataInjector(RoleService roleService, UserService userService) {
         this.roleService = roleService;
         this.userService = userService;
     }
