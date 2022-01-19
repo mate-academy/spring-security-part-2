@@ -29,8 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/cinema-halls",
                         "/movies",
-                        "/movie-sessions/{id}",
-                        "/movie-sessions/available").hasAnyRole(ROLE_ADMIN, ROLE_USER)
+                        "/movie-sessions/**").hasAnyRole(ROLE_ADMIN, ROLE_USER)
                 .antMatchers(HttpMethod.GET, "/orders",
                         "/shopping-carts/by-user").hasRole(ROLE_USER)
                 .antMatchers(HttpMethod.GET, "/users/by-email").hasRole(ROLE_ADMIN)
@@ -39,8 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/cinema-halls",
                         "/movies", "/movie-sessions").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-session").hasRole(ROLE_USER)
-                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasRole(ROLE_ADMIN)
-                .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasRole(ROLE_ADMIN)
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/**").hasRole(ROLE_ADMIN)
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/**").hasRole(ROLE_ADMIN)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
