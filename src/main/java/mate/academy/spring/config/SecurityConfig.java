@@ -40,12 +40,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/cinema-halls",
                         "/movies",
                         "/movie-sessions/available",
-                        "/movie-sessions/{id}").hasAnyRole(USER, ADMIN)
+                        "/movie-sessions/**").hasAnyRole(USER, ADMIN)
                 .antMatchers(HttpMethod.GET, "/users/by-email").hasRole(ADMIN)
                 .antMatchers(HttpMethod.GET, "/orders", "/shopping-carts/by-user").hasRole(USER)
-                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasRole(ADMIN)
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/**").hasRole(ADMIN)
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions").hasRole(USER)
-                .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasRole(ADMIN)
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/**").hasRole(ADMIN)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
