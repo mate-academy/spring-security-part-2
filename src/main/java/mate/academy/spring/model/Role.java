@@ -6,20 +6,21 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
+@Table(name = "roles")
 @Data
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(value = EnumType.STRING)
-    private RoleName roles;
+    private RoleName name;
 
     public enum RoleName {
         ADMIN,
         USER
     }
 }
-
