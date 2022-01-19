@@ -25,6 +25,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User update(User user) {
+        return userDao.update(user);
+    }
+
+    @Override
     public User get(Long id) {
         return userDao.get(id).orElseThrow(
                 () -> new DataProcessingException("User with id " + id + " not found"));
