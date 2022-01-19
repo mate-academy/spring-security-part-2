@@ -1,13 +1,17 @@
 package mate.academy.spring.model;
 
 import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "moviesessions")
 public class MovieSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +19,9 @@ public class MovieSession {
     @ManyToOne
     private Movie movie;
     @ManyToOne
+    @JoinColumn(name = "cinemahall_id")
     private CinemaHall cinemaHall;
+    @Column(name = "time")
     private LocalDateTime showTime;
 
     public Long getId() {

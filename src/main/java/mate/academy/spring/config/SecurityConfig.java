@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String ROLE_USER = RoleName.USER.name();
+    private static final String ROLE_ADMIN = RoleName.ADMIN.name();
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
@@ -29,17 +31,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
-                .antMatchers("/**").hasRole(RoleName.ADMIN.name())
+                .antMatchers("/cinema-halls",
+                        "/movie-sessions",
+                        "/movie-sessions/**",
+                        "/movies",
+                        "users/by-email").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.GET,
                         "/cinema-halls",
                         "/movie-sessions/available",
                         "/movies",
                         "/orders",
-                        "/shopping-carts/by-user").hasRole(RoleName.USER.name())
+                        "/shopping-carts/by-user").hasRole(ROLE_USER)
                 .antMatchers(HttpMethod.POST,
-                        "/orders/complete").hasRole(RoleName.USER.name())
+                        "/orders/complete").hasRole(ROLE_USER)
                 .antMatchers(HttpMethod.PUT,
-                        "/shopping-carts/movie-sessions").hasRole(RoleName.USER.name())
+                        "/shopping-carts/movie-sessions").hasRole(ROLE_USER)
                 .and()
                 .formLogin().permitAll()
                 .and()
