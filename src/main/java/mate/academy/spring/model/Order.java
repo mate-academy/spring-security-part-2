@@ -24,7 +24,7 @@ public class Order {
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "ticket_id"))
     private List<Ticket> tickets;
-    @Column(name = "time")
+    @Column(name = "order_time")
     private LocalDateTime orderTime;
     @ManyToOne
     private User user;

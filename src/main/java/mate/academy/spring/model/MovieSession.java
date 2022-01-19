@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "moviesessions")
+@Table(name = "movie_sessions")
 public class MovieSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +19,9 @@ public class MovieSession {
     @ManyToOne
     private Movie movie;
     @ManyToOne
-    @JoinColumn(name = "cinemahall_id")
+    @JoinColumn(name = "cinema_hall_id")
     private CinemaHall cinemaHall;
-    @Column(name = "time")
+    @Column(name = "show_time")
     private LocalDateTime showTime;
 
     public Long getId() {
