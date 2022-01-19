@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "shoppingcarts")
+@Table(name = "shopping_carts")
 public class ShoppingCart {
     @Id
     private Long id;
