@@ -26,7 +26,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany
-    @JoinTable(joinColumns = @JoinColumn(name = "orders_id"),
+    @JoinTable(joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "ticket_id"))
     @ToString.Exclude
     private List<Ticket> tickets;
