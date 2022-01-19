@@ -2,6 +2,7 @@ package mate.academy.spring.config;
 
 import java.util.Properties;
 import javax.sql.DataSource;
+import lombok.AllArgsConstructor;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,18 +10,17 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @PropertySource("classpath:db.properties")
 @ComponentScan(basePackages = {
         "mate.academy.spring"
 })
+@AllArgsConstructor
 public class AppConfig {
     private final Environment environment;
-
-    public AppConfig(Environment environment) {
-        this.environment = environment;
-    }
 
     @Bean
     public DataSource getDataSource() {
@@ -45,5 +45,10 @@ public class AppConfig {
         factoryBean.setHibernateProperties(properties);
         factoryBean.setPackagesToScan("mate.academy.spring.model");
         return factoryBean;
+    }
+
+    @Bean
+    public PasswordEncoder getEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

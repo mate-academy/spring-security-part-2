@@ -3,6 +3,7 @@ package mate.academy.spring.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
+import lombok.AllArgsConstructor;
 import mate.academy.spring.dto.request.CinemaHallRequestDto;
 import mate.academy.spring.dto.response.CinemaHallResponseDto;
 import mate.academy.spring.model.CinemaHall;
@@ -16,15 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/cinema-halls")
+@AllArgsConstructor
 public class CinemaHallController {
     private final CinemaHallService cinemaHallService;
     private final CinemaHallMapper cinemaHallMapper;
-
-    public CinemaHallController(CinemaHallService cinemaHallService,
-                                CinemaHallMapper cinemaHallMapper) {
-        this.cinemaHallService = cinemaHallService;
-        this.cinemaHallMapper = cinemaHallMapper;
-    }
 
     @PostMapping
     public CinemaHallResponseDto add(@RequestBody @Valid CinemaHallRequestDto requestDto) {

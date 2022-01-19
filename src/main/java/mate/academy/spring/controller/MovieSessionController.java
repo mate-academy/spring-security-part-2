@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
+import lombok.AllArgsConstructor;
 import mate.academy.spring.dto.request.MovieSessionRequestDto;
 import mate.academy.spring.dto.response.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
@@ -23,16 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/movie-sessions")
+@AllArgsConstructor
 public class MovieSessionController {
     private static final String DATE_PATTERN = DateTimePatternUtil.DATE_PATTERN;
     private final MovieSessionService movieSessionService;
     private final MovieSessionMapper movieSessionMapper;
-
-    public MovieSessionController(MovieSessionService movieSessionService,
-                                  MovieSessionMapper movieSessionMapper) {
-        this.movieSessionService = movieSessionService;
-        this.movieSessionMapper = movieSessionMapper;
-    }
 
     @PostMapping
     public MovieSessionResponseDto add(@RequestBody @Valid MovieSessionRequestDto requestDto) {

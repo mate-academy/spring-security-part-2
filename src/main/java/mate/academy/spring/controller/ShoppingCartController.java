@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import lombok.AllArgsConstructor;
 import mate.academy.spring.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.MovieSession;
@@ -18,21 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/shopping-carts")
+@AllArgsConstructor
 public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
     private final ShoppingCartMapper shoppingCartMapper;
     private final MovieSessionService movieSessionService;
     private final UserService userService;
-
-    public ShoppingCartController(ShoppingCartService shoppingCartService,
-                                  ShoppingCartMapper shoppingCartMapper,
-                                  UserService userService,
-                                  MovieSessionService movieSessionService) {
-        this.shoppingCartService = shoppingCartService;
-        this.shoppingCartMapper = shoppingCartMapper;
-        this.userService = userService;
-        this.movieSessionService = movieSessionService;
-    }
 
     @PutMapping("/movie-sessions")
     public void addToCart(Authentication auth, @RequestParam Long movieSessionId) {
