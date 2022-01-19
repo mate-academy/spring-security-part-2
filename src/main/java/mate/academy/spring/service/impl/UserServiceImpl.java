@@ -1,6 +1,7 @@
 package mate.academy.spring.service.impl;
 
 import java.util.Optional;
+import lombok.AllArgsConstructor;
 import mate.academy.spring.dao.UserDao;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.User;
@@ -8,15 +9,11 @@ import mate.academy.spring.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
     private final PasswordEncoder encoder;
     private final UserDao userDao;
-
-    public UserServiceImpl(PasswordEncoder encoder, UserDao userDao) {
-        this.encoder = encoder;
-        this.userDao = userDao;
-    }
 
     @Override
     public User add(User user) {
