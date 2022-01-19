@@ -10,10 +10,10 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name = "roles")
 @Data
 @NoArgsConstructor
 @Entity
+@Table(name = "roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,3 +26,4 @@ public class Role {
         ADMIN
     }
 }
+
