@@ -2,7 +2,6 @@ package mate.academy.spring.service.impl;
 
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.model.Role;
-import mate.academy.spring.model.RoleName;
 import mate.academy.spring.service.RoleService;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +19,8 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role getRoleByName(RoleName name) {
-        return roleDao.getRoleByName(name)
+    public Role getByName(String name) {
+        return roleDao.getByName(name)
                 .orElseThrow(() ->
                         new RuntimeException("Role with name " + name + "not found"));
     }

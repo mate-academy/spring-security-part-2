@@ -5,7 +5,6 @@ import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.Role;
-import mate.academy.spring.model.RoleName;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -17,8 +16,7 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
         super(factory, Role.class);
     }
 
-    @Override
-    public Optional<Role> getRoleByName(RoleName name) {
+    public Optional<Role> getByName(String name) {
         try (Session session = factory.openSession()) {
             Query<Role> getRoleByName = session.createQuery(
                     "FROM Role WHERE roleName = :roleName", Role.class);
