@@ -1,20 +1,24 @@
 package mate.academy.spring.model;
 
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "movies")
-public class Movie {
+@Table(name = "roles")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String description;
+    @Enumerated(value = EnumType.STRING)
+    @Column(unique = true)
+    private Roles name;
 
     public Long getId() {
         return id;
@@ -24,29 +28,20 @@ public class Movie {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public Roles getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(Roles name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return "Movie{"
+        return "Role{"
                 + "id=" + id
-                + ", title='" + title + '\''
-                + ", description='" + description
-                + '\'' + '}';
+                + ", name=" + name
+                + '}';
     }
 
     @Override
@@ -57,14 +52,12 @@ public class Movie {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Movie movie = (Movie) o;
-        return Objects.equals(id, movie.id)
-                && Objects.equals(title, movie.title)
-                && Objects.equals(description, movie.description);
+        Role role = (Role) o;
+        return id.equals(role.id) && name == role.name;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description);
+        return Objects.hash(id, name);
     }
 }
