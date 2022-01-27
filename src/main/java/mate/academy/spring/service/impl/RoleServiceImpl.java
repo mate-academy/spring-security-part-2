@@ -7,10 +7,10 @@ import mate.academy.spring.service.RoleService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RoleDaoImpl implements RoleService {
+public class RoleServiceImpl implements RoleService {
     private final RoleDao roleDao;
 
-    public RoleDaoImpl(RoleDao roleDao) {
+    public RoleServiceImpl(RoleDao roleDao) {
         this.roleDao = roleDao;
     }
 
