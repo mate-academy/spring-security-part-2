@@ -1,5 +1,6 @@
 package mate.academy.spring.dao;
 
+import java.util.List;
 import java.util.Optional;
 import mate.academy.spring.model.User;
 
@@ -9,4 +10,9 @@ public interface UserDao {
     Optional<User> get(Long id);
 
     Optional<User> findByEmail(String email);
+
+    List<User> getAll();
+
+    void delete(Long userId);
+
 }
