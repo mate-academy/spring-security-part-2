@@ -1,5 +1,6 @@
 package mate.academy.spring.controller;
 
+import java.util.Set;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.AuthenticationService;
@@ -8,8 +9,6 @@ import mate.academy.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Set;
 
 @RequestMapping("/inject")
 public class InjectController {
