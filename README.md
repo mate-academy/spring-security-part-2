@@ -31,22 +31,22 @@ GET: /users/by-email - admin
 ``` 
 
 HINT:
-- It's up to you what type for RoleName field to choose(String/Enum) but enum would be preferable in most cases.
+- Let's store role names as enums and add enum `RoleName` inside `Role` class.
 - Roles and first Admin user can be injected inside DataInitializer class using annotation @PostConstruct.
 ```java
 @PostConstruct
 public void inject() {
-  Role adminRole = new Role();
-  adminRole.setName("ADMIN");
-  roleService.add(adminRole);
-  Role userRole = new Role();
-  userRole.setName("USER");
-  roleService.add(userRole);
-  User user = new User();
-  user.setEmail("admin@i.ua");
-  user.setPassword("admin123");
-  user.setRoles(Set.of(adminRole));
-  userService.add(user);
+    Role adminRole = new Role();
+    adminRole.setRoleName(Role.RoleName.ADMIN);
+    roleService.add(adminRole);
+    Role userRole = new Role();
+    userRole.setRoleName(Role.RoleName.USER);
+    roleService.add(userRole);
+    User user = new User();
+    user.setEmail("admin@i.ua");
+    user.setPassword("admin123");
+    user.setRoles(Set.of(adminRole));
+    userService.add(user);
 }
 ```
 - You can specify the different HTTP method access for the same endpoint. For example:
