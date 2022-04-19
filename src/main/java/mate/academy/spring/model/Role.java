@@ -18,7 +18,7 @@ public class Role implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(value = EnumType.STRING)
-    private RoleNames roleName;
+    private RoleName roleName;
 
     @Override
     public String getAuthority() {
@@ -46,15 +46,15 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
-    public RoleNames getRoleName() {
+    public RoleName getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(RoleNames roleName) {
+    public void setRoleName(RoleName roleName) {
         this.roleName = roleName;
     }
 
-    public enum RoleNames {
+    public enum RoleName {
         USER,
         ADMIN
     }
