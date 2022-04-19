@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Role implements GrantedAuthority {
@@ -20,6 +21,19 @@ public class Role implements GrantedAuthority {
     @Override
     public String getAuthority() {
         return "ROLE_" + roleName.name();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Role role = (Role) o;
+        return Objects.equals(getId(), role.getId()) && getRoleName() == role.getRoleName();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getRoleName());
     }
 
     public Long getId() {
