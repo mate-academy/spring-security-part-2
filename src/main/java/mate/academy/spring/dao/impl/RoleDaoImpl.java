@@ -20,7 +20,7 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
     public Optional<Role> getByName(Role.RoleName roleName) {
         try (Session session = factory.openSession()) {
             Query<Role> findByRoleName = session.createQuery(
-                    "FROM Role WHERE roleName = :roleName", Role.class);
+                    "from Role where roleName = :roleName", Role.class);
             findByRoleName.setParameter("roleName", roleName);
             return findByRoleName.uniqueResultOptional();
         } catch (Exception e) {
