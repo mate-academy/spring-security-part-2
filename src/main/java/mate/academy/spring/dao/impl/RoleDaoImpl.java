@@ -7,7 +7,6 @@ import mate.academy.spring.model.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import org.hibernate.type.Type;
 import org.springframework.stereotype.Repository;
 
 @Repository

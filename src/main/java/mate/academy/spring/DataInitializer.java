@@ -1,12 +1,12 @@
 package mate.academy.spring;
 
+import java.util.Set;
+import javax.annotation.PostConstruct;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
 import org.springframework.web.bind.annotation.RestController;
-import javax.annotation.PostConstruct;
-import java.util.Set;
 
 @RestController
 public class DataInitializer {

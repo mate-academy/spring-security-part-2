@@ -1,7 +1,6 @@
 package mate.academy.spring.model;
 
-import org.springframework.security.core.GrantedAuthority;
-
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -9,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Objects;
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "roles")
@@ -27,8 +26,12 @@ public class Role implements GrantedAuthority {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Role role = (Role) o;
         return Objects.equals(getId(), role.getId()) && getRoleName() == role.getRoleName();
     }
