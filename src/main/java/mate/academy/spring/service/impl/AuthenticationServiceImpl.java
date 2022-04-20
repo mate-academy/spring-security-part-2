@@ -31,7 +31,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Role userRole = roleService.getByName("USER");
         user.setRoles(Set.of(userRole));
         userService.add(user);
-
         shoppingCartService.registerNewShoppingCart(user);
         return user;
     }
