@@ -7,6 +7,7 @@ import mate.academy.spring.model.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.hibernate.type.Type;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -20,7 +21,7 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
         try (Session session = factory.openSession()) {
             Query<Role> query = session
                     .createQuery("select r from Role r where r.roleName = :role", Role.class);
-            query.setParameter("role", roleName);
+            query.setParameter("role", Role.RoleName.valueOf(roleName));
             return query.uniqueResult();
         } catch (Exception e) {
             throw new DataProcessingException("No role with name: " + roleName, e);
