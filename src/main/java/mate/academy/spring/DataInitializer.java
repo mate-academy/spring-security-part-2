@@ -1,4 +1,4 @@
-package mate.academy.spring.controller;
+package mate.academy.spring;
 
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
@@ -22,7 +22,7 @@ public class DataInitializer {
     public void inject() {
         Role adminRole = new Role();
         adminRole.setRoleName(Role.RoleName.ADMIN);
-        roleService.add(adminRole);
+        adminRole = roleService.add(adminRole);
         Role userRole = new Role();
         userRole.setRoleName(Role.RoleName.USER);
         roleService.add(userRole);
