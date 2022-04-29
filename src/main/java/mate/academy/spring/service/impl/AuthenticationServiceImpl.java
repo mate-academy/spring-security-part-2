@@ -32,15 +32,4 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         shoppingCartService.registerNewShoppingCart(user);
         return user;
     }
-
-    @Override
-    public User registerAdmin(String email, String password) {
-        User user = new User();
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setRoles(Set.of(roleService.getRoleByName("ADMIN")));
-        userService.add(user);
-        shoppingCartService.registerNewShoppingCart(user);
-        return user;
-    }
 }

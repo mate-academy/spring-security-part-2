@@ -23,8 +23,6 @@ public class InjectController {
     public String injectData() {
         roleService.add(new Role(Role.RoleName.USER));
         roleService.add(new Role(Role.RoleName.ADMIN));
-        authenticationService.registerAdmin("alice@i.ua","1234");
-        authenticationService.registerAdmin("jack@i.ua","1234");
         authenticationService.registerUser("bob@i.ua","1234");
         authenticationService.registerUser("mishel@i.ua","1234");
         return "Done!";
