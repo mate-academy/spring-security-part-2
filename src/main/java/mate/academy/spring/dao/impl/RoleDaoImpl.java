@@ -7,7 +7,6 @@ import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -17,35 +16,13 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
     }
 
     @Override
-    public Role add(Role role) {
-        Transaction transaction = null;
-        Session session = null;
-        try {
-            session = factory.openSession();
-            transaction = session.beginTransaction();
-            session.save(role);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DataProcessingException("Can't add role " + role, e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-        return role;
-    }
-
-    @Override
-    public Optional<Role> getByName(Role.RoleName name) {
+    public Optional<Role> getByName(Role.RoleName roleName) {
         try (Session session = factory.openSession()) {
-            return session.createQuery("FROM Role WHERE name = :name", Role.class)
-                    .setParameter("name", name)
+            return session.createQuery("FROM Role WHERE roleName = :roleName", Role.class)
+                    .setParameter("roleName", roleName)
                     .uniqueResultOptional();
         } catch (Exception e) {
-            throw new DataProcessingException("Can't get role by name " + name, e);
+            throw new DataProcessingException("Can't get role by roleName " + roleName, e);
         }
     }
 }
