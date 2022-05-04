@@ -1,6 +1,10 @@
 package mate.academy.spring.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import mate.academy.spring.util.DateTimePatternUtil;
+
 import java.time.LocalDateTime;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -10,6 +14,8 @@ public class MovieSessionRequestDto {
     @Positive
     private Long cinemaHallId;
     @NotNull
+    @Future
+    @JsonFormat(pattern = DateTimePatternUtil.DATE_PATTERN)
     private LocalDateTime showTime;
 
     public Long getMovieId() {
