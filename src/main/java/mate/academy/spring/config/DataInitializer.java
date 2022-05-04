@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DataInitializer {
-    private RoleService roleService;
-    private UserService userService;
+    private final RoleService roleService;
+    private final UserService userService;
 
     public DataInitializer(RoleService roleService, UserService userService) {
         this.roleService = roleService;
