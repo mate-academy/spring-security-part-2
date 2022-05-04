@@ -1,6 +1,6 @@
 # Spring security part 2
 
-- Configured DB authentication instead of In memory authentication
+- Configure DB authentication instead of In memory authentication
 - Add Role entity, Dao and Service layer for it.
     ```java
       public interface RoleService {
