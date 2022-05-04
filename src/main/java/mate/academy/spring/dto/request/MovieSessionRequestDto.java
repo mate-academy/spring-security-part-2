@@ -1,12 +1,11 @@
 package mate.academy.spring.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import mate.academy.spring.util.DateTimePatternUtil;
-
 import java.time.LocalDateTime;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import mate.academy.spring.util.DateTimePatternUtil;
 
 public class MovieSessionRequestDto {
     @Positive

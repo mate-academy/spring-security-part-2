@@ -13,9 +13,9 @@ import javax.persistence.Table;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @Enumerated(value = EnumType.STRING)
-    RoleName name;
+    private RoleName name;
 
     public enum RoleName {
         ADMIN,
