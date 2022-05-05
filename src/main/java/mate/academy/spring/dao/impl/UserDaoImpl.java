@@ -21,7 +21,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         try (Session session = factory.openSession()) {
             Query<User> findByEmail = session.createQuery(
                     "from User u "
-                            + "inner join fatch u.roles "
+                            + "inner join fetch u.roles "
                             + "where email = :email",
                     User.class);
             findByEmail.setParameter("email", email);
