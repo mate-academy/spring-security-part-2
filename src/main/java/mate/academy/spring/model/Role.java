@@ -11,6 +11,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "roles")
 public class Role {
+    public enum RoleName {
+        ADMIN, USER
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,9 +35,5 @@ public class Role {
 
     public void setRoleName(RoleName roleName) {
         this.roleName = roleName;
-    }
-
-    public enum RoleName {
-        ADMIN, USER
     }
 }
