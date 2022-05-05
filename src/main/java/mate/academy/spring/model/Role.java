@@ -11,15 +11,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "roles")
 public class Role {
-    public enum RoleName {
-        ADMIN, USER
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(value = EnumType.STRING)
     private RoleName roleName;
+
+    public enum RoleName {
+        ADMIN, USER
+    }
 
     public Long getId() {
         return id;
