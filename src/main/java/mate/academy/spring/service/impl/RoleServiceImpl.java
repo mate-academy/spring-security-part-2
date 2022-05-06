@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RoleServiceImpl implements RoleService {
-    @Autowired
     private final RoleDao roleDao;
 
     public RoleServiceImpl(RoleDao roleDao) {
