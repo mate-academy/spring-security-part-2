@@ -2,14 +2,12 @@ package mate.academy.spring.config;
 
 import mate.academy.spring.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
@@ -42,11 +40,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/orders",
                         "/shopping-carts/by-user").hasAuthority(ROLE_USER)
                 .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasAuthority(ROLE_ADMIN)
-                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions").hasAuthority(ROLE_USER)
+                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions")
+                .hasAuthority(ROLE_USER)
                 .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasAuthority(ROLE_ADMIN)
-                .antMatchers(HttpMethod.GET, "/users/by-email").hasAuthority(ROLE_ADMIN)
+                .antMatchers(HttpMethod.GET, "/users/by-email")
+                .hasAuthority(ROLE_ADMIN)
                 .antMatchers(HttpMethod.GET, "/cinema-halls",
-                        "/movies", "/movie-sessions/available").hasAnyAuthority(ROLE_ADMIN, ROLE_USER)
+                        "/movies", "/movie-sessions/available")
+                .hasAnyAuthority(ROLE_ADMIN, ROLE_USER)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
