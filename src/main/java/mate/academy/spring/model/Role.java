@@ -1,8 +1,6 @@
 package mate.academy.spring.model;
 
 import java.util.Objects;
-
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
