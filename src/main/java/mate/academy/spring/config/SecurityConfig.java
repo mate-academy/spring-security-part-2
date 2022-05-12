@@ -41,8 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "users/by-email").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .httpBasic()
-                .and()
-                .csrf().disable();
+                .formLogin();
     }
 }
