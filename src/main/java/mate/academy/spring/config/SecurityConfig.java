@@ -18,7 +18,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final PasswordEncoder passwordEncoder;
 
     public SecurityConfig(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
-
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -39,10 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/movies", "/movie-sessions").hasAuthority(ROLE_ADMIN)
                 .antMatchers(HttpMethod.GET, "/orders",
                         "/shopping-carts/by-user").hasAuthority(ROLE_USER)
-                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasAuthority(ROLE_ADMIN)
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/**").hasAuthority(ROLE_ADMIN)
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions")
                 .hasAuthority(ROLE_USER)
-                .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasAuthority(ROLE_ADMIN)
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/**").hasAuthority(ROLE_ADMIN)
                 .antMatchers(HttpMethod.GET, "/users/by-email")
                 .hasAuthority(ROLE_ADMIN)
                 .antMatchers(HttpMethod.GET, "/cinema-halls",
@@ -51,6 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .permitAll()
+                .and()
+                .httpBasic()
                 .and()
                 .csrf().disable();
     }
