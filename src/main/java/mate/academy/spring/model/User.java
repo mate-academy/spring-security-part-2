@@ -64,7 +64,6 @@ public class User {
         return "User{"
                 + "id=" + id
                 + ", email='" + email + '\''
-                + ", password='" + password + '\''
                 + ", roles= " + roles.stream().map(s -> s.getRoleName().name())
                                              .collect(Collectors.joining(", "))
                 + '}';
