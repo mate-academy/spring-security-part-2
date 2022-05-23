@@ -20,7 +20,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> userOptional = userService.findByEmail(username);
-
         UserBuilder builder;
         if (userOptional.isPresent()) {
             builder = org.springframework.security.core.userdetails.User.withUsername(username);
