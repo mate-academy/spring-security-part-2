@@ -42,12 +42,14 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     @Override
-    public Optional<Role> getByName(Role.RoleName roleName) {
+    public Optional<Role> getByName(String roleName) {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("FROM Role "
                             + "WHERE Role.roleName = :roleName", Role.class)
                     .setParameter("roleName", roleName)
                     .uniqueResultOptional();
+        } catch (Exception e) {
+            throw new DataProcessingException("Can not get role: " + roleName, e);
         }
     }
 }
