@@ -23,10 +23,10 @@ public class DataInitializer {
     public void inject() {
         Role adminRole = new Role();
         adminRole.setRoleName(Role.RoleName.ADMIN);
-        roleService.save(adminRole);
+        roleService.add(adminRole);
         Role userRole = new Role();
         userRole.setRoleName(Role.RoleName.USER);
-        roleService.save(userRole);
+        roleService.add(userRole);
         User user = new User();
         user.setEmail("admin@i.ua");
         user.setPassword("admin123");

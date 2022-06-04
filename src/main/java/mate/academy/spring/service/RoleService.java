@@ -4,7 +4,7 @@ import java.util.Optional;
 import mate.academy.spring.model.Role;
 
 public interface RoleService {
-    Role save(Role role);
+    Role add(Role role);
 
     Optional<Role> getRoleByName(String roleName);
 }
