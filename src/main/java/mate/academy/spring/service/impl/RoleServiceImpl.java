@@ -17,11 +17,11 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role add(Role role) {
-        return null;
+        return roleDao.add(role);
     }
 
     @Override
     public Optional<Role> getRoleByName(String roleName) {
-        return Optional.empty();
+        return roleDao.getRoleByName(Role.RoleName.valueOf(roleName));
     }
 }
