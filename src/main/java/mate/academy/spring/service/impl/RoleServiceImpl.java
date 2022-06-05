@@ -1,7 +1,6 @@
 package mate.academy.spring.service.impl;
 
 import java.util.Optional;
-
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.service.RoleService;

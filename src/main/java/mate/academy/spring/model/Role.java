@@ -14,10 +14,10 @@ import javax.persistence.Table;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @Column(unique = true)
     @Enumerated(value = EnumType.STRING)
-    RoleName roleName;
+    private RoleName roleName;
 
     public enum RoleName {
         ADMIN,
