@@ -1,14 +1,14 @@
 package mate.academy.spring.security;
 
+import java.util.Optional;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -24,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("User not found");
         }
-        org.springframework.security.core.userdetails.User.UserBuilder builder =
+        UserBuilder builder =
                 org.springframework.security.core.userdetails.User.withUsername(userName);
         builder.password(user.get().getPassword());
         builder.authorities(user.get().getRoles().stream().map(Role::getRoleName)
