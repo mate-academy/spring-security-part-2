@@ -3,8 +3,6 @@ package mate.academy.spring.dao.impl;
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.exception.DataProcessingException;
-import mate.academy.spring.model.MovieSession;
-import mate.academy.spring.model.Order;
 import mate.academy.spring.model.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -45,7 +43,7 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
     public Role getByName(String roleName) {
         try (Session session = factory.openSession()) {
             Query<Role> getAvailableSessions = session.createQuery(
-                "FROM Role r WHERE r.name = :roleName", Role.class);
+                    "FROM Role r WHERE r.name = :roleName", Role.class);
             getAvailableSessions.setParameter("roleName", roleName);
             return getAvailableSessions.getResultList().get(0);
         } catch (Exception e) {
