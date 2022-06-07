@@ -3,7 +3,6 @@ package mate.academy.spring.model;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +20,7 @@ public class User {
     @Column(unique = true)
     private String email;
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -64,7 +63,6 @@ public class User {
         return "User{"
                 + "id=" + id
                 + ", email='" + email + '\''
-                + ", password='" + password + '\''
                 + ", roles=" + roles
                 + '}';
     }
