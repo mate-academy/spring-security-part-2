@@ -19,7 +19,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) {
-        User user = userService.findByEmail(email).orElseThrow();
+        User user = userService.findByEmail(email).orElseThrow(() ->
+                new RuntimeException("Can't find user by email " + email));
         UserBuilder builder = withUsername(email);
         builder.password(user.getPassword());
         builder.roles(user.getRoles().stream()
