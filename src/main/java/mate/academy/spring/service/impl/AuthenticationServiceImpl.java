@@ -27,7 +27,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public User register(String email, String password) {
         User user = new User();
         HashSet<Role> roles = new HashSet<>();
-        roles.add(roleService.findByName(Role.RoleName.USER.name()));
+        roles.add(roleService.findByName(Role.RoleName.USER));
         user.setEmail(email);
         user.setPassword(password);
         user.setRoles(roles);
