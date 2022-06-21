@@ -21,15 +21,20 @@ public class DataInitializer {
     @PostConstruct
     public void inject() {
         Role adminRole = new Role();
-        adminRole.setRoleName(Role.RoleName.ADMIN);
+        adminRole.setRoleName(Role.RoleName.ROLE_ADMIN);
         roleService.add(adminRole);
         Role userRole = new Role();
-        userRole.setRoleName(Role.RoleName.USER);
+        userRole.setRoleName(Role.RoleName.ROLE_USER);
         roleService.add(userRole);
-        User user = new User();
-        user.setEmail("admin@i.ua");
-        user.setPassword("admin123");
-        user.setRoles(Set.of(adminRole));
-        userService.add(user);
+        User superUser = new User();
+        superUser.setEmail("admin@i.ua");
+        superUser.setPassword("admin123");
+        superUser.setRoles(Set.of(adminRole));
+        userService.add(superUser);
+        User regularUser = new User();
+        regularUser.setEmail("regular@i.ua");
+        regularUser.setPassword("regular321");
+        regularUser.setRoles(Set.of(userRole));
+        userService.add(regularUser);
     }
 }
