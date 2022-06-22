@@ -18,8 +18,8 @@ public class Role {
     private RoleName roleName;
 
     public enum RoleName {
-        ROLE_ADMIN,
-        ROLE_USER
+        ADMIN,
+        USER
     }
 
     public Long getId() {
