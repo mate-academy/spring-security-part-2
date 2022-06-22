@@ -22,6 +22,6 @@ public class RoleServiceImpl implements RoleService {
     public Role getByName(String roleName) {
         return roleDao.getByName(roleName)
                 .orElseThrow(() ->
-                        new RuntimeException("Couldn't find role by role name " + roleName));
+                        new RuntimeException("Couldn't find role: " + roleName));
     }
 }
