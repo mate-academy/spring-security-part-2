@@ -51,6 +51,14 @@ public class Role {
         return Objects.hash(id, roleName);
     }
 
+    @Override
+    public String toString() {
+        return "Role{"
+                + "id=" + id
+                + ", roleName=" + roleName
+                + '}';
+    }
+
     public enum RoleName {
         ADMIN,
         USER
