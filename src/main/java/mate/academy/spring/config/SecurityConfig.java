@@ -14,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
+    private final String ADMIN = Role.RoleName.ADMIN.name();
+    private final String USER =  Role.RoleName.USER.name();
 
     public SecurityConfig(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
         this.userDetailsService = userDetailsService;
@@ -29,30 +31,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/register", "/login", "/inject").permitAll()
+                .antMatchers("/register", "/login").permitAll()
                 .antMatchers(HttpMethod.GET,
                         "/cinema-halls",
                         "/movies",
-                        "/movie-sessions/**").hasAnyAuthority(Role.RoleName.ADMIN.name(),
-                       Role.RoleName.USER.name())
+                        "/movie-sessions/**").hasAnyAuthority(ADMIN, USER)
                 .antMatchers(HttpMethod.POST,
                         "/cinema-halls",
                         "/movies",
-                        "/movie-sessions").hasAuthority(Role.RoleName.ADMIN.name())
+                        "/movie-sessions").hasAuthority(ADMIN)
                 .antMatchers(HttpMethod.PUT,
-                        "/movie-sessions/{id}").hasAuthority(Role.RoleName.ADMIN.name())
+                        "/movie-sessions/**").hasAuthority(ADMIN)
                 .antMatchers(HttpMethod.DELETE,
-                        "/movie-sessions/{id}").hasAuthority(Role.RoleName.ADMIN.name())
+                        "/movie-sessions/**").hasAuthority(ADMIN)
                 .antMatchers(HttpMethod.GET,
                         "/orders",
-                        "/shopping-carts/by-user").hasAuthority(Role.RoleName.USER.name())
+                        "/shopping-carts/by-user").hasAuthority(USER)
                 .antMatchers(HttpMethod.PUT,
                         "/shopping-carts/movie-sessions")
-                .hasAuthority(Role.RoleName.USER.name())
+                .hasAuthority(USER)
                 .antMatchers(HttpMethod.POST,
-                        "/orders/complete").hasAuthority(Role.RoleName.USER.name())
+                        "/orders/complete").hasAuthority(USER)
                 .antMatchers(HttpMethod.GET,
-                        "/users/by-email").hasAuthority(Role.RoleName.ADMIN.name())
+                        "/users/by-email").hasAuthority(ADMIN)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
