@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().antMatchers("/register", "/inject").permitAll()
+                .authorizeRequests().antMatchers("/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/cinema-halls").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/cinema-halls").hasAnyAuthority("ADMIN", "USER")
                 .antMatchers(HttpMethod.GET, "/movies").hasAnyAuthority("ADMIN", "USER")
@@ -35,8 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/movie-sessions/available")
                 .hasAnyAuthority("ADMIN", "USER")
                 .antMatchers(HttpMethod.POST, "/movie-sessions").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/movie-sessions").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/movie-sessions").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/**").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/**").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/orders").hasAuthority("USER")
                 .antMatchers(HttpMethod.POST, "/orders/complete").hasAuthority("USER")
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions").hasAuthority("USER")
