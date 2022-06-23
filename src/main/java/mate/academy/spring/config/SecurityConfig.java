@@ -33,26 +33,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,
                         "/cinema-halls",
                         "/movies",
-                        "/movie-sessions/**").hasAnyAuthority(String.valueOf(Role.RoleName.ADMIN),
-                        String.valueOf(Role.RoleName.USER))
+                        "/movie-sessions/**").hasAnyAuthority(Role.RoleName.ADMIN.name(),
+                       Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.POST,
                         "/cinema-halls",
                         "/movies",
-                        "/movie-sessions").hasAuthority(String.valueOf(Role.RoleName.ADMIN))
+                        "/movie-sessions").hasAuthority(Role.RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.PUT,
-                        "/movie-sessions/{id}").hasAuthority(String.valueOf(Role.RoleName.ADMIN))
+                        "/movie-sessions/{id}").hasAuthority(Role.RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.DELETE,
-                        "/movie-sessions/{id}").hasAuthority(String.valueOf(Role.RoleName.ADMIN))
+                        "/movie-sessions/{id}").hasAuthority(Role.RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.GET,
                         "/orders",
-                        "/shopping-carts/by-user").hasAuthority(String.valueOf(Role.RoleName.USER))
+                        "/shopping-carts/by-user").hasAuthority(Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.PUT,
-                        "/shopping-carts/movie-sessions").hasAuthority(String.valueOf(Role
-                        .RoleName.USER))
+                        "/shopping-carts/movie-sessions")
+                .hasAuthority(Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.POST,
-                        "/orders/complete").hasAuthority(String.valueOf(Role.RoleName.USER))
+                        "/orders/complete").hasAuthority(Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.GET,
-                        "/users/by-email").hasAuthority(String.valueOf(Role.RoleName.ADMIN))
+                        "/users/by-email").hasAuthority(Role.RoleName.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
