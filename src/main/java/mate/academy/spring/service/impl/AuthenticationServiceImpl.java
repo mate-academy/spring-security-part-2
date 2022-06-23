@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
-    public static final String USER = Role.RoleName.USER.toString();
+    public static final String USER = Role.RoleName.USER.name();
     private final UserService userService;
     private final RoleService roleService;
     private final ShoppingCartService shoppingCartService;
