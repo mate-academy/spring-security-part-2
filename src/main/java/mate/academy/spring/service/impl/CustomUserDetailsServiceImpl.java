@@ -26,11 +26,11 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
             builder = org.springframework.security.core.userdetails.User
                     .withUsername(user.getEmail());
             builder.password(user.getPassword());
-            builder.roles(user.getRole().stream()
+            builder.authorities(user.getRole().stream()
                     .map(r -> r.getRoleName().name())
                     .toArray(String[]::new));
             return builder.build();
         }
-        throw new UsernameNotFoundException("Can't get user by " + email);
+        throw new UsernameNotFoundException("Can't get user by email " + email);
     }
 }
