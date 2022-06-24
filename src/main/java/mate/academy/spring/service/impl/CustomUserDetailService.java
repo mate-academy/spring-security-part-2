@@ -33,6 +33,6 @@ public class CustomUserDetailService implements UserDetailsService {
                     .toArray(String[]::new));
             return userBuilder.build();
         }
-        throw new UsernameNotFoundException("Couldn't found user");
+        throw new UsernameNotFoundException("Couldn't find user");
     }
 }
