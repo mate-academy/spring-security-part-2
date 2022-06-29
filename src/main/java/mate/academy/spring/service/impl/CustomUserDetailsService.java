@@ -18,14 +18,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         this.userService = userService;
     }
 
-    // на основі UserDetails формується Authentication
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         User user = userService.findByEmail(userName).orElseThrow(() ->
                 new UsernameNotFoundException("Can't find user with name " + userName));
         UserBuilder builder = withUsername(userName);
         builder.password(user.getPassword());
-        builder.authorities(user.getRoles()
+        builder.roles(user.getRoles()
                     .stream()
                     .map(r -> r.getRoleName().name())
                     .toArray(String[]::new));
