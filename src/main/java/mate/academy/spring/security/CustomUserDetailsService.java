@@ -21,14 +21,15 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> optionalUser = userService.findByEmail(email);
         if (optionalUser.isEmpty()) {
-            throw new UsernameNotFoundException("User not found");
+            throw new UsernameNotFoundException("User with email " + email + " not found");
         }
         User user = optionalUser.get();
         UserBuilder userBuilder =
                 org.springframework.security.core.userdetails.User.withUsername(user.getEmail());
         userBuilder.password(user.getPassword());
         userBuilder.roles(user.getRoles().stream()
-                .map(r -> r.getRoleName().getName()).toArray(String[]::new));
+                .map(r -> r.getRoleName().name())
+                .toArray(String[]::new));
         return userBuilder.build();
     }
 }

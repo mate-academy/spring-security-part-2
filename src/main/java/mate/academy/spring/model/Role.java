@@ -17,7 +17,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "role")
+    @Column(name = "role_name")
     private RoleName roleName;
 
     public Long getId() {
@@ -37,18 +37,8 @@ public class Role {
     }
 
     public enum RoleName {
-        ADMIN("ADMIN"),
-        USER("USER");
-
-        private final String name;
-
-        RoleName(String roleName) {
-            this.name = roleName;
-        }
-
-        public String getName() {
-            return name;
-        }
+        ADMIN,
+        USER;
     }
 
     @Override

@@ -6,7 +6,7 @@ import mate.academy.spring.model.Role;
 public class UserResponseDto {
     private Long id;
     private String email;
-    private Set<Role> role;
+    private Set<Role> roles;
 
     public Long getId() {
         return id;
@@ -25,10 +25,10 @@ public class UserResponseDto {
     }
 
     public Set<Role> getRole() {
-        return role;
+        return roles;
     }
 
     public void setRole(Set<Role> role) {
-        this.role = role;
+        this.roles = role;
     }
 }
