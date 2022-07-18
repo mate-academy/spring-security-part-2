@@ -25,9 +25,10 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
             for (Role.RoleName roleName1 : Role.RoleName.values()) {
                 if (roleName1.getRoleName().equals(roleName)) {
                     role = roleName1;
+                    break;
                 }
             }
-            query.where(criteriaBuilder.equal(query.from(Role.class), role));
+            query.where(criteriaBuilder.equal(query.from(Role.class).get("roleName"), role));
             return session.createQuery(query).uniqueResultOptional();
         }
     }
