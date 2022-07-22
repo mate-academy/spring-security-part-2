@@ -35,9 +35,41 @@ public class Role {
         this.roleName = roleName;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Role role = (Role) o;
+
+        if (id != null ? !id.equals(role.id) : role.id != null) {
+            return false;
+        }
+        return roleName == role.roleName;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{"
+                + "id=" + id
+                + ", roleName=" + roleName
+                + '}';
+    }
+
     public enum RoleName {
-        ADMIN("Admin"),
-        USER("User");
+        ADMIN("ADMIN"),
+        USER("USER");
 
         private String value;
 
