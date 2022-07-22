@@ -1,5 +1,6 @@
 package mate.academy.spring.model;
 
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -43,20 +44,13 @@ public class Role {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         Role role = (Role) o;
-
-        if (id != null ? !id.equals(role.id) : role.id != null) {
-            return false;
-        }
-        return roleName == role.roleName;
+        return Objects.equals(id, role.id) && roleName == role.roleName;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
-        return result;
+        return Objects.hash(id, roleName);
     }
 
     @Override
@@ -68,17 +62,7 @@ public class Role {
     }
 
     public enum RoleName {
-        ADMIN("ADMIN"),
-        USER("USER");
-
-        private String value;
-
-        RoleName(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
+        ADMIN,
+        USER;
     }
 }
