@@ -29,7 +29,7 @@ public class DataInitializer {
         User user = new User();
         user.setEmail("admin@com.ua");
         user.setPassword("password");
-        user.setRoles(Set.of(adminRole, userRole));
+        user.setRoles(Set.of(adminRole));
         userService.add(user);
     }
 }
