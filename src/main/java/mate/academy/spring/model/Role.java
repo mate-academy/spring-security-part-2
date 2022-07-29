@@ -35,18 +35,8 @@ public class Role {
     }
 
     public enum RoleName {
-        USER("USER"),
-        ADMIN("ADMIN");
-
-        private final String roleName;
-
-        RoleName(String name) {
-            this.roleName = name;
-        }
-
-        public String getRoleName() {
-            return roleName;
-        }
+        USER,
+        ADMIN
     }
 
     @Override
