@@ -29,9 +29,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
-        user.setRoles(Set.of(roleService.getByName(Role.RoleName.USER.getName()).orElseThrow(() ->
-                new NoSuchElementException("Can`t register user. Role not present in DB "
-                        + Role.RoleName.USER.getName()))));
+        user.setRoles(Set.of(roleService.getByName(Role.RoleName.USER.getRoleName())
+                .orElseThrow(() -> new NoSuchElementException("Can`t register user. "
+                        + "Role not present in DB " + Role.RoleName.USER.getRoleName()))));
         userService.add(user);
         shoppingCartService.registerNewShoppingCart(user);
         return user;

@@ -38,14 +38,14 @@ public class Role {
         USER("USER"),
         ADMIN("ADMIN");
 
-        private final String name;
+        private final String roleName;
 
         RoleName(String name) {
-            this.name = name;
+            this.roleName = name;
         }
 
-        public String getName() {
-            return name;
+        public String getRoleName() {
+            return roleName;
         }
     }
 
