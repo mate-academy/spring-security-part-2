@@ -2,6 +2,7 @@ package mate.academy.spring.service;
 
 import static org.springframework.security.core.userdetails.User.withUsername;
 
+import java.util.NoSuchElementException;
 import mate.academy.spring.model.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +21,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userService.findByEmail(email).orElseThrow(()
-                -> new RuntimeException("Can't find user by email: " + email));
+                -> new NoSuchElementException("Can't find user by email: " + email));
         UserBuilder builder = withUsername(email);
         builder.password(user.getPassword());
         builder.roles(user.getRoles()
