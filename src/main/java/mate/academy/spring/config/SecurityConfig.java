@@ -30,33 +30,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/register")
                 .permitAll()
-
                 .antMatchers(HttpMethod.GET,
                         "/cinema-halls", "/movies", "/movie-sessions/available")
                 .hasAnyRole(USER_ROLE, ADMIN_ROLE)
-
                 .antMatchers(HttpMethod.POST,
                         "/cinema-halls", "/movies", "/movie-sessions")
                 .hasRole(ADMIN_ROLE)
-
                 .antMatchers(HttpMethod.PUT, "/movie-sessions/**")
                 .hasRole(ADMIN_ROLE)
-
                 .antMatchers(HttpMethod.DELETE, "/movie-sessions/**")
                 .hasRole(ADMIN_ROLE)
-
                 .antMatchers(HttpMethod.GET, "/orders", "/shopping-carts/by-user")
                 .hasRole(USER_ROLE)
-
                 .antMatchers(HttpMethod.POST, "/orders/complete")
                 .hasRole(USER_ROLE)
-
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions")
                 .hasRole(USER_ROLE)
-
                 .antMatchers(HttpMethod.GET, "/users/by-email")
                 .hasRole(ADMIN_ROLE)
-
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()
