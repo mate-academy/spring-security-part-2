@@ -1,6 +1,7 @@
 package mate.academy.spring.service.impl;
 
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
@@ -28,7 +29,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public User register(String email, String password) {
         User user = new User();
         Set<Role> roles = new HashSet<>();
-        roles.add(roleService.getByName(Role.RoleName.USER.name()));
+        roles.add(roleService.getByName(Role.RoleName.USER.name())
+                .orElseThrow(() -> new NoSuchElementException("Role doesn't correct")));
         user.setEmail(email);
         user.setPassword(password);
         user.setRoles(roles);
