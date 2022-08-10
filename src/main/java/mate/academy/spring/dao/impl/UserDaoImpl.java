@@ -18,9 +18,10 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public Optional<User> findByEmail(String email) {
+        System.out.println("findByEmail called from UserDaoImpl");
         try (Session session = factory.openSession()) {
             Query<User> findByEmail = session.createQuery(
-                    "FROM User WHERE email = :email", User.class);
+                    "FROM User u INNER JOIN FETCH u.roles WHERE email = :email", User.class);
             findByEmail.setParameter("email", email);
             return findByEmail.uniqueResultOptional();
         } catch (Exception e) {

@@ -23,8 +23,7 @@ public class UserController {
 
     @GetMapping("/by-email")
     public UserResponseDto findByEmail(@RequestParam String email) {
-        User user = userService.findByEmail(email).orElseThrow(
-                () -> new RuntimeException("User with email " + email + " not found"));
+        User user = userService.findByEmail(email);
         return userResponseDtoMapper.mapToDto(user);
     }
 }
