@@ -10,14 +10,4 @@ public class IndexController {
     public String hello(Authentication authentication) {
         return String.format("Hello, %s!", authentication.getName());
     }
-
-    @GetMapping("/admin")
-    public String helloAdmin() {
-        return "Hello Admin!";
-    }
-
-    @GetMapping("/user")
-    public String helloUser() {
-        return "Hello User!";
-    }
 }
