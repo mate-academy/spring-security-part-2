@@ -1,9 +1,10 @@
 package mate.academy.spring.service;
 
 import mate.academy.spring.model.Role;
+import mate.academy.spring.model.RoleName;
 
 public interface RoleService {
     Role save(Role role);
 
-    Role getRoleByName(String name);
+    Role getRoleByName(RoleName name);
 }

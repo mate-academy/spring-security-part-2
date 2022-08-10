@@ -7,6 +7,7 @@ import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.Role;
+import mate.academy.spring.model.RoleName;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;
@@ -14,15 +15,15 @@ import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class DataInitializer {
-    private RoleService roleService;
-    private UserService userService;
-    private MovieService movieService;
-    private CinemaHallService cinemaHallService;
-    private MovieSessionService movieSessionService;
+    private final RoleService roleService;
+    private final UserService userService;
+    private final MovieService movieService;
+    private final CinemaHallService cinemaHallService;
+    private final MovieSessionService movieSessionService;
 
     @Autowired
     public DataInitializer(RoleService roleService, UserService userService,
@@ -38,10 +39,10 @@ public class DataInitializer {
     @PostConstruct
     public void inject() {
         Role adminRole = new Role();
-        adminRole.setName("ADMIN");
+        adminRole.setRoleName(RoleName.ADMIN);
         roleService.save(adminRole);
         Role userRole = new Role();
-        userRole.setName("USER");
+        userRole.setRoleName(RoleName.USER);
         roleService.save(userRole);
 
         User admin = new User();
