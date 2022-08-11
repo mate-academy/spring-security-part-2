@@ -17,7 +17,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String name) {
-        User user = userService.findByEmail(name);
+        User user = userService.getByEmail(name);
         UserBuilder builder = org
                 .springframework.security.core.userdetails.User.withUsername(name);
         builder.password(user.getPassword());

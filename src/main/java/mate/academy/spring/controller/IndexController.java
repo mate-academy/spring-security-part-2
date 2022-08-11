@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class IndexController {
-    @GetMapping("/")
+    @GetMapping
     public String hello(Authentication authentication) {
         return String.format("Hello, %s!", authentication.getName());
     }
