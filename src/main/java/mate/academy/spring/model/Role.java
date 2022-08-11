@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(name = "roles")
 public class Role {
     @Id
-    @Column(name = "role")
+    @Column(name = "name")
     @Enumerated(value = EnumType.STRING)
     private RoleName roleName;
 
