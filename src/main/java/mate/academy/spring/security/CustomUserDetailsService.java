@@ -1,6 +1,7 @@
 package mate.academy.spring.security;
 
 import static org.springframework.security.core.userdetails.User.withUsername;
+
 import java.util.Optional;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
