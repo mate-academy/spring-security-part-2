@@ -12,8 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private static final String ROLE_ADMIN = Role.RoleName.ADMIN.name();
-    private static final String ROLE_USER = Role.RoleName.USER.name();
+    private static final String ADMIN = Role.RoleName.ADMIN.name();
+    private static final String USER = Role.RoleName.USER.name();
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
     
@@ -32,21 +32,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
                 .antMatchers(HttpMethod.GET, "/cinema-halls", "/movies",
-                        "/movie-sessions/available").hasAnyAuthority(ROLE_ADMIN, ROLE_USER)
+                        "/movie-sessions/available").hasAnyRole(ADMIN, USER)
                 .antMatchers(HttpMethod.POST, "/cinema-halls", "/movies",
-                        "/movie-sessions").hasAuthority(ROLE_ADMIN)
+                        "/movie-sessions").hasRole(ADMIN)
                 .antMatchers(HttpMethod.PUT, "/movies-sessions/**")
-                .hasAuthority(ROLE_ADMIN)
+                .hasRole(ADMIN)
                 .antMatchers(HttpMethod.DELETE, "/movies-sessions/**")
-                .hasAuthority(ROLE_ADMIN)
+                .hasRole(ADMIN)
                 .antMatchers(HttpMethod.GET, "/orders", "/shopping-carts/by-user")
-                .hasAuthority(ROLE_USER)
+                .hasRole(USER)
                 .antMatchers(HttpMethod.POST, "/orders/complete")
-                .hasAuthority(ROLE_USER)
+                .hasRole(USER)
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions")
-                .hasAuthority(ROLE_USER)
+                .hasRole(USER)
                 .antMatchers(HttpMethod.GET, "/users/by-email")
-                .hasAuthority(ROLE_ADMIN)
+                .hasRole(ADMIN)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
