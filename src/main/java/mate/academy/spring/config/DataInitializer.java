@@ -1,4 +1,4 @@
-package mate.academy.spring;
+package mate.academy.spring.config;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -14,7 +14,6 @@ import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -25,7 +24,6 @@ public class DataInitializer {
     private final CinemaHallService cinemaHallService;
     private final MovieSessionService movieSessionService;
 
-    @Autowired
     public DataInitializer(RoleService roleService, UserService userService,
                            MovieService movieService, CinemaHallService cinemaHallService,
                            MovieSessionService movieSessionService) {

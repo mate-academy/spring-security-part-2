@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByEmail(String email) throws UsernameNotFoundException {
+    public User findByEmail(String email) {
         return userDao.findByEmail(email).orElseThrow(
                 () -> new UsernameNotFoundException("Can't find user from DB by email=" + email));
     }
