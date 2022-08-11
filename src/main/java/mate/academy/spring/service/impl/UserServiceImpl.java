@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
     private final PasswordEncoder encoder;
@@ -30,9 +32,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getByEmail(String email) {
-        return userDao.findByEmail(email).orElseThrow(
-                () -> new UsernameNotFoundException("Can't find user by email: " + email)
-        );
+    public Optional<User> findByEmail(String email) {
+        return userDao.findByEmail(email);
     }
 }
