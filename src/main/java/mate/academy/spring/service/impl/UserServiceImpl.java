@@ -1,9 +1,9 @@
 package mate.academy.spring.service.impl;
 
-import java.util.Optional;
 import mate.academy.spring.dao.UserDao;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +30,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        return userDao.findByEmail(email);
+    public User getByEmail(String email) {
+        return userDao.findByEmail(email).orElseThrow(
+                () -> new UsernameNotFoundException("Can't find user by email: " + email)
+        );
     }
 }
