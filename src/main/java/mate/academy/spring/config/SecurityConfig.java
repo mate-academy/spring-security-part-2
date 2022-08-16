@@ -29,10 +29,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
                 .antMatchers(HttpMethod.POST,
-                        "/cimema-halls", "/movies", "/movie-sessions").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "compete").hasRole("USER")
+                        "/cinema-halls", "/movies", "/movie-sessions").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/orders/complete").hasRole("USER")
                 .antMatchers(HttpMethod.GET,
-                        "/cimema-halls", "/movies", "/movie-sessions").hasAnyRole("USER", "ADMIN")
+                        "/cinema-halls", "/movies", "/movie-sessions").hasAnyRole("USER", "ADMIN")
                 .antMatchers(HttpMethod.GET,
                         "/orders", "/shopping-cart/by-user").hasRole("USER")
                 .antMatchers(HttpMethod.GET, "/users/by-email").hasRole("ADMIN")
