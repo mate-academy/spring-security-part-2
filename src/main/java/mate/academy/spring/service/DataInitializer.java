@@ -30,5 +30,4 @@ public class DataInitializer {
         user.setRoles(Set.of(adminRole));
         userService.add(user);
     }
-
 }
