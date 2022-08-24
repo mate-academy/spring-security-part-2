@@ -26,26 +26,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected void configure(HttpSecurity http) throws Exception {
+        final String adminRole = "ADMIN";
+        final String userRole = "USER";
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/users/by-email")
-                .hasRole("ADMIN")
+                .hasRole(adminRole)
                 .antMatchers(HttpMethod.POST,
                         "/cinema-halls", "/movies", "/movie-sessions")
-                .hasRole("ADMIN")
+                .hasRole(adminRole)
                 .antMatchers(HttpMethod.PUT, "/movie-sessions/*")
-                .hasRole("ADMIN")
+                .hasRole(adminRole)
                 .antMatchers(HttpMethod.DELETE, "/movie-sessions/*")
-                .hasRole("ADMIN")
+                .hasRole(adminRole)
                 .antMatchers(HttpMethod.GET,
                         "/cinema-halls", "/movies", "/movie-sessions/available")
-                .hasAnyRole("ADMIN", "USER")
+                .hasAnyRole(adminRole, userRole)
                 .antMatchers(HttpMethod.GET, "/orders", "/shopping-carts/by-user")
-                .hasRole("USER")
+                .hasRole(userRole)
                 .antMatchers(HttpMethod.POST, "/orders/complete")
-                .hasRole("USER")
+                .hasRole(userRole)
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions")
-                .hasRole("USER")
+                .hasRole(userRole)
                 .antMatchers(HttpMethod.POST, "register")
                 .permitAll()
                 .anyRequest().authenticated()
