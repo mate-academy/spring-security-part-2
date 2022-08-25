@@ -28,6 +28,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                     .toArray(String[]::new));
             return builder.build();
         }
-        throw new UsernameNotFoundException("User is not found");
+        throw new UsernameNotFoundException("User is not found.");
     }
 }
