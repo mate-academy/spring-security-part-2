@@ -16,13 +16,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
     public SecurityConfig(UserDetailsService userDetailsService,
                           PasswordEncoder passwordEncoder) {
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/register").anonymous()
+                .antMatchers(HttpMethod.POST, "/register").permitAll()
                 .antMatchers(HttpMethod.GET,"/cinema-halls/**").permitAll()
                 .antMatchers(HttpMethod.POST,"/cinema-halls/**").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.GET,"/movies/**").permitAll()

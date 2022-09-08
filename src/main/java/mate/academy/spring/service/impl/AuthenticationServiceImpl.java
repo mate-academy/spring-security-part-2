@@ -6,6 +6,7 @@ import mate.academy.spring.service.AuthenticationService;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final ShoppingCartService shoppingCartService;
     private final RoleService roleService;
 
+    @Autowired
     public AuthenticationServiceImpl(UserService userService,
                                      ShoppingCartService shoppingCartService,
                                      RoleService roleService) {
