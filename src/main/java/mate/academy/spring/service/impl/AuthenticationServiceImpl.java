@@ -1,10 +1,13 @@
 package mate.academy.spring.service.impl;
 
+import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.AuthenticationService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -18,10 +21,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public User register(String email, String password) {
+    public User register(String email, String password, Set<Role> roles) {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
+        user.setRoles(roles);
         userService.add(user);
         shoppingCartService.registerNewShoppingCart(user);
         return user;
