@@ -1,14 +1,13 @@
 package mate.academy.spring.config;
 
+import java.util.HashSet;
+import java.util.Set;
+import javax.annotation.PostConstruct;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.service.AuthenticationService;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
 import org.springframework.stereotype.Repository;
-
-import javax.annotation.PostConstruct;
-import java.util.HashSet;
-import java.util.Set;
 
 @Repository
 public class DataInitializer {
