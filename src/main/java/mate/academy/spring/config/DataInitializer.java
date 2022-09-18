@@ -1,32 +1,31 @@
-package mate.academy.spring.controller;
+package mate.academy.spring.config;
 
 import mate.academy.spring.model.Role;
-import mate.academy.spring.model.User;
 import mate.academy.spring.service.AuthenticationService;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
 
-@RestController
-public class InjectController {
-    private final UserService userService;
+@Repository
+public class DataInitializer {
     private final RoleService roleService;
+    private final UserService userService;
     private final AuthenticationService authenticationService;
 
-    public InjectController(UserService userService,
-                            RoleService roleService,
-                            AuthenticationService authenticationService) {
-        this.userService = userService;
+    public DataInitializer(RoleService roleService,
+                           UserService userService,
+                           AuthenticationService authenticationService) {
         this.roleService = roleService;
+        this.userService = userService;
         this.authenticationService = authenticationService;
     }
 
-    @GetMapping("/inject")
-    private String  inject() {
+    @PostConstruct
+    public void inject() {
         Role adminRole = new Role();
         adminRole.setRoleName(Role.RoleName.ADMIN);
         roleService.add(adminRole);
@@ -40,9 +39,5 @@ public class InjectController {
 
         authenticationService.register("bob@gmail.com", "1234", adminSet);
         authenticationService.register("alice@gmail.com", "1234", userSet);
-
-        return "Done";
-
-
     }
 }
