@@ -28,18 +28,17 @@ public class InjectController {
     @GetMapping("/inject")
     private String  inject() {
         Role adminRole = new Role();
-        adminRole.setName(Role.RoleName.ADMIN);
+        adminRole.setRoleName(Role.RoleName.ADMIN);
         roleService.add(adminRole);
         Role userRole = new Role();
-        userRole.setName(Role.RoleName.USER);
+        userRole.setRoleName(Role.RoleName.USER);
         roleService.add(userRole);
         Set<Role> userSet = new HashSet<>();
         userSet.add(userRole);
-        Set<Role> adminAndUserSet = new HashSet<>();
-        adminAndUserSet.add(adminRole);
-        adminAndUserSet.add(userRole);
+        Set<Role> adminSet = new HashSet<>();
+        adminSet.add(adminRole);
 
-        authenticationService.register("bob@gmail.com", "1234", adminAndUserSet);
+        authenticationService.register("bob@gmail.com", "1234", adminSet);
         authenticationService.register("alice@gmail.com", "1234", userSet);
 
         return "Done";

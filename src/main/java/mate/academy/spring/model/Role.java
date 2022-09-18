@@ -13,8 +13,14 @@ public class Role {
     private RoleName roleName;
 
     public enum RoleName{
-        ADMIN,
-        USER
+        ADMIN("ADMIN"),
+        USER("USER");
+
+        private final String role;
+
+        RoleName(String role) {
+            this.role = role;
+        }
     }
 
     public Long getId() {
@@ -25,11 +31,11 @@ public class Role {
         this.id = id;
     }
 
-    public String getName() {
-        return roleName.name();
+    public String getRoleName() {
+        return roleName.role;
     }
 
-    public void setName(RoleName roleName) {
+    public void setRoleName(RoleName roleName) {
         this.roleName = roleName;
     }
 }
