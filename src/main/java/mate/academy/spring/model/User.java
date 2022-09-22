@@ -57,30 +57,28 @@ public class User {
     public String toString() {
         return "User{"
                 + "id=" + id
-                + ", email='" + email + '\'' + '}';
+                + ", email='" + email + '\''
+                + ", roles=" + roles + '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if (o == this) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof User)) {
             return false;
         }
-
-        User user = (User) o;
-
-        if (id != null ? !id.equals(user.id) : user.id != null) {
-            return false;
-        }
-        if (email != null ? !email.equals(user.email) : user.email != null) {
-            return false;
-        }
-        if (password != null ? !password.equals(user.password) : user.password != null) {
-            return false;
-        }
-        return roles != null ? roles.equals(user.roles) : user.roles == null;
+        User other = (User) o;
+        boolean idEquals = (this.id == null && other.id == null)
+                || (this.id != null && this.id.equals(other.id));
+        boolean emailEquals = (this.email == null && other.email == null)
+                || (this.email != null && this.email.equals(other.email));
+        boolean passwordEquals = (this.password == null && other.password == null)
+                || (this.password != null && this.password.equals(other.password));
+        boolean rolesEquals = (this.roles == null && other.roles == null)
+                || (this.roles != null && this.roles.equals(other.roles));
+        return idEquals && emailEquals && passwordEquals && rolesEquals;
     }
 
     @Override
