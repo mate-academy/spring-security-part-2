@@ -1,5 +1,6 @@
 package mate.academy.spring.model;
 
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -70,15 +71,10 @@ public class User {
             return false;
         }
         User other = (User) o;
-        boolean idEquals = (this.id == null && other.id == null)
-                || (this.id != null && this.id.equals(other.id));
-        boolean emailEquals = (this.email == null && other.email == null)
-                || (this.email != null && this.email.equals(other.email));
-        boolean passwordEquals = (this.password == null && other.password == null)
-                || (this.password != null && this.password.equals(other.password));
-        boolean rolesEquals = (this.roles == null && other.roles == null)
-                || (this.roles != null && this.roles.equals(other.roles));
-        return idEquals && emailEquals && passwordEquals && rolesEquals;
+        return Objects.equals(this.id, other.id)
+                && Objects.equals(this.email, other.email)
+                && Objects.equals(this.password, other.password)
+                && Objects.equals(this.roles, other.roles);
     }
 
     @Override
