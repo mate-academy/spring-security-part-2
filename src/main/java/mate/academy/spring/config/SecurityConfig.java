@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomUserDetailService userDetailsService;
-
     private final PasswordEncoder passwordEncoder;
 
     public SecurityConfig(CustomUserDetailService userDetailsService,
@@ -33,9 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/register").permitAll()
                 .antMatchers(HttpMethod.GET, "/cinema-halls").hasAnyRole("USER", "ADMIN")
                 .antMatchers(HttpMethod.POST, "/cinema-halls").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/movies").hasAnyRole("USER","ADMIN")
+                .antMatchers(HttpMethod.GET, "/movies").hasAnyRole("USER", "ADMIN")
                 .antMatchers(HttpMethod.POST, "/movies").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/movie-sessions/available").hasAnyRole("USER","ADMIN")
+                .antMatchers(HttpMethod.GET, "/movie-sessions/available")
+                .hasAnyRole("USER", "ADMIN")
                 .antMatchers(HttpMethod.POST, "/movie-sessions").hasRole("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasRole("ADMIN")

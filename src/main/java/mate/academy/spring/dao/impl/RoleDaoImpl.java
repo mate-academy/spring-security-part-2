@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
-
     public RoleDaoImpl(SessionFactory factory) {
         super(factory, Role.class);
     }
