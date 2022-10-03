@@ -1,6 +1,5 @@
 package mate.academy.spring.config;
 
-import mate.academy.spring.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -29,17 +28,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
-                .antMatchers(HttpMethod.POST, "/cinema-halls").permitAll()
+                .antMatchers(HttpMethod.POST, "/cinema-halls").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/cinema-halls").permitAll()
-                .antMatchers(HttpMethod.POST, "/movies").hasRole(Role.RoleName.ADMIN.toString())
+                .antMatchers(HttpMethod.POST, "/movies").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/movies").permitAll()
                 .antMatchers(HttpMethod.GET, "/movie-sessions").permitAll()
-                .antMatchers(HttpMethod.POST, "/movie-sessions").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/movie-sessions").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/movie-sessions").hasRole("ADMIN")
-                .antMatchers("/orders/**").hasRole("USER")
-                .antMatchers("/shopping-cart/**").hasRole("USER")
-                .antMatchers("/by-email").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/movie-sessions").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/movie-sessions").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions").hasAuthority("ADMIN")
+                .antMatchers("/orders/*").hasAuthority("USER")
+                .antMatchers("/shopping-cart/*").hasAuthority("USER")
+                .antMatchers("/by-email").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
