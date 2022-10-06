@@ -10,6 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String ADMIN_ROLE_NAME = "ADMIN";
+    private static final String USER_ROLE_NAME = "USER";
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
@@ -28,14 +30,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/register").permitAll()
                 .antMatchers(HttpMethod.GET, "/cinema-halls",
                         "/movies", "/movie-sessions/available")
-                .hasAnyRole("USER", "ADMIN")
+                .hasAnyRole(USER_ROLE_NAME, ADMIN_ROLE_NAME)
                 .antMatchers(HttpMethod.POST, "/cinema-halls",
-                        "/movies", "/movie-sessions").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/movie-sessions").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "/orders/complete").hasRole("USER")
-                .antMatchers(HttpMethod.GET, "/orders", "/shopping-carts/by-user").hasRole("USER")
-                .antMatchers(HttpMethod.PUT, "/shopping-carts/movies-sessions").hasRole("USER")
-                .antMatchers(HttpMethod.GET, "/users/by-email").hasRole("ADMIN")
+                        "/movies", "/movie-sessions").hasRole(ADMIN_ROLE_NAME)
+                .antMatchers(HttpMethod.PUT, "/movie-sessions").hasRole(ADMIN_ROLE_NAME)
+                .antMatchers(HttpMethod.POST, "/orders/complete").hasRole(USER_ROLE_NAME)
+                .antMatchers(HttpMethod.GET, "/orders",
+                        "/shopping-carts/by-user").hasRole(USER_ROLE_NAME)
+                .antMatchers(HttpMethod.PUT, "/shopping-carts/movies-sessions")
+                .hasRole(USER_ROLE_NAME)
+                .antMatchers(HttpMethod.GET, "/users/by-email").hasRole(USER_ROLE_NAME)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
