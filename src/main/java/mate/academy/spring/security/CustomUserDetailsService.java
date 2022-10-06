@@ -3,6 +3,7 @@ package mate.academy.spring.security;
 import java.util.Optional;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,7 +20,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) {
         Optional<User> userFromDb = userService.findByEmail(email);
-        org.springframework.security.core.userdetails.User.UserBuilder userBuilder;
+        UserBuilder userBuilder;
         if (userFromDb.isPresent()) {
             userBuilder = org.springframework.security.core.userdetails.User
                     .withUsername(email);
