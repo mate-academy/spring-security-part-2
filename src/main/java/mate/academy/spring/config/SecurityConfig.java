@@ -26,13 +26,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .userDetailsService(userDetailsService).passwordEncoder(encoder);
     }
 
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers("/register").anonymous()
                 .antMatchers(HttpMethod.GET, "/cinema-halls/**").hasAnyRole(ADMIN,USER)
                 .antMatchers(HttpMethod.POST, "/cinema-halls/**").hasRole(ADMIN)
-                .antMatchers(HttpMethod.GET, "/movies").hasAnyRole(ADMIN)
+                .antMatchers(HttpMethod.GET, "/movies").hasAnyRole(ADMIN, USER)
                 .antMatchers(HttpMethod.POST, "/movies/**").hasRole(ADMIN)
                 .antMatchers(HttpMethod.GET, "/movie-sessions/**").hasAnyRole(ADMIN,USER)
                 .antMatchers(HttpMethod.POST, "/movie-sessions/**").hasRole(ADMIN)
