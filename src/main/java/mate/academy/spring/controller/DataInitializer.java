@@ -1,4 +1,4 @@
-package mate.academy.spring.config;
+package mate.academy.spring.controller;
 
 import java.util.Set;
 import javax.annotation.PostConstruct;
@@ -6,9 +6,9 @@ import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RestController;
 
-@Component
+@RestController
 public class DataInitializer {
     private final RoleService roleService;
     private final UserService userService;
