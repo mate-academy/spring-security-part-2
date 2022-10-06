@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String ROLE_ADMIN = "ADMIN";
+    private static final String ROLE_USER = "USER";
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
@@ -28,17 +30,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
-                .antMatchers(HttpMethod.POST, "/cinema-halls").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/cinema-halls").hasAuthority(ROLE_ADMIN)
                 .antMatchers(HttpMethod.GET, "/cinema-halls").permitAll()
-                .antMatchers(HttpMethod.POST, "/movies").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/movies").hasAuthority(ROLE_ADMIN)
                 .antMatchers(HttpMethod.GET, "/movies").permitAll()
                 .antMatchers(HttpMethod.GET, "/movie-sessions").permitAll()
-                .antMatchers(HttpMethod.POST, "/movie-sessions").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/movie-sessions").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/movie-sessions").hasAuthority("ADMIN")
-                .antMatchers("/orders/*").hasAuthority("USER")
-                .antMatchers("/shopping-cart/*").hasAuthority("USER")
-                .antMatchers("/by-email").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/movie-sessions").hasAuthority(ROLE_ADMIN)
+                .antMatchers(HttpMethod.PUT, "/movie-sessions").hasAuthority(ROLE_ADMIN)
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions").hasAuthority(ROLE_ADMIN)
+                .antMatchers("/orders/*").hasAuthority(ROLE_USER)
+                .antMatchers("/shopping-cart/*").hasAuthority(ROLE_USER)
+                .antMatchers("/by-email").hasAuthority(ROLE_ADMIN)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

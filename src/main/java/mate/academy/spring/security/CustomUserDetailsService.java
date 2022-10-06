@@ -19,7 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         mate.academy.spring.model.User user = userService.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
         UserBuilder builder = User.withUsername(username);
         builder.password(user.getPassword());
         builder.authorities(user.getUserRoles().stream()
