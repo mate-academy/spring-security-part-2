@@ -4,6 +4,7 @@ import java.util.Optional;
 import mate.academy.spring.dao.UserDao;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +27,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User get(Long id) {
         return userDao.get(id).orElseThrow(
-                () -> new RuntimeException("User with id " + id + " not found"));
+                () -> new RuntimeException("User with id: " + id + " not found."));
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return userDao.findByEmail(email);
+        Optional<User> optionalUser = userDao.findByEmail(email);
+        if (optionalUser.isEmpty()) {
+            throw new UsernameNotFoundException("User is not found by email.");
+        } else {
+            return userDao.findByEmail(email);
+        }
     }
 }
