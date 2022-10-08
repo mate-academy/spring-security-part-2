@@ -37,21 +37,4 @@ public class Role {
     public void setId(Long id) {
         this.id = id;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Role role = (Role) o;
-        return Objects.equals(id, role.id) && roleName == role.roleName;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, roleName);
-    }
 }
