@@ -27,16 +27,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User get(Long id) {
         return userDao.get(id).orElseThrow(
-                () -> new RuntimeException("User with id: " + id + " not found."));
+                () -> new RuntimeException("User with id " + id + " not found"));
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        Optional<User> optionalUser = userDao.findByEmail(email);
-        if (optionalUser.isEmpty()) {
-            throw new UsernameNotFoundException("User is not found by email.");
-        } else {
-            return userDao.findByEmail(email);
-        }
+        return userDao.findByEmail(email);
     }
 }
