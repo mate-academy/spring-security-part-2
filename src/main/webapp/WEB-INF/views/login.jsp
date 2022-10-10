@@ -4,23 +4,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Login to MovieServiceApp</title>
+    <title>Logging to Movie Service</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous" />
 </head>
 <body>
-Web Application Context Path = ${pageContext.request.contextPath}
 <div class="container-fluid text-center">
-    <div>
-        <img class="img-fluid" th:src="${pageContext.request.contextPath}{/resources/images/logo.png}" />
-    </div>
-    <div>
-        <p class="text-warning">Test text message.</p>
-        <img class="img-fluid" th:src="${pageContext.request.contextPath}{/images2/test.txt}" />
-        <p class="text-danger" th:src="${pageContext.request.contextPath}" />
-    </div>
-
     <form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto;">
 
         <div th:if="${param.error}">
@@ -32,7 +22,7 @@ Web Application Context Path = ${pageContext.request.contextPath}
         </div>
 
         <div class="border border-secondary p-3 rounded">
-            <p>Access to Shopme Control Panel</p>
+            <p>Access to Movie Service</p>
             <p>
                 <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus/>
             </p>
