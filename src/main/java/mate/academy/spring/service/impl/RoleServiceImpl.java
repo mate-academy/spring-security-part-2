@@ -1,11 +1,19 @@
 package mate.academy.spring.service.impl;
 
+import java.util.List;
+import java.util.Optional;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.service.RoleService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RoleServiceImpl implements RoleService {
-    private RoleDao roleDao;
+    private final RoleDao roleDao;
+
+    public RoleServiceImpl(RoleDao roleDao) {
+        this.roleDao = roleDao;
+    }
 
     @Override
     public Role add(Role role) {
@@ -13,7 +21,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role getByName(String roleName) {
-        return roleDao.getByName(roleName).get();
+    public Optional<Role> getByName(String roleName) {
+        return roleDao.getByName(roleName);
+    }
+
+    @Override
+    public List<Role> getAll() {
+        return roleDao.getAll();
     }
 }
