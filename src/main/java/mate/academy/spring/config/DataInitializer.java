@@ -1,4 +1,4 @@
-package mate.academy.spring.controller;
+package mate.academy.spring.config;
 
 import java.util.Set;
 import mate.academy.spring.model.Role;

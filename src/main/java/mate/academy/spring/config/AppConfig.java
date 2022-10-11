@@ -46,6 +46,7 @@ public class AppConfig {
         factoryBean.setPackagesToScan("mate.academy.spring.model");
         return factoryBean;
     }
+
     @Bean
     public PasswordEncoder getEncoder() {
         return new BCryptPasswordEncoder();
