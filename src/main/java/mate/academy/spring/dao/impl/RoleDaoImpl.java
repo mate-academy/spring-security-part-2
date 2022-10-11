@@ -1,12 +1,12 @@
 package mate.academy.spring.dao.impl;
 
+import java.util.Optional;
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.exception.DataProcessingException;
+import mate.academy.spring.model.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import java.util.Optional;
-import mate.academy.spring.model.Role;
 import org.springframework.stereotype.Repository;
 
 @Repository

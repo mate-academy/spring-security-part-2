@@ -1,6 +1,5 @@
 package mate.academy.spring.service.impl;
 
-import java.util.HashSet;
 import java.util.Set;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
