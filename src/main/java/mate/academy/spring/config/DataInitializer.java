@@ -30,20 +30,20 @@ public class DataInitializer {
         User bob = new User();
         bob.setEmail("bob@gmail.com");
         bob.setPassword("12345678");
-        bob.setRoles(Set.of(roleService.getByName(Role.RoleName.USER.name()).get()));
+        bob.setRoles(Set.of(roleService.getByName(Role.RoleName.USER.name())));
         authService.register(bob);
 
         User alice = new User();
         alice.setEmail("alice@gmail.com");
         alice.setPassword("12345678");
-        alice.setRoles(Set.of(roleService.getByName(Role.RoleName.USER.name()).get()));
+        alice.setRoles(Set.of(roleService.getByName(Role.RoleName.USER.name())));
         authService.register(alice);
 
         User admin = new User();
         admin.setEmail("admin@gmail.com");
         admin.setPassword("12345678");
-        admin.setRoles(Set.of(roleService.getByName(Role.RoleName.USER.name()).get(),
-                roleService.getByName(Role.RoleName.ADMIN.name()).get()));
+        admin.setRoles(Set.of(roleService.getByName(Role.RoleName.USER.name()),
+                roleService.getByName(Role.RoleName.ADMIN.name())));
         authService.register(admin);
     }
 }
