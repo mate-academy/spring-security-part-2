@@ -5,21 +5,21 @@ import static org.springframework.security.core.userdetails.User.withUsername;
 import java.util.Optional;
 import mate.academy.spring.model.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserDetails implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserService userService;
 
-    public UserDetails(UserService userService) {
+    public UserDetailsServiceImpl(UserService userService) {
         this.userService = userService;
     }
 
     @Override
-    public org.springframework.security.core.userdetails.UserDetails
-            loadUserByUsername(String email)
+    public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
         Optional<User> optionalUser = userService.findByEmail(email);
         if (optionalUser.isEmpty()) {

@@ -1,6 +1,6 @@
 package mate.academy.spring.config;
 
-import mate.academy.spring.service.UserDetails;
+import mate.academy.spring.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,20 +11,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private static final String USER_ROLE = "USER";
-    private static final String ADMIN_ROLE = "ADMIN";
-
     private final PasswordEncoder passwordEncoder;
-    private final UserDetails userDetails;
+    private final UserDetailsServiceImpl userDetailsServiceImpl;
 
-    public SecurityConfig(PasswordEncoder passwordEncoder, UserDetails userDetails) {
+    public SecurityConfig(PasswordEncoder passwordEncoder,
+                          UserDetailsServiceImpl userDetailsServiceImpl) {
         this.passwordEncoder = passwordEncoder;
-        this.userDetails = userDetails;
+        this.userDetailsServiceImpl = userDetailsServiceImpl;
     }
 
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetails).passwordEncoder(passwordEncoder);
+        auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder);
     }
 
     protected void configure(HttpSecurity http) throws Exception {
