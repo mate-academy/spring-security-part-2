@@ -21,7 +21,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     public Optional<User> findByEmail(String email) {
         try (Session session = factory.openSession()) {
             Query<User> findByEmail = session.createQuery(
-                    "from User u inner join Role r where u.email = :email", User.class);
+                    "from User u inner join fetch u.roles where u.email = :email", User.class);
             findByEmail.setParameter("email", email);
             return findByEmail.uniqueResultOptional();
         } catch (Exception e) {
@@ -32,8 +32,8 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     @Override
     public Optional<User> get(Long id) {
         try (Session session = factory.openSession()) {
-            return session.createQuery("from User u inner join Role r where u.id = :id",
-                    User.class)
+            return session.createQuery("from User u inner join fetch u.roles where u.id = :id",
+                            User.class)
                     .setParameter("id", id)
                     .uniqueResultOptional();
         } catch (Exception e) {
@@ -44,7 +44,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     @Override
     public List<User> getAll() {
         try (Session session = factory.openSession()) {
-            return session.createQuery("from User inner join Role", User.class)
+            return session.createQuery("from User u inner join fetch u.roles", User.class)
                     .getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get all users", e);
