@@ -4,12 +4,14 @@ import java.util.List;
 import mate.academy.spring.dao.MovieDao;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.service.MovieService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MovieServiceImpl implements MovieService {
     private final MovieDao movieDao;
 
+    @Autowired
     public MovieServiceImpl(MovieDao movieDao) {
         this.movieDao = movieDao;
     }

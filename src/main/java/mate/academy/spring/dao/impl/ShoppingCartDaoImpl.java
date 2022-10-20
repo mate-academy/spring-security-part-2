@@ -8,10 +8,12 @@ import mate.academy.spring.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements ShoppingCartDao {
+    @Autowired
     public ShoppingCartDaoImpl(SessionFactory factory) {
         super(factory, ShoppingCart.class);
     }

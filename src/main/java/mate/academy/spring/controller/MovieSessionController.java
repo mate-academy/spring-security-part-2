@@ -11,6 +11,7 @@ import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.RequestDtoMapper;
 import mate.academy.spring.service.mapper.ResponseDtoMapper;
 import mate.academy.spring.util.DateTimePatternUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,7 @@ public class MovieSessionController {
     private final ResponseDtoMapper<MovieSessionResponseDto, MovieSession>
             movieSessionResponseDtoMapper;
 
+    @Autowired
     public MovieSessionController(MovieSessionService movieSessionService,
             RequestDtoMapper<MovieSessionRequestDto, MovieSession> movieSessionRequestDtoMapper,
             ResponseDtoMapper<MovieSessionResponseDto, MovieSession>

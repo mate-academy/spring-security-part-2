@@ -8,6 +8,7 @@ import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import mate.academy.spring.service.mapper.ResponseDtoMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class ShoppingCartController {
     private final ResponseDtoMapper<ShoppingCartResponseDto, ShoppingCart>
             shoppingCartResponseDtoMapper;
 
+    @Autowired
     public ShoppingCartController(ShoppingCartService shoppingCartService,
                                   UserService userService,
                                   MovieSessionService movieSessionService,
