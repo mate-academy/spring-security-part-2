@@ -9,7 +9,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    @Enumerated(value = EnumType.STRING)
     private RoleName role;
 
     public Long getId() {

@@ -1,11 +1,11 @@
-package mate.academy.spring.security;
+package mate.academy.spring.service.impl;
 
 import java.util.Optional;
 
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 public class CustomUserDetailsService implements UserDetailsService {
     private UserService userService;
 
-    @Autowired
     public CustomUserDetailsService(UserService userService) {
         this.userService = userService;
     }
@@ -23,12 +22,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         Optional<User> user = userService.findByEmail(userName);
-        org.springframework.security.core.userdetails.User.UserBuilder builder =
+        UserBuilder userBuilder =
                 org.springframework.security.core.userdetails.User.withUsername(userName);
-        builder.password(user.get().getPassword());
-        builder.authorities(user.get().getRoles().stream()
+        userBuilder.password(user.get().getPassword());
+        userBuilder.authorities(user.get().getRoles().stream()
                 .map(Role::getRole)
                 .toArray(String[]::new));
-        return builder.build();
+        return userBuilder.build();
     }
 }
