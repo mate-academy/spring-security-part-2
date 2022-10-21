@@ -1,8 +1,19 @@
 package mate.academy.spring.dto.response;
 
+import java.util.List;
+
 public class UserResponseDto {
     private Long id;
     private String email;
+    private List<Long> roleId;
+
+    public List<Long> getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(List<Long> roleId) {
+        this.roleId = roleId;
+    }
 
     public Long getId() {
         return id;
