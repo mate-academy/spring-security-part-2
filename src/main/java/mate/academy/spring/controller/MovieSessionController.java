@@ -32,9 +32,10 @@ public class MovieSessionController {
             movieSessionResponseDtoMapper;
 
     public MovieSessionController(MovieSessionService movieSessionService,
-            RequestDtoMapper<MovieSessionRequestDto, MovieSession> movieSessionRequestDtoMapper,
-            ResponseDtoMapper<MovieSessionResponseDto, MovieSession>
-                                      movieSessionResponseDtoMapper) {
+                                  RequestDtoMapper<MovieSessionRequestDto, MovieSession>
+                                          movieSessionRequestDtoMapper,
+                                  ResponseDtoMapper<MovieSessionResponseDto, MovieSession>
+                                          movieSessionResponseDtoMapper) {
         this.movieSessionService = movieSessionService;
         this.movieSessionRequestDtoMapper = movieSessionRequestDtoMapper;
         this.movieSessionResponseDtoMapper = movieSessionResponseDtoMapper;
@@ -48,10 +49,10 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
-    public List<MovieSessionResponseDto> findAvailableSessions(@RequestParam Long movieId,
-                                                @RequestParam
-            @DateTimeFormat(pattern = DateTimePatternUtil.DATE_PATTERN)
-                                                        LocalDate date) {
+    public List<MovieSessionResponseDto> findAvailableSessions(
+            @RequestParam Long movieId,
+            @RequestParam @DateTimeFormat(pattern = DateTimePatternUtil.DATE_PATTERN)
+            LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date)
                 .stream()
                 .map(movieSessionResponseDtoMapper::mapToDto)
