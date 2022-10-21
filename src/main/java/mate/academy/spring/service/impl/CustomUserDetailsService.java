@@ -1,7 +1,8 @@
 package mate.academy.spring.service.impl;
 
+import static org.springframework.security.core.userdetails.User.withUsername;
+
 import java.util.Optional;
-import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
 import org.springframework.security.core.userdetails.User.UserBuilder;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-    private UserService userService;
+    private final UserService userService;
 
     public CustomUserDetailsService(UserService userService) {
         this.userService = userService;
@@ -20,13 +21,17 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        Optional<User> user = userService.findByEmail(userName);
-        UserBuilder userBuilder =
-                org.springframework.security.core.userdetails.User.withUsername(userName);
-        userBuilder.password(user.get().getPassword());
-        userBuilder.authorities(user.get().getRoles().stream()
-                .map(Role::getRoleName)
-                .toArray(String[]::new));
-        return userBuilder.build();
+        Optional<User> userOptional = userService.findByEmail(userName);
+        if (userOptional.isPresent()) {
+            UserBuilder builder = withUsername(userName);
+            builder.password(userOptional.get().getPassword());
+            builder.roles(userOptional.get().getRoles()
+                    .stream()
+                    .map(r -> r.getRoleName().name())
+                    .toArray(String[]::new));
+            return builder.build();
+
+        }
+        throw new UsernameNotFoundException("User " + userName + " not found to db.");
     }
 }

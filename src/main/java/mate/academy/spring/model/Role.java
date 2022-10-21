@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "roles")
@@ -35,13 +34,8 @@ public class Role {
         this.roleName = role;
     }
 
-    public enum RoleName implements GrantedAuthority {
-        ROLE_ADMIN,
-        ROLE_USER;
-
-        @Override
-        public String getAuthority() {
-            return name();
-        }
+    public enum RoleName {
+        ADMIN,
+        USER;
     }
 }
