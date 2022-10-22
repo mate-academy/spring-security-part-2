@@ -1,12 +1,12 @@
 package mate.academy.spring.model;
 
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Objects;
 
 @Entity
 public class Role {
@@ -16,7 +16,7 @@ public class Role {
     @Enumerated(value = EnumType.STRING)
     private RoleName roleName;
 
-    public enum  RoleName {
+    public enum RoleName {
         ADMIN, USER
     }
 
