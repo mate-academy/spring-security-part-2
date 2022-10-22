@@ -18,12 +18,11 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
     }
 
     @Override
-    public Optional<Role> getByName(String roleName) {
+    public Optional<Role> getByName(Role.RoleEnum roleName) {
         try (Session session = factory.openSession()) {
             return Optional.ofNullable(session.get(Role.class, roleName));
         } catch (Exception e) {
             throw new DataProcessingException("Can't get role by name " + roleName, e);
         }
-
     }
 }
