@@ -21,16 +21,16 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     public List<Order> getOrdersHistory(User user) {
         try (Session session = factory.openSession()) {
             Query<Order> getByUser = session.createQuery(
-                    "SELECT DISTINCT o FROM Order o "
+                    "select distinct o from Order o "
                             + "join fetch o.tickets t "
                             + "join fetch t.movieSession ms "
                             + "join fetch ms.cinemaHall "
                             + "join fetch ms.movie "
-                            + "WHERE o.user = :user", Order.class);
+                            + "where o.user = :user", Order.class);
             getByUser.setParameter("user", user);
             return getByUser.getResultList();
         } catch (Exception e) {
-            throw new DataProcessingException("Not found shopping cart for user " + user, e);
+            throw new DataProcessingException("Can't get orders for user " + user, e);
         }
     }
 }
