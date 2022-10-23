@@ -31,7 +31,7 @@ public class CustomUserDetailService implements UserDetailsService {
         userBuilder.authorities(user.getRoles()
                 .stream()
                 .map(Role::getRoleName)
-                        .map(Role.RoleEnum::getRoleEnum)
+                        .map(Enum::toString)
                 .toArray(String[]::new));
         return userBuilder.build();
     }

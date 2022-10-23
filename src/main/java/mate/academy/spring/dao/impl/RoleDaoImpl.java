@@ -18,7 +18,7 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
     }
 
     @Override
-    public Optional<Role> getByName(Role.RoleEnum roleName) {
+    public Optional<Role> getByName(String roleName) {
         try (Session session = factory.openSession()) {
             return Optional.ofNullable(session.get(Role.class, roleName));
         } catch (Exception e) {

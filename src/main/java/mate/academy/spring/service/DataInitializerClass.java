@@ -1,12 +1,9 @@
-package mate.academy.spring.controller;
+package mate.academy.spring.service;
 
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
-import mate.academy.spring.service.RoleService;
-import mate.academy.spring.service.ShoppingCartService;
-import mate.academy.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,10 +29,10 @@ public class DataInitializerClass {
     @PostConstruct
     public void inject() {
         Role adminRole = new Role();
-        adminRole.setRoleName(Role.RoleEnum.ADMIN);
+        adminRole.setRoleName(Role.RoleName.ADMIN);
         roleService.add(adminRole);
         Role userRole = new Role();
-        userRole.setRoleName(Role.RoleEnum.USER);
+        userRole.setRoleName(Role.RoleName.USER);
         roleService.add(userRole);
         User admin = new User();
         admin.setEmail(ADMIN_EMAIL);
