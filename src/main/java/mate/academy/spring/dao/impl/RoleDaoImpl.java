@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
 @Repository
 public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
@@ -17,13 +18,12 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
     }
 
     @Override
-    public Role getByName(RoleNames roleName) {
+    public Optional<Role> getByName(RoleNames roleName) {
         try (Session session = factory.openSession()) {
-            Query<Role> queryGetByName = session.createQuery("from Role where name = :name",
+            Query<Role> queryGetByName = session.createQuery("from Role where roleName = :name",
                     Role.class);
             queryGetByName.setParameter("name", roleName);
-            return queryGetByName.uniqueResultOptional().orElseThrow(() ->
-                    new DataProcessingException("Role by name: " + roleName + " not found"));
+            return queryGetByName.uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get role from DB by name: " + roleName, e);
         }

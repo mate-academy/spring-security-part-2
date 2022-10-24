@@ -2,6 +2,7 @@ package mate.academy.spring.model;
 
 import mate.academy.spring.dao.type.RoleNames;
 import org.springframework.security.core.GrantedAuthority;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,6 +19,7 @@ public class Role implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "role_name")
     private RoleNames roleName;
 
     public Long getId() {
