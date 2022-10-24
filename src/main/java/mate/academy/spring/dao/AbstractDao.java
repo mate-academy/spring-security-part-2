@@ -29,8 +29,8 @@ public abstract class AbstractDao<T> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't insert "
-                    + clazz.getSimpleName() + " " + t, e);
+            throw new DataProcessingException(
+                    "Can't insert " + clazz.getSimpleName() + " " + t, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -42,17 +42,18 @@ public abstract class AbstractDao<T> {
         try (Session session = factory.openSession()) {
             return Optional.ofNullable(session.get(clazz, id));
         } catch (Exception e) {
-            throw new DataProcessingException("Can't get "
-                    + clazz.getSimpleName() + ", id: " + id, e);
+            throw new DataProcessingException(
+                    "Can't get " + clazz.getSimpleName() + " by id: " + id, e);
         }
     }
 
     public List<T> getAll() {
         try (Session session = factory.openSession()) {
-            return session.createQuery("from " + clazz.getSimpleName(), clazz).getResultList();
+            return session.createQuery("from " + clazz.getSimpleName(), clazz)
+                    .getResultList();
         } catch (Exception e) {
-            throw new DataProcessingException("Can't get all "
-                    + clazz.getSimpleName() + "s from db", e);
+            throw new DataProcessingException(
+                    "Can't get all " + clazz.getSimpleName() + "s from db", e);
         }
     }
 
@@ -69,8 +70,8 @@ public abstract class AbstractDao<T> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't update "
-                    + clazz.getSimpleName() + " " + t, e);
+            throw new DataProcessingException(
+                    "Can't update " + clazz.getSimpleName() + " " + t, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -91,8 +92,8 @@ public abstract class AbstractDao<T> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't delete "
-                    + clazz.getSimpleName() + " with id: " + id, e);
+            throw new DataProcessingException(
+                    "Can't delete " + clazz.getSimpleName() + " with id: " + id, e);
         } finally {
             if (session != null) {
                 session.close();
