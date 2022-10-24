@@ -1,6 +1,5 @@
 package mate.academy.spring.service.impl;
 
-import java.util.NoSuchElementException;
 import java.util.Set;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
@@ -29,9 +28,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
-        user.setRoles(Set.of(roleService.getByName(Role.RoleName.USER.toString())
-                .orElseThrow(() -> new NoSuchElementException("Can`t register user. "
-                        + "Role not present in DB " + Role.RoleName.USER))));
+        Role userRole = roleService.getByName(Role.RoleName.USER.name());
+        user.setRoles(Set.of(userRole));
         userService.add(user);
         shoppingCartService.registerNewShoppingCart(user);
         return user;
