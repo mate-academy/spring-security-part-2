@@ -2,7 +2,6 @@ package mate.academy.spring.service;
 
 import static org.springframework.security.core.userdetails.User.withUsername;
 
-import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User.UserBuilder;
@@ -30,8 +29,7 @@ public class CustomUserDetailService implements UserDetailsService {
         userBuilder.password(user.getPassword());
         userBuilder.authorities(user.getRoles()
                 .stream()
-                .map(Role::getRoleName)
-                        .map(Enum::toString)
+                .map(r -> r.getRoleName().name())
                 .toArray(String[]::new));
         return userBuilder.build();
     }
