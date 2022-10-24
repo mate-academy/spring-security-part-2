@@ -8,10 +8,12 @@ import mate.academy.spring.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
+    @Autowired
     public UserDaoImpl(SessionFactory factory) {
         super(factory, User.class);
     }
