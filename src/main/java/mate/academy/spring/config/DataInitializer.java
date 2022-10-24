@@ -1,12 +1,14 @@
-package mate.academy.spring;
+package mate.academy.spring.config;
 
-import javax.annotation.PostConstruct;
 import java.util.Set;
+import javax.annotation.PostConstruct;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DataInitializer {
     private final RoleService roleService;
     private final UserService userService;
@@ -25,10 +27,16 @@ public class DataInitializer {
         Role userRole = new Role();
         userRole.setRoleName(Role.RoleName.USER);
         roleService.add(userRole);
+
         User admin = new User();
         admin.setEmail("admin@i.ua");
         admin.setPassword("admin123");
         admin.setRoles(Set.of(adminRole));
+        User user = new User();
+        user.setEmail("user@gmail.com");
+        user.setPassword("user111");
+        user.setRoles(Set.of(userRole));
         userService.add(admin);
+        userService.add(user);
     }
 }
