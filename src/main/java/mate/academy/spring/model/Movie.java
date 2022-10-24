@@ -41,15 +41,6 @@ public class Movie {
     }
 
     @Override
-    public String toString() {
-        return "Movie{"
-                + "id=" + id
-                + ", title='" + title + '\''
-                + ", description='" + description
-                + '\'' + '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -66,5 +57,14 @@ public class Movie {
     @Override
     public int hashCode() {
         return Objects.hash(id, title, description);
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{"
+                + "id=" + id
+                + ", title='" + title + '\''
+                + ", description='" + description
+                + '\'' + '}';
     }
 }

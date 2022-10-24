@@ -39,8 +39,8 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     @ExceptionHandler({DataProcessingException.class, NoSuchElementException.class})
     protected ResponseEntity<Object> handleRuntimeException(RuntimeException ex,
                                                             WebRequest request) {
-        HttpStatus status = (ex.getClass() == DataProcessingException.class) ?
-                HttpStatus.INTERNAL_SERVER_ERROR : HttpStatus.NOT_FOUND;
+        HttpStatus status = (ex.getClass() == DataProcessingException.class)
+                ? HttpStatus.INTERNAL_SERVER_ERROR : HttpStatus.NOT_FOUND;
         Map<String, Object> body = getResponseBody(status, ex.getMessage(), request);
         return new ResponseEntity<>(body, status);
     }
