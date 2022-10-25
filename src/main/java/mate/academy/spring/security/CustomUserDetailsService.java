@@ -22,7 +22,9 @@ public class CustomUserDetailsService implements UserDetailsService {
             throws UsernameNotFoundException {
         Optional<User> userOptional = userService.findByEmail(email);
         if (userOptional.isPresent()) {
-            UserBuilder builder = org.springframework.security.core.userdetails.User.withUsername(email);
+            UserBuilder builder =
+                    org.springframework.security.core.userdetails.User
+                            .withUsername(email);
             builder.password(userOptional.get().getPassword());
             builder.roles(userOptional.get().getRoles()
                     .stream()
