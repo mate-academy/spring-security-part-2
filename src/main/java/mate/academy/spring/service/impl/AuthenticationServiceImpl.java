@@ -29,7 +29,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         user.setEmail(email);
         user.setPassword(password);
         Role role = roleService.getByName(Role.RoleName.USER.name());
-        user.setRole(Set.of(role));
+        user.setRoles(Set.of(role));
         userService.add(user);
         shoppingCartService.registerNewShoppingCart(user);
         return user;

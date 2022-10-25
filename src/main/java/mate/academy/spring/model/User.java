@@ -19,7 +19,7 @@ public class User {
     private String email;
     private String password;
     @ManyToMany
-    private Set<Role> role;
+    private Set<Role> roles;
 
     public Long getId() {
         return id;
@@ -45,12 +45,12 @@ public class User {
         this.password = password;
     }
 
-    public Set<Role> getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Set<Role> role) {
-        this.role = role;
+    public void setRoles(Set<Role> role) {
+        this.roles = role;
     }
 
     @Override
@@ -58,6 +58,6 @@ public class User {
         return "User{" + "id=" + id
                 + ", email='" + email + '\''
                 + ", password='" + password + '\''
-                + ", role=" + role + '}';
+                + ", role=" + roles + '}';
     }
 }
