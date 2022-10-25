@@ -11,7 +11,6 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mate.academy.spring.dao.type.RoleNames;
 
 @Data
 @AllArgsConstructor
@@ -24,5 +23,9 @@ public class Role {
     private Long id;
     @Enumerated(value = EnumType.STRING)
     @Column(name = "role_name")
-    private RoleNames roleName;
+    private RoleName roleName;
+
+    public enum RoleName {
+        ADMIN, USER
+    }
 }
