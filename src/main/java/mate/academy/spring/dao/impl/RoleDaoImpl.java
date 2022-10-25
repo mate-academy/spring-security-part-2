@@ -22,7 +22,7 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
             Query<Role> roleQuery = session.createQuery(
                     "FROM Role r WHERE r.roleName = :roleName", Role.class);
             roleQuery.setParameter("roleName", roleName);
-            return Optional.ofNullable(roleQuery.getSingleResult());
+            return roleQuery.uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get role: " + roleName, e);
         }
