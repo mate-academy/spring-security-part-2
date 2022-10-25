@@ -34,11 +34,6 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public enum RoleName {
-        ADMIN,
-        USER;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -54,5 +49,10 @@ public class Role {
     @Override
     public int hashCode() {
         return Objects.hash(id, roleName);
+    }
+
+    public enum RoleName {
+        ADMIN,
+        USER;
     }
 }
