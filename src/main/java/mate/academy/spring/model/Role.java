@@ -43,13 +43,13 @@ public class Role {
             return false;
         }
         Role role = (Role) o;
-        return Objects.equals(getId(), role.getId())
-                && getRoleName() == role.getRoleName();
+        return Objects.equals(id, role.id)
+                && roleName == role.roleName;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getRoleName());
+        return Objects.hash(id, roleName);
     }
 
     public enum RoleName {
