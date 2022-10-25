@@ -31,7 +31,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public Optional<User> get(Long id) {
-        try(Session session = factory.openSession()) {
+        try (Session session = factory.openSession()) {
             return session.createQuery(
                     "from User u inner join fetch u.roles where u.id = :id", User.class)
                     .uniqueResultOptional();
@@ -42,7 +42,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public List<User> getAll() {
-        try(Session session = factory.openSession()) {
+        try (Session session = factory.openSession()) {
             return session.createQuery(
                             "from User u inner join fetch u.roles", User.class)
                     .getResultList();
