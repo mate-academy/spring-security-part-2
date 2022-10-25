@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class RoleServiceImpl implements RoleService {
     private RoleDao roleDao;
+
     @Override
     public Role add(Role role) {
         return roleDao.add(role);
@@ -17,6 +18,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getByName(String roleName) {
-        return roleDao.getByName(roleName).orElseThrow(() -> new RuntimeException("Can't get role: " + roleName));
+        return roleDao.getByName(roleName)
+                .orElseThrow(() -> new RuntimeException("Can't get role: " + roleName));
     }
 }
