@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
-
     public RoleDaoImpl(SessionFactory factory) {
         super(factory, Role.class);
     }
@@ -21,7 +20,7 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
     public Optional<Role> getByName(String roleName) {
         try (Session session = factory.openSession()) {
             Query<Role> query = session.createQuery("from Role where roleName = :role", Role.class);
-            query.setParameter("role", Role.RoleName.valueOf(roleName));
+            query.setParameter("roleName", Role.RoleName.valueOf(roleName));
             return query.uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Couldn't get role by name: " + roleName, e);
