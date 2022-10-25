@@ -48,8 +48,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "id=" + id
-                + ", email='" + email + '\''
-                + ", roles=" + roles + '}';
+                + ", email='" + email + '\'' + '}';
     }
 
     public Set<Role> getRoles() {
