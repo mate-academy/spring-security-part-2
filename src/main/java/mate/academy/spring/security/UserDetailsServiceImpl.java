@@ -25,8 +25,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 new UsernameNotFoundException("User not found. Email: " + username));
         return withUsername(username)
                 .password(user.getPassword())
-                .authorities(user.getRoles().stream()
-                    .map(r -> r.getRoleName().toString())
+                .roles(user.getRoles().stream()
+                    .map(r -> r.getRoleName().name())
                     .toArray(String[]::new))
                 .build();
     }
