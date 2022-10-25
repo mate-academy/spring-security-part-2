@@ -27,13 +27,13 @@ public class Role {
         return name;
     }
 
-    public void setName(RoleName name) {
+    public void setRoleName(RoleName name) {
         this.name = name;
     }
 
     public enum RoleName {
-        User,
-        Admin
+        USER,
+        ADMIN
     }
 
     @Override
