@@ -10,6 +10,4 @@ public interface RoleDao {
     Optional<Role> getByName(String roleName);
 
     List<Role> getAll();
-
-    void delete(Long id);
 }
