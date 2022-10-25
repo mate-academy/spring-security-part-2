@@ -1,8 +1,8 @@
 package mate.academy.spring.dto.response;
 
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter

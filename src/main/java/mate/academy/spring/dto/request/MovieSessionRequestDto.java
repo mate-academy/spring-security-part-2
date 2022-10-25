@@ -1,9 +1,9 @@
 package mate.academy.spring.dto.request;
 
-import lombok.Getter;
 import java.time.LocalDateTime;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import lombok.Getter;
 
 @Getter
 public class MovieSessionRequestDto {

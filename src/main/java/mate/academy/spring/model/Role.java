@@ -1,7 +1,5 @@
 package mate.academy.spring.model;
 
-import mate.academy.spring.dao.type.RoleNames;
-import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,6 +11,7 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mate.academy.spring.dao.type.RoleNames;
 
 @Data
 @AllArgsConstructor
