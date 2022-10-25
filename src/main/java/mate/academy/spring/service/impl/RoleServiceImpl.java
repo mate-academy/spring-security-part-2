@@ -3,6 +3,7 @@ package mate.academy.spring.service.impl;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.service.RoleService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +21,8 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getByName(String roleName) {
-        return roleDao.getByName(roleName);
+        return roleDao.getByName(roleName)
+                .orElseThrow(() -> new UsernameNotFoundException("Can't find the role: "
+                        + roleName + " !"));
     }
 }
