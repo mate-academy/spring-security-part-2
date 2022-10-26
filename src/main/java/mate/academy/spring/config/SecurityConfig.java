@@ -26,9 +26,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected void configure(HttpSecurity http) throws Exception {
+
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/register").permitAll()
+                .antMatchers(HttpMethod.GET,"/swagger-resources/**",
+                                            "/swagger-ui.html",
+                                            "/swagger-ui/**",
+                                            "/api/v2/api-docs/**",
+                                            "/v2/api-docs/**")
+                    .permitAll()
                 .antMatchers(HttpMethod.GET,"/cinema-halls/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers(HttpMethod.POST,"/cinema-halls/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/movies/**").hasAnyRole("USER", "ADMIN")
