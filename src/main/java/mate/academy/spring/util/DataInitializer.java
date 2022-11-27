@@ -24,15 +24,9 @@ public class DataInitializer {
         Role adminRole = new Role();
         adminRole.setRoleName(Role.RoleName.ADMIN);
         roleService.add(adminRole);
-        Role adminRole2 = new Role();
-        adminRole2.setRoleName(Role.RoleName.ADMIN);
-        roleService.add(adminRole2);
         Role userRole = new Role();
         userRole.setRoleName(Role.RoleName.USER);
         roleService.add(userRole);
-        Role userRole2 = new Role();
-        userRole2.setRoleName(Role.RoleName.USER);
-        roleService.add(userRole2);
         User adminUser = new User();
         adminUser.setEmail("admin@i.ua");
         adminUser.setPassword("admin123");
