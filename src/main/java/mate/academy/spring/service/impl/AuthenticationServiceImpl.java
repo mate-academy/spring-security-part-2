@@ -1,7 +1,6 @@
 package mate.academy.spring.service.impl;
 
 import mate.academy.spring.model.Role;
-import mate.academy.spring.model.RoleName;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.AuthenticationService;
 import mate.academy.spring.service.RoleService;
@@ -9,12 +8,9 @@ import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
-    private static final String DEFAULT_ROLE = RoleName.USER.name();
+    private static final String DEFAULT_ROLE = Role.RoleName.USER.name();
     private final UserService userService;
     private final ShoppingCartService shoppingCartService;
     private final RoleService roleService;
