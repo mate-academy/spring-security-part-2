@@ -25,9 +25,10 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found by email: " + email);
         }
         User user = optionalUser.get();
-        UserBuilder builder = org.springframework.security.core.userdetails.User.withUsername(email);
+        UserBuilder builder =
+                org.springframework.security.core.userdetails.User.withUsername(email);
         builder.password(user.getPassword());
-        builder.authorities(user.getRoles().stream().map(Role::getRoleName).toArray(String[]::new));
+        builder.roles(user.getRoles().stream().map(Role::getRoleName).toArray(String[]::new));
         return builder.build();
     }
 }

@@ -21,10 +21,13 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getByName(String roleName) {
-        if (!roleName.equals(Role.RoleName.ADMIN.name()) && !roleName.equals(Role.RoleName.USER.name())) {
-            throw new DataProcessingException("Role " + roleName + "don't found", new RuntimeException());
+        if (!roleName.equals(Role.RoleName.ADMIN.name())
+                && !roleName.equals(Role.RoleName.USER.name())) {
+            throw new DataProcessingException("Role " + roleName
+                    + "didn't find", new RuntimeException());
         }
-        return roleName.equals(Role.RoleName.USER.name()) ? roleDao.getByName(Role.RoleName.USER).get() :
+        return roleName.equals(Role.RoleName.USER.name())
+                ? roleDao.getByName(Role.RoleName.USER).get() :
                 roleDao.getByName(Role.RoleName.ADMIN).get();
     }
 }
