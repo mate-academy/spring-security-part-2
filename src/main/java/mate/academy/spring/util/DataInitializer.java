@@ -1,12 +1,12 @@
 package mate.academy.spring.util;
 
 import java.util.Set;
+import javax.annotation.PostConstruct;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
 import org.springframework.stereotype.Service;
-import javax.annotation.PostConstruct;
 
 @Service
 public class DataInitializer {
