@@ -1,5 +1,6 @@
 package mate.academy.spring.model;
 
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -58,10 +58,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", roles=" + roles +
-                '}';
+        return "User{" + "id=" + id + ", email='" + email + '\''
+                + ", roles=" + roles + '}';
     }
 }
