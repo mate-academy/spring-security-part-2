@@ -4,19 +4,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cinema_halls")
+@Table(name = "roles")
 @Data
 @NoArgsConstructor
-public class CinemaHall {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int capacity;
-    private String description;
+    @Enumerated(value = EnumType.STRING)
+    private RoleName roleName;
+
+    public enum RoleName {
+        ADMIN,
+        USER
+    }
 }

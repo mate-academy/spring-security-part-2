@@ -1,9 +1,12 @@
 package mate.academy.spring.dto.request;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+@Getter
 public class MovieSessionRequestDto {
     @Positive
     private Long movieId;
@@ -11,16 +14,4 @@ public class MovieSessionRequestDto {
     private Long cinemaHallId;
     @NotNull
     private LocalDateTime showTime;
-
-    public Long getMovieId() {
-        return movieId;
-    }
-
-    public Long getCinemaHallId() {
-        return cinemaHallId;
-    }
-
-    public LocalDateTime getShowTime() {
-        return showTime;
-    }
 }
