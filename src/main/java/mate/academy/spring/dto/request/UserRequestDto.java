@@ -2,7 +2,6 @@ package mate.academy.spring.dto.request;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import lombok.Getter;
 import mate.academy.spring.lib.FieldsValueMatch;
 import mate.academy.spring.lib.ValidEmail;

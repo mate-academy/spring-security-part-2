@@ -9,8 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static org.springframework.security.authorization.AuthorityReactiveAuthorizationManager.hasAnyRole;
-
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
@@ -27,10 +25,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected void configure(HttpSecurity http) throws Exception {
-        String[] urlGetForUserAndAdmin = new String[]{"/cinema_halls/**", "movies/**", "/movie-sessions/available"};
+        String[] urlGetForUserAndAdmin = new String[]{"/cinema_halls/**", "movies/**",
+                "/movie-sessions/available"};
         String[] urlGetForUserOnly = new String[]{"/orders/**", "/shopping-carts/**"};
         String[] urlGetForAdminOnly = new String[]{"/users/**"};
-        String[] urlPostForAdminOnly = new String[]{"/cinema_halls/**", "/movies/**", "/movie-sessions/**"};
+        String[] urlPostForAdminOnly = new String[]{"/cinema_halls/**", "/movies/**",
+                "/movie-sessions/**"};
 
         http
                 .authorizeRequests()

@@ -1,9 +1,8 @@
 package mate.academy.spring.dto.request;
 
-import lombok.Getter;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import lombok.Getter;
 
 @Getter
 public class CinemaHallRequestDto {

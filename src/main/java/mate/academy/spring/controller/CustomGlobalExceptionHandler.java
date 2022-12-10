@@ -37,12 +37,12 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         return new ResponseEntity<>(body, headers, status);
     }
 
-//    @ExceptionHandler(Exception.class)
-//    @ResponseBody
-//    protected ResponseEntity<Object> handleInternalServerErrors(Exception ex, WebRequest request) {
-//        String bodyOfResponse = LocalDateTime.now() + "\n"
-//                + ex.getMessage() + " " + ex.getClass().getSimpleName();
-//        return handleExceptionInternal(ex, bodyOfResponse,
-//                new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
-//    } // toDo: ucomit it
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    protected ResponseEntity<Object> handleInternalServerErrors(Exception ex, WebRequest request) {
+        String bodyOfResponse = LocalDateTime.now() + "\n"
+                + ex.getMessage() + " " + ex.getClass().getSimpleName();
+        return handleExceptionInternal(ex, bodyOfResponse,
+                new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
 }
