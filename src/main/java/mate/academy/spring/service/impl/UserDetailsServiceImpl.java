@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             User user = userOptional.get();
             UserBuilder userBuilder = withUsername(username);
             userBuilder.password(user.getPassword());
-            userBuilder.authorities(user.getRoles()
+            userBuilder.roles(user.getRoles()
                     .stream()
                     .map(r -> r.getName().name())
                     .toArray(String[]::new));
