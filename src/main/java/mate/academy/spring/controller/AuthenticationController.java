@@ -22,7 +22,8 @@ public class AuthenticationController {
 
     public AuthenticationController(AuthenticationService authService,
                                     RoleService roleService,
-                                    ResponseDtoMapper<UserResponseDto, User> userDtoResponseMapper) {
+                                    ResponseDtoMapper<UserResponseDto, User>
+                                            userDtoResponseMapper) {
         this.authService = authService;
         this.roleService = roleService;
         this.userDtoResponseMapper = userDtoResponseMapper;
