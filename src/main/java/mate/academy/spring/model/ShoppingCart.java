@@ -10,12 +10,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "shopping_carts")
 @Data
-@NoArgsConstructor
 public class ShoppingCart {
     @Id
     private Long id;
