@@ -1,10 +1,15 @@
 package mate.academy.spring.model;
 
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +21,11 @@ public class User {
     @Column(unique = true)
     private String email;
     private String password;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Set<Role> roleSet;
 
     public Long getId() {
         return id;
@@ -41,10 +51,20 @@ public class User {
         this.password = password;
     }
 
+    public Set<Role> getRoleSet() {
+        return roleSet;
+    }
+
+    public void setRoleSet(Set<Role> roleSet) {
+        this.roleSet = roleSet;
+    }
+
     @Override
     public String toString() {
-        return "User{"
-                + "id=" + id
-                + ", email='" + email + '\'' + '}';
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", roleSet=" + roleSet +
+                '}';
     }
 }
