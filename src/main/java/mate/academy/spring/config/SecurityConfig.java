@@ -1,5 +1,8 @@
 package mate.academy.spring.config;
 
+import static mate.academy.spring.model.Role.RoleName.ADMIN;
+import static mate.academy.spring.model.Role.RoleName.USER;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -29,21 +32,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/register/**").permitAll()
-                .antMatchers(HttpMethod.POST,"/movies/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET,"/movies/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
-                .antMatchers(HttpMethod.POST, "/cinema-halls/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/movies/**").hasRole(ADMIN.name())
+                .antMatchers(HttpMethod.GET,"/movies/**").hasAnyRole(ADMIN.name(), USER.name())
+                .antMatchers(HttpMethod.POST, "/cinema-halls/**").hasRole(ADMIN.name())
                 .antMatchers(HttpMethod.GET, "/cinema-halls/**")
-                .hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                .hasAnyRole(ADMIN.name(), USER.name())
                 .antMatchers(HttpMethod.GET, "/movie-sessions/available")
-                .hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
-                .antMatchers(HttpMethod.POST,"/movie-sessions/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE,"/movie-sessions/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT,"/movie-sessions/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET,"/orders/").hasRole("USER")
-                .antMatchers(HttpMethod.POST,"/orders/complete").hasRole("USER")
-                .antMatchers(HttpMethod.PUT,"/shopping-carts/movie-sessions/").hasRole("USER")
-                .antMatchers(HttpMethod.GET,"/shopping-carts/by-user/").hasRole("USER")
-                .antMatchers(HttpMethod.GET,"/users/by-email/**").hasRole("ADMIN")
+                .hasAnyRole(ADMIN.name(), USER.name())
+                .antMatchers(HttpMethod.POST,"/movie-sessions/**").hasRole(ADMIN.name())
+                .antMatchers(HttpMethod.DELETE,"/movie-sessions/**").hasRole(ADMIN.name())
+                .antMatchers(HttpMethod.PUT,"/movie-sessions/**").hasRole(ADMIN.name())
+                .antMatchers(HttpMethod.GET,"/orders/").hasRole(USER.name())
+                .antMatchers(HttpMethod.POST,"/orders/complete").hasRole(USER.name())
+                .antMatchers(HttpMethod.PUT,"/shopping-carts/movie-sessions/").hasRole(USER.name())
+                .antMatchers(HttpMethod.GET,"/shopping-carts/by-user/").hasRole(USER.name())
+                .antMatchers(HttpMethod.GET,"/users/by-email/**").hasRole(ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
