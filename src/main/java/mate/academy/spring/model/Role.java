@@ -17,6 +17,7 @@ public class Role {
     private Long id;
     @Enumerated(value = EnumType.STRING)
     private RoleName roleName;
+
     public enum RoleName {
         ADMIN,
         USER;
@@ -40,8 +41,12 @@ public class Role {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Role role = (Role) o;
         return id.equals(role.id) && roleName == role.roleName;
     }

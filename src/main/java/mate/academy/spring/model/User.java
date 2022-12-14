@@ -3,7 +3,6 @@ package mate.academy.spring.model;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -61,10 +60,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", roleSet=" + roleSet +
-                '}';
+        return "User{"
+                + "id=" + id
+                + ", email='" + email + '\''
+                + ", roleSet=" + roleSet
+                + '}';
     }
 }
