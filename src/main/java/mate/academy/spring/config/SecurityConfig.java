@@ -2,6 +2,7 @@ package mate.academy.spring.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,7 +23,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .anyRequest().authenticated()
+                .mvcMatchers(HttpMethod.POST, "/register").anonymous()
+                .mvcMatchers(HttpMethod.GET, "/cinema-halls",
+                        "/movies", "/movie-sessions/available")
+                .hasAnyRole("USER", "ADMIN")
+                .mvcMatchers(HttpMethod.GET, "/users/by-email")
+                .hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST, "/cinema-halls",
+                        "/movies", "/movie-sessions")
+                .hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.PUT, "/movie-sessions/**")
+                .hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.DELETE, "/movie-sessions/**")
+                .hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.GET, "/orders", "/sopping-carts/by-user")
+                .hasRole("USER")
+                .mvcMatchers(HttpMethod.POST, "/orders/complete")
+                .hasRole("USER")
+                .mvcMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions")
+                .hasRole("USER")
                 .and()
                 .formLogin()
                 .permitAll()
