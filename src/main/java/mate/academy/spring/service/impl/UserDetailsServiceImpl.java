@@ -24,8 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 new UsernameNotFoundException("Can't find user " + username));
         UserBuilder builder = withUsername(username);
         builder.password(user.getPassword());
-        builder.roles();
-        builder.authorities(getAuthorities(user));
+        builder.roles(getAuthorities(user));
         return builder.build();
     }
 

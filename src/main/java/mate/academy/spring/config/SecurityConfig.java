@@ -27,13 +27,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
+        http.authorizeRequests()
             .antMatchers(HttpMethod.POST, "/orders/**").hasAnyRole(ADMIN_ROLE, USER_ROLE)
-            .antMatchers("/users").hasRole(ADMIN_ROLE)
+            .antMatchers("/users/**").hasRole(ADMIN_ROLE)
             .antMatchers("/shopping-carts/**").hasAnyRole(ADMIN_ROLE, USER_ROLE)
             .antMatchers(HttpMethod.GET).hasAnyRole(ADMIN_ROLE, USER_ROLE)
-            .antMatchers("/**").permitAll()
+            .antMatchers("/register").permitAll()
             .anyRequest().authenticated()
             .and()
             .formLogin()
