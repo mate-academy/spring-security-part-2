@@ -17,7 +17,6 @@ public class Role {
     private Long id;
     @Enumerated(value = EnumType.STRING)
     private RoleName name;
-    private String roleName;
 
     public Long getId() {
         return id;
@@ -29,10 +28,6 @@ public class Role {
 
     public void setRoleName(RoleName name) {
         this.name = name;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
     }
 
     @Override
@@ -53,6 +48,9 @@ public class Role {
     }
 
     public enum RoleName {
-        MANAGER, ADMIN, USER, BIGBOSS
+        MANAGER,
+        ADMIN,
+        USER,
+        BIGBOSS
     }
 }
