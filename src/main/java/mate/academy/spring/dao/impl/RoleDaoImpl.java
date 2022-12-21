@@ -12,13 +12,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
-    public RoleDaoImpl(SessionFactory factory, Class<Role> clazz) {
-        super(factory, clazz);
-    }
-
-    @Override
-    public Role add(Role role) {
-        return null;
+    public RoleDaoImpl(SessionFactory factory) {
+        super(factory, Role.class);
     }
 
     @Override
@@ -26,7 +21,7 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
         try (Session session = factory.openSession()) {
             Query<Role> query = session.createQuery("FROM Role "
                     + "WHERE roleName = :roleName", Role.class);
-            query.setParameter("roleName", roleName);
+            query.setParameter("roleName", Role.RoleName.valueOf(roleName));
             return query.uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Can't find role " + roleName, e);
