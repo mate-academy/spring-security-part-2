@@ -11,8 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    public static final String ADMIN_ROLE = "ADMIN";
-    public static final String USER_ROLE = "USER";
+    private static final String ADMIN_ROLE = "ADMIN";
+    private static final String USER_ROLE = "USER";
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
