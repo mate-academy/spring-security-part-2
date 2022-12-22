@@ -28,9 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
-                .antMatchers(HttpMethod.GET, "/cinema-halls", "/movies", "/movie-sessions/available")
+                .antMatchers(HttpMethod.GET, "/cinema-halls",
+                        "/movies", "/movie-sessions/available")
                     .hasAnyRole(Role.RoleEnum.USER.name(), Role.RoleEnum.ADMIN.name())
-                .antMatchers(HttpMethod.POST, "/cinema-halls", "/movies", "/movie-sessions").hasRole(Role.RoleEnum.ADMIN.name())
+                .antMatchers(HttpMethod.POST, "/cinema-halls",
+                        "/movies", "/movie-sessions").hasRole(Role.RoleEnum.ADMIN.name())
                 .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}")
                 .hasRole(Role.RoleEnum.ADMIN.name())
                 .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}")
