@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String ADMIN = Role.RoleName.ADMIN.name();
+    private static final String USER = Role.RoleName.USER.name();
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
@@ -34,26 +36,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/cinema-halls",
                         "/movies",
                         "/movie-sessions")
-                .hasRole(Role.RoleName.ADMIN.name())
+                .hasRole(ADMIN)
                 .antMatchers(HttpMethod.GET,
                         "/cinema-halls",
                         "/movies",
                         "/movie-sessions/available")
-                .hasAnyRole(Role.RoleName.USER.name(), Role.RoleName.ADMIN.name())
+                .hasAnyRole(USER, ADMIN)
                 .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}")
-                .hasRole(Role.RoleName.ADMIN.name())
+                .hasRole(ADMIN)
                 .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}")
-                .hasRole(Role.RoleName.ADMIN.name())
+                .hasRole(ADMIN)
                 .antMatchers(HttpMethod.GET,
                         "/orders",
                         "/shopping-carts/by-user")
-                .hasRole(Role.RoleName.USER.name())
+                .hasRole(USER)
                 .antMatchers(HttpMethod.POST, "/orders/complete")
-                .hasRole(Role.RoleName.USER.name())
+                .hasRole(USER)
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions")
-                .hasRole(Role.RoleName.USER.name())
+                .hasRole(USER)
                 .antMatchers(HttpMethod.GET, "/users/by-user")
-                .hasRole(Role.RoleName.ADMIN.name())
+                .hasRole(ADMIN)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
