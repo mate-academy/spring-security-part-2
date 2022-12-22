@@ -23,7 +23,7 @@ public class DataInitializer {
         Role userRole = new Role();
         userRole.setName(Role.Type.USER);
         Role adminRole = new Role();
-        userRole.setName(Role.Type.ADMIN);
+        adminRole.setName(Role.Type.ADMIN);
         roleService.add(userRole);
         roleService.add(adminRole);
         User user = new User();
