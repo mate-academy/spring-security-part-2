@@ -15,7 +15,7 @@ public class UserMapper implements ResponseDtoMapper<UserResponseDto, User> {
         responseDto.setEmail(user.getEmail());
         responseDto.setRoleIds(user.getRoles().stream()
                 .map(Role::getId)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toSet()));
         return responseDto;
     }
 }
