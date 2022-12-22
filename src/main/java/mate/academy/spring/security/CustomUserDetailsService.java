@@ -4,7 +4,6 @@ import static org.springframework.security.core.userdetails.User.withUsername;
 
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,8 +13,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
     private UserService userService;
-
-    @Autowired
     public CustomUserDetailsService(UserService userService) {
         this.userService = userService;
     }
