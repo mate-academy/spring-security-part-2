@@ -16,7 +16,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(value = EnumType.STRING)
-    private RoleName roleName;
+    private RoleName name;
 
     public Long getId() {
         return id;
@@ -27,11 +27,11 @@ public class Role {
     }
 
     public RoleName getRoleName() {
-        return roleName;
+        return name;
     }
 
     public void setRoleName(RoleName roleName) {
-        this.roleName = roleName;
+        this.name = roleName;
     }
 
     public enum RoleName {
@@ -48,11 +48,11 @@ public class Role {
             return false;
         }
         Role role = (Role) o;
-        return Objects.equals(id, role.id) && roleName == role.roleName;
+        return Objects.equals(id, role.id) && name == role.name;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, roleName);
+        return Objects.hash(id, name);
     }
 }
