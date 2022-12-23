@@ -22,14 +22,24 @@ public class DataInitializer {
     public void inject() {
         Role adminRole = new Role();
         adminRole.setRoleName(Role.RoleName.ADMIN);
-        roleService.add(adminRole);
+
         Role userRole = new Role();
         userRole.setRoleName(Role.RoleName.USER);
+
+        roleService.add(adminRole);
         roleService.add(userRole);
-        User user = new User();
-        user.setEmail("stepan@i.ua");
-        user.setPassword("1234");
-        user.setRoles(Set.of(adminRole));
-        userService.add(user);
+
+        User stepan = new User();
+        stepan.setEmail("stepan@i.ua");
+        stepan.setPassword("1234");
+        stepan.setRoles(Set.of(adminRole));
+
+        User olena = new User();
+        olena.setEmail("olena@ukr.net");
+        olena.setPassword("abcd");
+        olena.setRoles(Set.of(userRole));
+
+        userService.add(stepan);
+        userService.add(olena);
     }
 }
