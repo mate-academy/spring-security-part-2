@@ -4,13 +4,13 @@
 - Add Role entity, Dao and Service layer for it.
     ```java
       public interface RoleService {
-          Role add(Role roleName);
+          Role add(Role role);
       
           Role getByName(String roleName);
       }
     ```
 
-- Configure roleName access to specific resources for `ADMIN` and for `USER`.
+- Configure role access to specific resources for `ADMIN` and for `USER`.
   You should configure access to __all endpoints__ in your application. Example:
 ```
 POST: /register - all
@@ -31,7 +31,7 @@ GET: /users/by-email - admin
 ``` 
 
 HINT:
-- Let's store roleName names as enums and add enum `RoleName` inside `Role` class.
+- Let's store role names as enums and add enum `RoleName` inside `Role` class.
 - Roles and first Admin user can be injected inside DataInitializer class using annotation @PostConstruct.
 ```java
 @PostConstruct
