@@ -1,5 +1,7 @@
 package mate.academy.spring.service.impl;
 
+import static org.springframework.security.core.userdetails.User.withUsername;
+
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,8 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         String[] roles = user.getRoles().stream()
                 .map(role -> role.getRoleType().name())
                 .toArray(String[]::new);
-        return org.springframework.security.core.userdetails.User
-                .withUsername(user.getEmail())
+        return withUsername(user.getEmail())
                 .password(user.getPassword())
                 .roles(roles)
                 .build();
