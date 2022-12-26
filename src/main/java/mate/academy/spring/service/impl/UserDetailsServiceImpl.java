@@ -21,9 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> userOptional = userService.findByEmail(username);
-        userOptional.orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        User user = userOptional.get();
+      User user= userService.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
         UserBuilder builder = withUsername(username);
         builder.password(user.getPassword());
         builder.roles(user.getRoles().stream().map(r -> r.getRole().name()).toArray(String[]::new));
