@@ -1,4 +1,4 @@
-package mate.academy.spring.config;
+package mate.academy.spring.util;
 
 import java.util.Set;
 import javax.annotation.PostConstruct;
@@ -23,13 +23,22 @@ public class DataInitializer {
         Role adminRole = new Role();
         adminRole.setRoleName(Role.RoleName.ADMIN);
         roleService.add(adminRole);
+
         Role userRole = new Role();
         userRole.setRoleName(Role.RoleName.USER);
         roleService.add(userRole);
-        User user = new User();
-        user.setEmail("stepan@i.ua");
-        user.setPassword("1234");
-        user.setRoles(Set.of(adminRole));
-        userService.add(user);
+
+        User admin = new User();
+        admin.setEmail("admin@i.ua");
+        admin.setPassword("1234");
+        admin.setRoles(Set.of(adminRole));
+        userService.add(admin);
+
+//        User user = new User();
+//        user.setEmail("user@gmail.com");
+//        user.setPassword("1234");
+//        user.setRoles(Set.of(userRole));
+//        userService.add(user);
+
     }
 }

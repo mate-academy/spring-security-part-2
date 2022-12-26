@@ -1,4 +1,4 @@
-package mate.academy.spring.controller;
+package mate.academy.spring.exception;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
