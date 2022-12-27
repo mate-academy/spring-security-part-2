@@ -41,6 +41,6 @@ public class MovieController {
         return movieService.getAll()
                 .stream()
                 .map(movieResponseDtoMapper::mapToDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 }
