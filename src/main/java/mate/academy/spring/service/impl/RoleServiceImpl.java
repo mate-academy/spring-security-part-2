@@ -20,6 +20,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getByName(String name) {
-        return roleDao.getByName(name);
+        return roleDao.getByName(name).orElseThrow(
+                () -> new RuntimeException("Can't get role by name " + name));
     }
 }
