@@ -23,24 +23,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .mvcMatchers(HttpMethod.POST, "/register").anonymous()
-                .mvcMatchers(HttpMethod.GET, "/cinema-halls",
+                .antMatchers(HttpMethod.POST, "/register").anonymous()
+                .antMatchers(HttpMethod.GET, "/cinema-halls",
                         "/movies", "/movie-sessions/available")
                 .hasAnyRole("USER", "ADMIN")
-                .mvcMatchers(HttpMethod.GET, "/users/by-email")
+                .antMatchers(HttpMethod.GET, "/users/by-email")
                 .hasRole("ADMIN")
-                .mvcMatchers(HttpMethod.POST, "/cinema-halls",
+                .antMatchers(HttpMethod.POST, "/cinema-halls",
                         "/movies", "/movie-sessions")
                 .hasRole("ADMIN")
-                .mvcMatchers(HttpMethod.PUT, "/movie-sessions/**")
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/**")
                 .hasRole("ADMIN")
-                .mvcMatchers(HttpMethod.DELETE, "/movie-sessions/**")
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/**")
                 .hasRole("ADMIN")
-                .mvcMatchers(HttpMethod.GET, "/orders", "/sopping-carts/by-user")
+                .antMatchers(HttpMethod.GET, "/orders", "/sopping-carts/by-user")
                 .hasRole("USER")
-                .mvcMatchers(HttpMethod.POST, "/orders/complete")
+                .antMatchers(HttpMethod.POST, "/orders/complete")
                 .hasRole("USER")
-                .mvcMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions")
+                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions")
                 .hasRole("USER")
                 .and()
                 .formLogin()
