@@ -50,8 +50,8 @@ public class Role {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Role role1 = (Role) o;
-        return Objects.equals(id, role1.id) && roleName == role1.roleName;
+        Role role = (Role) o;
+        return Objects.equals(id, role.id) && roleName == role.roleName;
     }
 
     @Override
