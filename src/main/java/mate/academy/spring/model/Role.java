@@ -18,6 +18,11 @@ public class Role {
     @Enumerated(value = EnumType.STRING)
     private RoleName roleName;
 
+    public enum RoleName {
+        USER,
+        ADMIN
+    }
+
     public Long getId() {
         return id;
     }

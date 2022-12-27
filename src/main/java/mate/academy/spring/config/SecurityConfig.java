@@ -1,6 +1,7 @@
 package mate.academy.spring.config;
 
-import mate.academy.spring.model.RoleName;
+import static mate.academy.spring.model.Role.RoleName;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

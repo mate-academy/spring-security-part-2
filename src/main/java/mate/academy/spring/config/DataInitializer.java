@@ -3,7 +3,7 @@ package mate.academy.spring.config;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import mate.academy.spring.model.Role;
-import mate.academy.spring.model.RoleName;
+import mate.academy.spring.model.Role.RoleName;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;

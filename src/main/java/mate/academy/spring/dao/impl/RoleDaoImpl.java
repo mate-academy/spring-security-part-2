@@ -5,7 +5,6 @@ import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.Role;
-import mate.academy.spring.model.RoleName;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -17,10 +16,10 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
     }
 
     @Override
-    public Optional<Role> getByName(RoleName roleName) {
+    public Optional<Role> getByName(Role.RoleName roleName) {
         try (Session session = factory.openSession()) {
             return session.createQuery("FROM Role r "
-                            + "WHERE r.roleName LIKE :roleName", Role.class)
+                            + "WHERE r.roleName = :roleName", Role.class)
                     .setParameter("roleName", roleName).uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Not found role by name " + roleName, e);
