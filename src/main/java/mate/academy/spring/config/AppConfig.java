@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @PropertySource("classpath:db.properties")
-@ComponentScan(basePackages = {"mate.academy.spring"})
+@ComponentScan(basePackages = "mate.academy.spring")
 public class AppConfig {
     private final Environment environment;
 
