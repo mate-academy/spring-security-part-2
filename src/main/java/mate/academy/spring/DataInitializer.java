@@ -1,4 +1,4 @@
-package mate.academy.spring.config;
+package mate.academy.spring;
 
 import java.util.Set;
 import javax.annotation.PostConstruct;
