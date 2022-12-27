@@ -1,6 +1,7 @@
 package mate.academy.spring.service.impl;
 
 import java.util.Set;
+import javax.persistence.EntityNotFoundException;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.AuthenticationService;
@@ -28,7 +29,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
-        user.setRoles(Set.of(roleService.getByName(Role.RoleName.USER.name())));
+        user.setRoles(Set.of(roleService.getByName(Role.RoleName.USER.name())
+                .orElseThrow(() -> new EntityNotFoundException("Can't add role"))));
         userService.add(user);
         shoppingCartService.registerNewShoppingCart(user);
         return user;
