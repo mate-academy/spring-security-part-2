@@ -15,10 +15,10 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
-    private Type name;
+    private RoleName name;
 
-    public enum Type {
-        ADMIN,USER
+    public enum RoleName {
+        ADMIN, USER
     }
 
     public Role() {
@@ -32,11 +32,11 @@ public class Role {
         this.id = id;
     }
 
-    public Type getName() {
+    public RoleName getName() {
         return name;
     }
 
-    public void setName(Type name) {
+    public void setName(RoleName name) {
         this.name = name;
     }
 }

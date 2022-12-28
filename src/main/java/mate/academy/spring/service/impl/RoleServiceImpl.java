@@ -1,13 +1,15 @@
 package mate.academy.spring.service.impl;
 
+import java.util.NoSuchElementException;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.model.Role;
+import mate.academy.spring.model.Role.RoleName;
 import mate.academy.spring.service.RoleService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RoleServiceImpl implements RoleService {
-    private final RoleDao roleDao;
+    private RoleDao roleDao;
 
     public RoleServiceImpl(RoleDao roleDao) {
         this.roleDao = roleDao;
@@ -19,7 +21,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role getByName(String roleName) {
-        return roleDao.getByName(roleName);
+    public Role getByName(RoleName roleName) {
+        return roleDao.getByName(roleName).orElseThrow(NoSuchElementException::new);
     }
 }
