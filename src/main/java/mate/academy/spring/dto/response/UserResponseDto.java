@@ -1,12 +1,11 @@
 package mate.academy.spring.dto.response;
 
 import java.util.Set;
-import mate.academy.spring.model.Role;
 
 public class UserResponseDto {
     private Long id;
     private String email;
-    private Set<Role> roles;
+    private Set<Long> rolesId;
 
     public Long getId() {
         return id;
@@ -24,11 +23,11 @@ public class UserResponseDto {
         this.email = email;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Set<Long> getRolesId() {
+        return rolesId;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRolesId(Set<Long> rolesId) {
+        this.rolesId = rolesId;
     }
 }
