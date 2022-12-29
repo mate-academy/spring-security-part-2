@@ -21,10 +21,10 @@ public class DataInitializer {
     @PostConstruct
     public void inject() {
         Role adminRole = new Role();
-        adminRole.setName(Role.RoleNames.ADMIN.name());
+        adminRole.setName(Role.RoleName.ADMIN.name());
         roleService.add(adminRole);
         Role userRole = new Role();
-        userRole.setName(Role.RoleNames.USER.name());
+        userRole.setName(Role.RoleName.USER.name());
         roleService.add(userRole);
         User user = new User();
         user.setEmail("admin@i.ua");
