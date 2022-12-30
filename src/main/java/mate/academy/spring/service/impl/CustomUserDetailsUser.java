@@ -1,6 +1,7 @@
 package mate.academy.spring.service.impl;
 
 import static org.springframework.security.core.userdetails.User.withUsername;
+
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
 import org.springframework.security.core.userdetails.User.UserBuilder;
