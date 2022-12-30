@@ -26,7 +26,7 @@ public class CustomUserDetailsUser implements UserDetailsService {
                         + username + " not found"));
         UserBuilder userBuilder = withUsername(username);
         userBuilder.password(user.getPassword());
-        userBuilder.authorities(user.getRoles().stream()
+        userBuilder.roles(user.getRoles().stream()
                 .map(r -> r.getRoleName().name())
                 .toArray(String[]::new));
         return userBuilder.build();
