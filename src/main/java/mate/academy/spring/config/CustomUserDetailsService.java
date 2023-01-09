@@ -1,4 +1,4 @@
-package mate.academy.spring.security;
+package mate.academy.spring.config;
 
 import static org.springframework.security.core.userdetails.User.withUsername;
 
@@ -8,9 +8,9 @@ import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class CustomUserDetailsService implements UserDetailsService {
     private final UserService userService;
 
@@ -24,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .orElseThrow((() -> new UsernameNotFoundException("User not found")));
         UserBuilder builder = withUsername(username);
         builder.password(user.getPassword());
-        builder.authorities(user.getRoles().stream()
+        builder.roles(user.getRoles().stream()
                 .map(role -> role.getRoleName().name())
                 .toArray(String[]::new));
         return builder.build();

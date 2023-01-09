@@ -2,6 +2,7 @@ package mate.academy.spring.config;
 
 import mate.academy.spring.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,10 +11,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+@Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private static final String ADMIN = Role.RoleName.ADMIN.name();
-    private static final String USER = Role.RoleName.USER.name();
+    private static final String ADMIN = Role.RoleName.ADMIN.toString();
+    private static final String USER = Role.RoleName.USER.toString();
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
@@ -30,39 +32,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
+            .authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/register").permitAll()
-                .antMatchers(HttpMethod.POST,
-                        "/cinema-halls",
-                        "/movies",
-                        "/movie-sessions")
-                .hasRole(ADMIN)
-                .antMatchers(HttpMethod.GET,
-                        "/cinema-halls",
-                        "/movies",
-                        "/movie-sessions/available")
-                .hasAnyRole(USER, ADMIN)
-                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}")
-                .hasRole(ADMIN)
-                .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}")
-                .hasRole(ADMIN)
-                .antMatchers(HttpMethod.GET,
-                        "/orders",
-                        "/shopping-carts/by-user")
-                .hasRole(USER)
-                .antMatchers(HttpMethod.POST, "/orders/complete")
-                .hasRole(USER)
-                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions")
-                .hasRole(USER)
-                .antMatchers(HttpMethod.GET, "/users/by-user")
-                .hasRole(ADMIN)
-                .anyRequest().authenticated()
+                .antMatchers(HttpMethod.POST, "/cinema-halls").hasRole(ADMIN)
+                .antMatchers(HttpMethod.POST, "/movies").hasRole(ADMIN)
+                .antMatchers(HttpMethod.POST, "/movie-sessions").hasRole(ADMIN)
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasRole(ADMIN)
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasRole(ADMIN)
+                .antMatchers(HttpMethod.GET, "/users/by-email").hasRole(ADMIN)
+                .antMatchers(HttpMethod.GET, "/cinema-halls").hasAnyRole(ADMIN, USER)
+                .antMatchers(HttpMethod.GET, "/movies").hasAnyRole(ADMIN, USER)
+                .antMatchers(HttpMethod.GET, "/movies").hasAnyRole(ADMIN, USER)
+                .antMatchers(HttpMethod.GET, "/movie-sessions/available").hasAnyRole(ADMIN, USER)
+                .antMatchers(HttpMethod.GET, "/orders").hasRole(USER)
+                .antMatchers(HttpMethod.POST, "/orders/complete").hasRole(USER)
+                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions").hasRole(USER)
+                .antMatchers(HttpMethod.GET, "/shopping-carts/by-user").hasRole(USER)
+            .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .permitAll()
+            .formLogin().permitAll()
                 .and()
-                .httpBasic()
+            .httpBasic()
                 .and()
-                .csrf().disable();
+            .csrf().disable();
     }
 }
