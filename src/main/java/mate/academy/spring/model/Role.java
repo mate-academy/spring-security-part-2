@@ -42,6 +42,6 @@ public class Role {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, roleName);
+        return Objects.hash(roleName);
     }
 }
