@@ -37,7 +37,7 @@ public class Role {
             return false;
         }
         Role role = (Role) o;
-        return Objects.equals(id, role.id) && roleName == role.roleName;
+        return roleName == role.roleName;
     }
 
     @Override
