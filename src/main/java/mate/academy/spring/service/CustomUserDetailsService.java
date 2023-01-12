@@ -1,7 +1,6 @@
 package mate.academy.spring.service;
 
 import java.util.Optional;
-import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,8 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 org.springframework.security.core.userdetails.User.withUsername(username);
         builder.password(user.getPassword());
         builder.authorities(user.getRoles().stream()
-                .map(Role::getRoleName)
-                .map(Role.RoleName::name)
+                .map(r -> r.getRoleName().name())
                 .toArray(String[]::new));
         return builder.build();
     }
