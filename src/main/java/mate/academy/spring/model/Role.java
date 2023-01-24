@@ -1,6 +1,7 @@
 package mate.academy.spring.model;
 
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,6 +15,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
+    @Column(unique = true)
     private RoleName roleName;
 
     public Long getId() {
@@ -41,12 +43,12 @@ public class Role {
             return false;
         }
         Role role = (Role) o;
-        return Objects.equals(id, role.id) && roleName == role.roleName;
+        return roleName == role.roleName;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, roleName);
+        return Objects.hash(roleName);
     }
 
     public enum RoleName {
