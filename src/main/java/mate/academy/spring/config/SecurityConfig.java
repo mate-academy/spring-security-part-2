@@ -1,9 +1,7 @@
 package mate.academy.spring.config;
 
 import mate.academy.spring.model.Role;
-import mate.academy.spring.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,13 +16,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String ADMIN = Role.RoleName.ADMIN.name();
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
-    private final RoleService roleService;
 
     public SecurityConfig(UserDetailsService userDetailsService,
-                          PasswordEncoder passwordEncoder, RoleService roleService) {
+                          PasswordEncoder passwordEncoder) {
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
-        this.roleService = roleService;
     }
 
     @Autowired
@@ -39,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/cinema-halls", "/movies", "/movie-sessions")
                 .hasRole(ADMIN)
                 .antMatchers(HttpMethod.GET, "/cinema-halls", "/movies", "/movie-sessions")
-                .permitAll()
+                .hasAnyRole(ADMIN, USER)
                 .antMatchers("/movie-sessions/*", "/users/by-email").hasRole(ADMIN)
                 .antMatchers("/orders/**", "/shopping-carts/**").hasRole(USER)
                 .anyRequest().authenticated()
@@ -49,10 +45,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .csrf().disable();
-    }
-
-    @Bean
-    public Role getRoleUser() {
-        return roleService.getByName(USER);
     }
 }
