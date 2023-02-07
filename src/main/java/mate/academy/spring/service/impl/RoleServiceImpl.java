@@ -3,11 +3,17 @@ package mate.academy.spring.service.impl;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.service.RoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RoleServiceImpl implements RoleService {
-    private RoleDao roleDao;
+    private final RoleDao roleDao;
+
+    @Autowired
+    public RoleServiceImpl(RoleDao roleDao) {
+        this.roleDao = roleDao;
+    }
 
     @Override
     public Role add(Role role) {
@@ -16,6 +22,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getByName(String roleName) {
-        return roleDao.getByName(Role.RoleName.valueOf(roleName));
+        return roleDao.getByName(roleName)
+                .orElseThrow(() -> new RuntimeException("Role " + roleName + "not found"));
     }
 }

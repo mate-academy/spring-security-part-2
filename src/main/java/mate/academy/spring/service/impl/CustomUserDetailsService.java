@@ -2,6 +2,7 @@ package mate.academy.spring.service.impl;
 
 import java.util.Optional;
 import mate.academy.spring.model.Role;
+import mate.academy.spring.model.RoleName;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             userBuilder.authorities(user.getRoles()
                     .stream()
                     .map(Role::getRoleName)
-                    .map(Role.RoleName::getVal)
+                    .map(RoleName::getVal)
                     .toArray(String[]::new));
             return userBuilder.build();
         }
