@@ -7,6 +7,7 @@ import mate.academy.spring.model.RoleName;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,6 +15,7 @@ public class DataInitializer {
     private final UserService userService;
     private final RoleService roleService;
 
+    @Autowired
     public DataInitializer(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
