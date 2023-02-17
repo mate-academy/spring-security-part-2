@@ -38,8 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/movie-sessions/available")
                 .hasAnyAuthority("ADMIN","USER")
-                .antMatchers(HttpMethod.POST, "/movie-sessions").
-                hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/movie-sessions")
+                .hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}")
                 .hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}")
