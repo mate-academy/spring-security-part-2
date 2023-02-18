@@ -17,7 +17,7 @@ public class OrderMapper implements ResponseDtoMapper<OrderResponseDto, Order> {
         responseDto.setTicketIds(order.getTickets()
                 .stream()
                 .map(Ticket::getId)
-                .collect(Collectors.toList()));
+                .toList());
         return responseDto;
     }
 }

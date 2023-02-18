@@ -1,8 +1,5 @@
 package mate.academy.spring.config;
 
-import static mate.academy.spring.model.Role.RoleName.ADMIN;
-import static mate.academy.spring.model.Role.RoleName.USER;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,12 +11,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
+    private final UserDetailsService userDetailsService;
 
-    public SecurityConfig(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
-        this.userDetailsService = userDetailsService;
+    public SecurityConfig(PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
         this.passwordEncoder = passwordEncoder;
+        this.userDetailsService = userDetailsService;
     }
 
     @Autowired
@@ -30,21 +27,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/register").permitAll()
-                .antMatchers(HttpMethod.GET,"/cinema-halls").hasAnyRole(ADMIN.name(),USER.name())
-                .antMatchers(HttpMethod.POST,"/cinema-halls").hasRole(ADMIN.name())
-                .antMatchers(HttpMethod.GET,"/movies").hasAnyRole(ADMIN.name(),USER.name())
-                .antMatchers(HttpMethod.POST,"/movies").hasRole(ADMIN.name())
-                .antMatchers(HttpMethod.GET,"/movie-sessions/available")
-                .hasAnyRole(ADMIN.name(),USER.name())
-                .antMatchers(HttpMethod.POST,"/movie-sessions").hasRole(ADMIN.name())
-                .antMatchers(HttpMethod.PUT,"/movie-sessions/{id}").hasRole(ADMIN.name())
-                .antMatchers(HttpMethod.DELETE,"/movie-sessions/{id}").hasRole(ADMIN.name())
-                .antMatchers(HttpMethod.GET,"/orders").hasRole(USER.name())
-                .antMatchers(HttpMethod.POST,"/orders/complete").hasRole(USER.name())
-                .antMatchers(HttpMethod.PUT,"/shopping-carts/movie-sessions").hasRole(USER.name())
-                .antMatchers(HttpMethod.GET,"/shopping-carts/by-user").hasRole(USER.name())
-                .antMatchers(HttpMethod.GET,"/users/by-email").hasRole(ADMIN.name())
+                .antMatchers(HttpMethod.POST, "/register").permitAll()
+                .antMatchers(HttpMethod.POST, "/cinema-halls").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/cinema-halls").hasAnyAuthority("ADMIN","USER")
+                .antMatchers(HttpMethod.GET, "/movies").hasAnyAuthority("ADMIN","USER")
+                .antMatchers(HttpMethod.POST, "/movies").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/movie-sessions/available").hasAnyAuthority("ADMIN",
+                        "USER")
+                .antMatchers(HttpMethod.POST, "/movie-sessions").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/orders").hasAuthority("USER")
+                .antMatchers(HttpMethod.POST, "/orders/complete").hasAuthority("USER")
+                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions").hasAuthority("USER")
+                .antMatchers(HttpMethod.GET, "/shopping-carts/by-user").hasAuthority("USER")
+                .antMatchers(HttpMethod.GET, "/users/by-email").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
