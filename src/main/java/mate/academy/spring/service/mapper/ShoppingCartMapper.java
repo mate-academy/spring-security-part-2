@@ -1,6 +1,5 @@
 package mate.academy.spring.service.mapper;
 
-import java.util.stream.Collectors;
 import mate.academy.spring.dto.response.ShoppingCartResponseDto;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.Ticket;
