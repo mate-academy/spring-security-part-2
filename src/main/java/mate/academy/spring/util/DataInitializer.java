@@ -6,9 +6,9 @@ import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
-@ComponentScan
+@Component
 public class DataInitializer {
     private RoleService roleService;
     private UserService userService;
