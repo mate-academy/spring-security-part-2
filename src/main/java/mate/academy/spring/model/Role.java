@@ -2,11 +2,12 @@ package mate.academy.spring.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Objects;
 
 @Entity
 @Table(name = "roles")
@@ -15,23 +16,8 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "role_name")
-    private String roleName;
-
-    public Role(RoleName roleName) {
-    }
-
-    public Role(String roleName) {
-        this.roleName = roleName;
-    }
-
-    public Role() {
-
-    }
-
-    public enum RoleName {
-        USER,
-        ADMIN;
-    }
+    @Enumerated(EnumType.STRING)
+    private RoleName roleName;
 
     public Long getId() {
         return id;
@@ -41,11 +27,11 @@ public class Role {
         this.id = id;
     }
 
-    public String getRoleName() {
+    public RoleName getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(String roleName) {
+    public void setRoleName(RoleName roleName) {
         this.roleName = roleName;
     }
 
@@ -53,29 +39,22 @@ public class Role {
     public String toString() {
         return "Role{"
                 + "id=" + id
-                + ", name=" + roleName
+                + ", roleName=" + roleName
                 + '}';
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Role role)) {
-            return false;
-        }
-
-        if (!Objects.equals(id, role.id)) {
-            return false;
-        }
-        return Objects.equals(roleName, role.roleName);
+    public int hashCode() {
+        return super.hashCode();
     }
 
     @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
-        return result;
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    public enum RoleName {
+        USER,
+        ADMIN;
     }
 }
