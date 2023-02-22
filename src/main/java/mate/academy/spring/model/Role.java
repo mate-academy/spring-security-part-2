@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "roles")
@@ -44,13 +45,25 @@ public class Role {
     }
 
     @Override
-    public int hashCode() {
-        return super.hashCode();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Role role)) {
+            return false;
+        }
+
+        if (!Objects.equals(id, role.id)) {
+            return false;
+        }
+        return roleName == role.roleName;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
+        return result;
     }
 
     public enum RoleName {
