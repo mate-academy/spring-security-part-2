@@ -1,5 +1,6 @@
 package mate.academy.spring.config;
 
+import mate.academy.spring.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,8 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    public static final String ROLE_ADMIN = "ADMIN";
-    public static final String ROLE_USER = "USER";
+    public static final String ROLE_ADMIN = Role.RoleName.ADMIN.name();
+    public static final String ROLE_USER = Role.RoleName.USER.name();
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
@@ -32,11 +33,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
                 .antMatchers(HttpMethod.GET,"/cinema-halls",
-                        "/movies", "/movie-sessions/available").hasAnyRole(ROLE_ADMIN, ROLE_USER)
+                        "/movies", "/movie-sessions/available",
+                        "/admin", "/").hasAnyRole(ROLE_ADMIN, ROLE_USER)
                 .antMatchers(HttpMethod.POST, "/cinema-halls",
                         "/movies", "/movie-sessions").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.GET,"/orders",
-                        "/shopping-carts/by-user").hasRole(ROLE_USER)
+                        "/shopping-carts/by-user", "/user").hasRole(ROLE_USER)
                 .antMatchers("/movie-sessions/*", "/users/by-email").hasRole(ROLE_ADMIN)
                 .antMatchers("/orders/**", "/shopping-carts/**").hasRole(ROLE_USER)
                 .anyRequest().authenticated()
