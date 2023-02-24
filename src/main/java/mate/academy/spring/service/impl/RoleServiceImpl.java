@@ -1,5 +1,6 @@
 package mate.academy.spring.service.impl;
 
+import javax.persistence.EntityNotFoundException;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.service.RoleService;
@@ -20,6 +21,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getRoleByName(String name) {
-        return roleDao.getRoleByName(name);
+        return roleDao.getRoleByName(name)
+                .orElseThrow(() -> new EntityNotFoundException("Can't find role in DB by " + name));
     }
 }
