@@ -18,13 +18,14 @@ public class CustomUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userService.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                .orElseThrow(() -> new UsernameNotFoundException(
+                        String.format("Can't find user by %s", email)));
 
         return org.springframework.security.core.userdetails.User.withUsername(email)
                 .password(user.getPassword())
                 .roles(user.getRoles()
                         .stream()
-                        .map(r -> r.getRoleName().name())
+                        .map(role -> role.getRoleName().name())
                         .toArray(String[]::new))
                 .build();
     }
