@@ -17,12 +17,6 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private RoleName roleName;
 
-    public enum RoleName {
-        ADMIN,
-        USER,
-        ROOT
-    }
-
     public Long getId() {
         return id;
     }
@@ -37,5 +31,11 @@ public class Role {
 
     public void setRoleName(RoleName roleName) {
         this.roleName = roleName;
+    }
+
+    public enum RoleName {
+        ADMIN,
+        USER,
+        ROOT
     }
 }
