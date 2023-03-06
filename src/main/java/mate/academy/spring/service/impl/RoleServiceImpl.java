@@ -5,6 +5,8 @@ import mate.academy.spring.model.Role;
 import mate.academy.spring.service.RoleService;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 @Service
 public class RoleServiceImpl implements RoleService {
     private final RoleDao roleDao;
@@ -21,6 +23,6 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role getByName(String roleName) {
         return roleDao.getByName(Role.RoleName.valueOf(roleName)).orElseThrow(() ->
-                new RuntimeException("Can't get role by name " + roleName));
+                new NoSuchElementException("Can't get role by name " + roleName));
     }
 }
