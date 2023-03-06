@@ -65,6 +65,6 @@ public class Role {
 
     public enum RoleName {
         USER,
-        ADMIN;
+        ADMIN
     }
 }
