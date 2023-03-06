@@ -1,5 +1,6 @@
 package mate.academy.spring.dao.impl;
 
+import java.util.Optional;
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.exception.DataProcessingException;
@@ -15,9 +16,9 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
     }
 
     @Override
-    public Role getByName(String roleName) {
+    public Optional<Role> getByName(String roleName) {
         try (Session session = factory.openSession()) {
-            return session.get(Role.class, Role.RoleName.valueOf(roleName));
+            return Optional.ofNullable(session.get(Role.class, Role.RoleName.valueOf(roleName)));
         } catch (Exception e) {
             throw new DataProcessingException("Can't get role by name: " + roleName, e);
         }
