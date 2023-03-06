@@ -22,17 +22,14 @@ public class CustomUserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> userOptional = userService.findByEmail(email);
         User user = userOptional.orElseThrow(() ->
-                new RuntimeException("Can't find user by email " + email));
+                new UsernameNotFoundException("Can't find user by email " + email));
         UserBuilder builder;
-        if (userOptional.isPresent()) {
-            builder = withUsername(email);
-            builder.password(user.getPassword());
-            builder.roles(user.getRoles()
+        builder = withUsername(email);
+        builder.password(user.getPassword());
+        builder.roles(user.getRoles()
                     .stream()
                     .map(role -> role.getName().name())
                     .toArray(String[]::new));
-            return builder.build();
-        }
-        throw new UsernameNotFoundException("User with email " + email + " not found");
+        return builder.build();
     }
 }
