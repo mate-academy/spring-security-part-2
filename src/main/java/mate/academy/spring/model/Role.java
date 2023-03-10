@@ -11,11 +11,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "roles")
 public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Enumerated(value = EnumType.STRING)
     private RoleName roleName;
+
+    public Role() {
+    }
+
+    public Role(RoleName roleName) {
+        this.roleName = roleName;
+    }
 
     public Long getId() {
         return id;
