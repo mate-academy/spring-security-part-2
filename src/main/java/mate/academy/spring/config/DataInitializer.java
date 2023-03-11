@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DataInitializer {
+    private Role adminRole = new Role(Role.RoleName.ADMIN);
+    private Role userRole = new Role(Role.RoleName.USER);
     private final RoleService roleService;
     private final UserService userService;
-    Role adminRole = new Role(Role.RoleName.ADMIN);
-    Role userRole = new Role(Role.RoleName.USER);
 
     public DataInitializer(RoleService roleService,
                            UserService userService) {
