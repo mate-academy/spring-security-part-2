@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 public class DataInitializer {
     private final RoleService roleService;
     private final UserService userService;
+    Role adminRole = new Role(Role.RoleName.ADMIN);
+    Role userRole = new Role(Role.RoleName.USER);
 
     public DataInitializer(RoleService roleService,
                            UserService userService) {
@@ -21,12 +23,8 @@ public class DataInitializer {
 
     @PostConstruct
     public void inject() {
-        Role adminRole = new Role();
-        adminRole.setRoleName(Role.RoleName.ADMIN);
-        roleService.add(adminRole);
-        Role userRole = new Role();
-        userRole.setRoleName(Role.RoleName.USER);
-        roleService.add(userRole);
+        roleService.add(new Role(Role.RoleName.ADMIN));
+        roleService.add(new Role(Role.RoleName.USER));
         User admin = new User();
         admin.setEmail("admin2022@i.ua");
         admin.setPassword("admin2022");
