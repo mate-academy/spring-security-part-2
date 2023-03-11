@@ -35,15 +35,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/movies").hasAnyRole(Role.ADMIN.name(),
                         Role.USER.name())
                 .antMatchers(HttpMethod.POST,"/movies").hasRole(Role.ADMIN.name())
-                .antMatchers(HttpMethod.GET,"/movie-sessions/available").hasAnyRole(Role.ADMIN.name(),
-                        Role.USER.name())
+                .antMatchers(HttpMethod.GET,"/movie-sessions/available").
+                hasAnyRole(Role.ADMIN.name(), Role.USER.name())
                 .antMatchers(HttpMethod.POST,"/movie-sessions").hasRole(Role.ADMIN.name())
                 .antMatchers(HttpMethod.PUT,"/movie-sessions/{id}").hasRole(Role.ADMIN.name())
                 .antMatchers(HttpMethod.DELETE,"/movie-sessions/{id}").hasRole(Role.ADMIN.name())
                 .antMatchers(HttpMethod.GET,"/order").hasRole(Role.USER.name())
                 .antMatchers(HttpMethod.POST,"/order/complete").hasRole(Role.USER.name())
-                .antMatchers(HttpMethod.PUT,"/shopping-carts/movie-sessions").hasRole
-                        (Role.USER.name())
+                .antMatchers(HttpMethod.PUT,"/shopping-carts/movie-sessions").
+                hasRole(Role.USER.name())
                 .antMatchers(HttpMethod.GET,"/shopping-carts/by-user").hasRole(Role.USER.name())
                 .antMatchers(HttpMethod.GET,"/users/by-email").hasRole(Role.ADMIN.name())
                 .anyRequest().authenticated()
