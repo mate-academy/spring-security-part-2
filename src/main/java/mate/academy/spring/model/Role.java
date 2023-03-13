@@ -12,16 +12,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "roles")
 public class Role {
-    public enum RoleName {
-        USER, ADMIN
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Enumerated(EnumType.STRING)
     private RoleName name;
+
+    public enum RoleName {
+        USER, ADMIN
+    }
 
     public Long getId() {
         return id;

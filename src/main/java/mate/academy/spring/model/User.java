@@ -20,7 +20,6 @@ public class User {
     private String password;
 
     @ManyToMany
-
     private Set<Role> roles;
 
     public Long getId() {

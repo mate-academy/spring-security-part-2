@@ -22,11 +22,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                 new UsernameNotFoundException("Can not find user with username: " + username));
         UserBuilder builder = User.withUsername(username);
         builder.password(user.getPassword());
-        String[] strings = user.getRoles()
-                .stream()
-                .map(r -> r.getName().name())
-                .toArray(String[]::new);
-
         builder.authorities(user.getRoles()
                 .stream()
                 .map(r -> r.getName().name())
