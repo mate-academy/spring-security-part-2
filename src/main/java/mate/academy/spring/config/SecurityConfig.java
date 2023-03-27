@@ -28,14 +28,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/register").permitAll()
+
                 .antMatchers(HttpMethod.POST,
-                        "/cinema-halls", "/movies", "/movie-sessions", "/movie-sessions/{id}",
-                        "/movie-sessions/{id}").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "/orders/complete", "/shopping-carts/movie-sessions")
+                        "/cinema-halls", "/movies", "/movie-sessions").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasRole("ADMIN")
+
+                .antMatchers(HttpMethod.POST, "/orders/complete")
                 .hasRole("USER")
+                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions").hasRole("USER")
+
                 .antMatchers(HttpMethod.GET,
                         "/cinema-halls", "/movies", "/movie-sessions/available",
                         "/users/by-email").hasRole("ADMIN")
+
                 .antMatchers(HttpMethod.GET,
                         "/cinema-halls", "/movies", "/movie-sessions/available",
                         "/orders", "/shopping-carts/by-user").hasRole("USER")
