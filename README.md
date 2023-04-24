@@ -69,8 +69,3 @@ public void inject() {
 ```
 
 __You can check yourself using this__ [checklist](https://mate-academy.github.io/jv-program-common-mistakes/java-spring/security-part-2/jv-spring-security-checklist)
-
-
-Common mistakes (jv-spring-security-part-2)
-
-Don’t hash password twice while adding user to db (for example on AuthService and then on UserService).
