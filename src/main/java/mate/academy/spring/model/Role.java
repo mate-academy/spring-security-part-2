@@ -4,14 +4,19 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "roles")
 public class Role {
     @Id
-    Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Enumerated(value = EnumType.STRING)
-    RoleName roleName;
+    private RoleName roleName;
 
     public Role() {
     }
@@ -43,5 +48,9 @@ public class Role {
     @Override
     public int hashCode() {
         return Objects.hash(id, roleName);
+    }
+
+    public enum RoleName {
+        USER, ADMIN
     }
 }
