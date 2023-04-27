@@ -6,7 +6,9 @@ import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DataInitializer {
     private final UserService userService;
     private final RoleService roleService;
@@ -19,10 +21,10 @@ public class DataInitializer {
     @PostConstruct
     public void inject() {
         Role adminRole = new Role();
-        adminRole.setRole(Role.RoleName.ADMIN);
+        adminRole.setRoleName(Role.RoleName.ADMIN);
         roleService.add(adminRole);
         Role userRole = new Role();
-        userRole.setRole(Role.RoleName.USER);
+        userRole.setRoleName(Role.RoleName.USER);
         roleService.add(userRole);
         User user = new User();
         user.setEmail("admin@i.ua");
