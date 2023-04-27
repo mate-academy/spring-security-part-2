@@ -30,4 +30,9 @@ public class Role {
     public void setRoleName(RoleName roleName) {
         this.roleName = roleName;
     }
+
+    public enum RoleName {
+        ADMIN,
+        USER
+    }
 }
