@@ -35,4 +35,28 @@ public class Role {
     public void setRoleName(RoleName roleName) {
         this.roleName = roleName;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (o.getClass().equals(Role.class)) {
+            Role role = (Role) o;
+            return this.id.equals(role.id)
+                    && this.roleName == role.roleName;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 21;
+        result = 51 * result + (id == null ? 0 : id.hashCode());
+        result = 51 * result + (roleName == null ? 0 : roleName.hashCode());
+        return result;
+    }
 }
