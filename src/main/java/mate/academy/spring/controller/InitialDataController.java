@@ -40,7 +40,7 @@ public class InitialDataController {
     }
 
     @GetMapping
-    private String injectInitialData() {
+    public String injectInitialData() {
         Movie firstMovie = new Movie();
         firstMovie.setTitle("American Beauty");
         firstMovie.setDescription("...take a closer look.");
