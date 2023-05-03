@@ -28,21 +28,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/register").permitAll()
+                .antMatchers(HttpMethod.POST,"/register")
+                .permitAll()
                 .antMatchers(HttpMethod.GET,"/cinema-halls/*",
                         "/movies/*",
-                        "/movie-sessions/available/*").hasAnyAuthority("ADMIN", "USER")
+                        "/movie-sessions/available/*")
+                .hasAnyAuthority("ADMIN", "USER")
                 .antMatchers(HttpMethod.POST,"/cinema-halls/*",
                         "/movies/*",
-                        "/movie-sessions/*").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/movie-sessions/*").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/movie-sessions/*").hasAuthority("ADMIN")
+                        "/movie-sessions/*")
+                .hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/*")
+                .hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/*")
+                .hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/users/by-email/*")
+                .hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET,"/orders/*",
-                        "/shopping-carts/by-user/*").hasAuthority("USER")
-                .antMatchers(HttpMethod.POST,"/orders/complete/*").hasAuthority("USER")
+                        "/shopping-carts/by-user/*")
+                .hasAuthority("USER")
+                .antMatchers(HttpMethod.POST,"/orders/complete/*")
+                .hasAuthority("USER")
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions/*")
                 .hasAuthority("USER")
-                .antMatchers(HttpMethod.GET, "/users/by-email/*").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
