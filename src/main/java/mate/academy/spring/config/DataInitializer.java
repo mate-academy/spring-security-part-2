@@ -5,6 +5,7 @@ import javax.annotation.PostConstruct;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.RoleService;
+import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +13,14 @@ import org.springframework.stereotype.Component;
 public class DataInitializer {
     private final UserService userService;
     private final RoleService roleService;
+    private final ShoppingCartService shoppingCartService;
 
-    public DataInitializer(UserService userService, RoleService roleService) {
+    public DataInitializer(UserService userService,
+                           RoleService roleService,
+                           ShoppingCartService shoppingCartService) {
         this.userService = userService;
         this.roleService = roleService;
+        this.shoppingCartService = shoppingCartService;
     }
 
     @PostConstruct
@@ -26,10 +31,18 @@ public class DataInitializer {
         Role userRole = new Role();
         userRole.setRoleName(Role.RoleName.USER);
         roleService.add(userRole);
-        User user = new User();
-        user.setEmail("admin@i.ua");
-        user.setPassword("admin123");
-        user.setRoles(Set.of(adminRole));
-        userService.add(user);
+        User admin = new User();
+        admin.setEmail("admin@i.ua");
+        admin.setPassword("admin123");
+        admin.setRoles(Set.of(adminRole));
+        userService.add(admin);
+
+        User user1 = new User();
+        user1.setEmail("user@i.ua");
+        user1.setPassword("user1234");
+        user1.setRoles(Set.of(userRole));
+        userService.add(user1);
+        shoppingCartService.registerNewShoppingCart(user1);
+
     }
 }
