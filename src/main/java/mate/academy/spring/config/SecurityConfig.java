@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String ADMIN_ROLE = "ROLE_ADMIN";
+    private static final String USER_ROLE = "ROLE_USER";
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
@@ -33,24 +35,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/cinema-halls/*",
                         "/movies/*",
                         "/movie-sessions/available/*")
-                .hasAnyAuthority("ADMIN", "USER")
+                .hasAnyAuthority(ADMIN_ROLE, USER_ROLE)
                 .antMatchers(HttpMethod.POST,"/cinema-halls/*",
                         "/movies/*",
                         "/movie-sessions/*")
-                .hasAuthority("ADMIN")
+                .hasAuthority(ADMIN_ROLE)
                 .antMatchers(HttpMethod.PUT, "/movie-sessions/*")
-                .hasAuthority("ADMIN")
+                .hasAuthority(ADMIN_ROLE)
                 .antMatchers(HttpMethod.DELETE, "/movie-sessions/*")
-                .hasAuthority("ADMIN")
+                .hasAuthority(ADMIN_ROLE)
                 .antMatchers(HttpMethod.GET, "/users/by-email/*")
-                .hasAuthority("ADMIN")
+                .hasAuthority(ADMIN_ROLE)
                 .antMatchers(HttpMethod.GET,"/orders/*",
                         "/shopping-carts/by-user/*")
-                .hasAuthority("USER")
+                .hasAuthority(USER_ROLE)
                 .antMatchers(HttpMethod.POST,"/orders/complete/*")
-                .hasAuthority("USER")
+                .hasAuthority(USER_ROLE)
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions/*")
-                .hasAuthority("USER")
+                .hasAuthority(USER_ROLE)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
