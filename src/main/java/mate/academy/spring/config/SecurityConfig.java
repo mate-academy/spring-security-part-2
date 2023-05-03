@@ -10,6 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String ADMIN_ROLE = "ADMIN";
+    private static final String USER_ROLE = "USER";
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
@@ -30,19 +32,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .anyRequest().authenticated()
                 .antMatchers(HttpMethod.POST,"/register").permitAll()
-                .antMatchers(HttpMethod.GET,"/cinema-halls/*",
-                        "/movies/*",
-                        "/movie-sessions/available/*").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.POST,"/cinema-halls/*",
-                        "/movies/*",
-                        "/movie-sessions/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/movie-sessions/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/movie-sessions/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET,"/orders/*",
-                        "/shopping-carts/by-user/*").hasRole("USER")
-                .antMatchers(HttpMethod.POST,"/orders/complete/*").hasRole("USER")
-                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions/*").hasRole("USER")
-                .antMatchers(HttpMethod.GET, "/users/by-email/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,
+                        "/cinema-halls/*", "/movies/*", "/movie-sessions/available/*")
+                .hasAnyRole(ADMIN_ROLE, USER_ROLE)
+                .antMatchers(HttpMethod.POST,
+                        "/cinema-halls/*", "/movies/*", "/movie-sessions/*").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/*").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/*").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.GET, "/users/by-email/*").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.GET,
+                        "/orders/*", "/shopping-carts/by-user/*").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.POST,"/orders/complete/*").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions/*").hasRole(USER_ROLE)
                 .and()
                 .formLogin()
                 .permitAll()
