@@ -2,7 +2,7 @@ package mate.academy.spring.service.impl;
 
 import static org.springframework.security.core.userdetails.User.withUsername;
 
-import java.util.Optional;
+import java.util.NoSuchElementException;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
 import org.springframework.security.core.userdetails.User.UserBuilder;
@@ -20,16 +20,12 @@ public class CustomUserDetails implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> userOptional = userService.findByEmail(username);
-        if (userOptional.isEmpty()) {
-            throw new UsernameNotFoundException("User not found");
-        }
-        User user = userOptional.get();
-        UserBuilder builder = withUsername(username);
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        User user = userService.findByEmail(userName).orElseThrow(() ->
+                new NoSuchElementException("Can't find user with email: " + userName));
+        UserBuilder builder = withUsername(userName);
         builder.password(user.getPassword());
-        builder.roles(user.getRoles()
-                .stream()
+        builder.roles(user.getRoles().stream()
                 .map(r -> r.getRoleName().name())
                 .toArray(String[]::new));
         return builder.build();
