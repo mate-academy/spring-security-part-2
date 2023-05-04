@@ -2,6 +2,7 @@ package mate.academy.spring.service.impl;
 
 import static org.springframework.security.core.userdetails.User.withUsername;
 
+import java.util.Optional;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
 import org.springframework.security.core.userdetails.User.UserBuilder;
@@ -20,13 +21,17 @@ public class CustomUserDetails implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findByEmail(username).orElseThrow(() ->
-                new UsernameNotFoundException("Can't find user by email: " + username));
-        UserBuilder userBuilder = withUsername(username);
-        userBuilder.password(user.getPassword());
-        userBuilder.authorities(user.getRoles().stream()
+        Optional<User> userOptional = userService.findByEmail(username);
+        if (userOptional.isEmpty()) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        User user = userOptional.get();
+        UserBuilder builder = withUsername(username);
+        builder.password(user.getPassword());
+        builder.roles(user.getRoles()
+                .stream()
                 .map(r -> r.getRoleName().name())
                 .toArray(String[]::new));
-        return userBuilder.build();
+        return builder.build();
     }
 }

@@ -16,13 +16,12 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "role_name")
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "role_name")
     private RoleName roleName;
 
     public enum RoleName {
-        USER,
-        ADMIN
+        USER, ADMIN
     }
 
     public Long getId() {
