@@ -31,10 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/register")
                 .permitAll()
-                .antMatchers(HttpMethod.GET,"/cinema-halls/*",
-                        "/movies/*",
-                        "/movie-sessions/available/*")
-                .hasAnyAuthority(ADMIN_ROLE, USER_ROLE)
                 .antMatchers(HttpMethod.POST,"/cinema-halls/*",
                         "/movies/*",
                         "/movie-sessions/*")

@@ -37,21 +37,21 @@ public class DataInitializer {
         User admin = new User();
         admin.setEmail("admin@i.ua");
         admin.setPassword("1234");
-        admin.setRoleSet(Set.of(adminRole, userRole));
+        admin.setRoles(Set.of(adminRole, userRole));
         userService.add(admin);
         shoppingCartService.registerNewShoppingCart(admin);
 
         User defaulrUser = new User();
         defaulrUser.setEmail("defaulrUser@i.ua");
         defaulrUser.setPassword("1234");
-        defaulrUser.setRoleSet(Set.of(userRole));
+        defaulrUser.setRoles(Set.of(userRole));
         userService.add(defaulrUser);
         shoppingCartService.registerNewShoppingCart(defaulrUser);
 
         User adminOnly = new User();
         adminOnly.setEmail("admin@gmail.com");
         adminOnly.setPassword("12344321");
-        adminOnly.setRoleSet(Set.of(adminRole));
+        adminOnly.setRoles(Set.of(adminRole));
         userService.add(adminOnly);
         shoppingCartService.registerNewShoppingCart(adminOnly);
     }
