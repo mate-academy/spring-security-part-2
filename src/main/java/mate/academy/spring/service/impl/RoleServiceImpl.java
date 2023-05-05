@@ -20,7 +20,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role getByRoleName(Role.RoleName roleName) {
+    public Role getByRoleName(String roleName) {
         return roleDao.getByRoleName(roleName).orElseThrow(() ->
                 new NoSuchElementException("Can't get role with name " + roleName));
     }
