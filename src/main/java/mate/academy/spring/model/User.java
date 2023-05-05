@@ -27,6 +27,7 @@ public class User {
     private String email;
     @ToString.Exclude
     private String password;
+    @ToString.Exclude
     @ManyToMany
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "users_id"),
