@@ -1,5 +1,7 @@
 package mate.academy.spring.service;
 
+import static org.springframework.security.core.userdetails.User.withUsername;
+
 import java.util.Optional;
 import mate.academy.spring.model.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
@@ -21,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         Optional<User> userOptional = userService.findByEmail(username);
         UserBuilder builder;
         if (userOptional.isPresent()) {
-            builder = org.springframework.security.core.userdetails.User.withUsername(username);
+            builder = withUsername(username);
             builder.password(userOptional.get().getPassword());
             builder.roles(userOptional.get().getRoles()
                     .stream()
