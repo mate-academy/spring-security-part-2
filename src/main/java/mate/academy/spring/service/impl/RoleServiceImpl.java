@@ -3,7 +3,6 @@ package mate.academy.spring.service.impl;
 import java.util.NoSuchElementException;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.model.Role;
-import mate.academy.spring.model.RoleName;
 import mate.academy.spring.service.RoleService;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getByName(String roleName) {
-        return roleDao.getByName(RoleName.valueOf(roleName)).orElseThrow(
+        return roleDao.getByName(Role.RoleName.valueOf(roleName)).orElseThrow(
                 () -> new NoSuchElementException(roleName + "is not fount in db"));
     }
 }
