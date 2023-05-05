@@ -27,7 +27,6 @@ POST: /orders/complete - user
 PUT: /shopping-carts/movie-sessions - user
 GET: /shopping-carts/by-user - user
 GET: /users/by-email - admin
-
 ...
 ``` 
 
