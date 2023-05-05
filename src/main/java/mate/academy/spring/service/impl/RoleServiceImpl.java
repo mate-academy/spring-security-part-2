@@ -22,6 +22,6 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role getByName(String roleName) {
         return roleDao.getByName(Role.RoleName.valueOf(roleName)).orElseThrow(
-                () -> new NoSuchElementException(roleName + "is not fount in db"));
+                () -> new NoSuchElementException("Role " + roleName + " is not fount in db"));
     }
 }
