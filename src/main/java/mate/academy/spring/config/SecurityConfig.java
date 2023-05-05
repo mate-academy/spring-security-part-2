@@ -1,5 +1,8 @@
 package mate.academy.spring.config;
 
+import static mate.academy.spring.model.Role.RoleName.ADMIN;
+import static mate.academy.spring.model.Role.RoleName.USER;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -8,8 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import static mate.academy.spring.model.Role.RoleName.ADMIN;
-import static mate.academy.spring.model.Role.RoleName.USER;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -20,6 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
     }
+
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
