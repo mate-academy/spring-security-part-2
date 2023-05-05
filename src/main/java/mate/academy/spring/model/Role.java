@@ -16,10 +16,6 @@ public class Role {
     @Enumerated(value = EnumType.STRING)
     private RoleName roleName;
 
-    public enum RoleName {
-        ADMIN, USER
-    }
-
     public Long getId() {
         return id;
     }
@@ -51,5 +47,9 @@ public class Role {
     @Override
     public int hashCode() {
         return Objects.hash(id, roleName);
+    }
+
+    public enum RoleName {
+        ADMIN, USER
     }
 }

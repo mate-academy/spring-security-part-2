@@ -1,6 +1,6 @@
 package mate.academy.spring.service.impl;
 
-import java.util.Set;
+import java.util.Collections;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.AuthenticationService;
@@ -26,7 +26,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public User register(String email, String password) {
         User user = new User();
-        user.setRoles(Set.of(roleService.getByName(Role.RoleName.USER)));
+        user.setRoles(Collections.singleton(roleService.getByName(Role.RoleName.USER.name())));
         user.setEmail(email);
         user.setPassword(password);
         userService.add(user);
