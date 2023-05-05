@@ -7,5 +7,5 @@ public interface RoleService {
 
     Role get(Long id);
 
-    Role getByName(Role.RoleNames name);
+    Role getByName(String name);
 }
