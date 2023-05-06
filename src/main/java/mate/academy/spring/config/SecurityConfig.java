@@ -29,18 +29,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
-                .antMatchers(HttpMethod.GET, "/cinema-halls/*").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.POST, "/cinema-halls/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/movies/*").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.POST, "/movies/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/movie-sessions/available/*")
-                .hasAnyRole("ADMIN", "USER")
-                .antMatchers("/movie-sessions/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/orders/*").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/cinema-halls/*", "/movies/*",
+                        "/movie-sessions/available/*", "/users/by-email/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/cinema-halls/*", "/movies/*",
+                        "/movie-sessions/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/cinema-halls/*", "/movies/*",
+                        "/movie-sessions/available/*", "/orders/*",
+                        "/shopping-carts/by-user/*").hasRole("USER")
                 .antMatchers(HttpMethod.POST, "/orders/complete/*").hasRole("USER")
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions/*").hasRole("USER")
-                .antMatchers(HttpMethod.GET, "/shopping-carts/by-user/*").hasRole("USER")
-                .antMatchers(HttpMethod.GET, "/users/by-email/*").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -51,3 +50,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable();
     }
 }
+
+
