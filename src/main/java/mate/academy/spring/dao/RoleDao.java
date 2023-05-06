@@ -8,5 +8,5 @@ public interface RoleDao {
 
     Optional<Role> get(Long id);
 
-    Role getByName(Role.RoleNames name);
+    Optional<Role> getByName(Role.RoleName name);
 }
