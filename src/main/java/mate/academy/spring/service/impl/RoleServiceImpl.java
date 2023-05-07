@@ -19,7 +19,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role getRoleByName(Role.RoleName roleName) {
+    public Role getRoleByName(String roleName) {
         return roleDao.getRoleByName(roleName).orElseThrow(
                 () -> new RuntimeException("Role " + roleName + " not found")
         );
