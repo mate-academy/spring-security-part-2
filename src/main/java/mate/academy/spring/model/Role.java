@@ -22,7 +22,6 @@ public class Role {
     public enum RoleName {
         ADMIN,
         USER
-
     }
 
     public Long getId() {
