@@ -8,7 +8,6 @@ import mate.academy.spring.model.Role;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -20,10 +19,10 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
     @Override
     public Optional<Role> getByName(String roleName) {
         try (Session session = factory.openSession()) {
-            Query<Role> getByRoleName = session.createQuery(
-                    "FROM Role WHERE role = :roleName", Role.class);
-            getByRoleName.setParameter("roleName", Role.RoleName.valueOf(roleName));
-            return getByRoleName.uniqueResultOptional();
+            return session.createQuery(
+                    "FROM Role WHERE role = :roleName", Role.class)
+                    .setParameter("roleName", Role.RoleName.valueOf(roleName))
+                    .uniqueResultOptional();
         } catch (HibernateException e) {
             throw new DataProcessingException("Input role not exist " + roleName, e);
         }
