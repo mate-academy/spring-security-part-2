@@ -4,8 +4,8 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
+import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
-import mate.academy.spring.service.security.RoleService;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 

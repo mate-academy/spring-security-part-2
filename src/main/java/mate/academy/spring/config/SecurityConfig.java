@@ -25,6 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
@@ -36,8 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,
                         "/cinema-halls/**",
                         "/movies/**",
-                        "/movie-sessions/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/movie-sessions/*").hasRole("ADMIN")
+                        "/movie-sessions/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/movie-sessions/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,
                         "/orders",

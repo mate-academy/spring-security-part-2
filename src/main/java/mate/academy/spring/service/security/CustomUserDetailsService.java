@@ -1,4 +1,4 @@
-package mate.academy.spring.service.security.impl;
+package mate.academy.spring.service.security;
 
 import static org.springframework.security.core.userdetails.User.withUsername;
 
