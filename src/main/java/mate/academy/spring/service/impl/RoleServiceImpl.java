@@ -1,7 +1,6 @@
 package mate.academy.spring.service.impl;
 
 import mate.academy.spring.dao.RoleDao;
-import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.service.RoleService;
 import org.springframework.stereotype.Component;
@@ -22,7 +21,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role getByName(String roleName) {
         return roleDao.getByName(roleName).orElseThrow(() ->
-                new DataProcessingException("Can't get roleName "
+                new RuntimeException("Can't get roleName "
                         + roleName));
     }
 }
