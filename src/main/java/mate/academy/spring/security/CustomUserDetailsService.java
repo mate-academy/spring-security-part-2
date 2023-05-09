@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -23,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("No user with username " + username);
         }
         User user = userOptional.get();
-        org.springframework.security.core.userdetails.User.UserBuilder builder =
+        UserBuilder builder =
                 org.springframework.security.core.userdetails.User.withUsername(username);
         builder.password(user.getPassword());
         builder.roles(user.getRoles().stream()
