@@ -23,20 +23,17 @@ public class DataInitializer {
         Role adminRole = new Role();
         adminRole.setRoleName(Role.RoleName.ADMIN);
         roleService.add(adminRole);
-
         Role userRole = new Role();
         userRole.setRoleName(Role.RoleName.USER);
         roleService.add(userRole);
-
         User admin = new User();
-        admin.setEmail("adminspring@i.ua");
-        admin.setPassword("Admin357951");
+        admin.setEmail("admin@i.ua");
+        admin.setPassword("admin123");
         admin.setRoles(Set.of(adminRole));
         userService.add(admin);
-
         User user = new User();
-        user.setEmail("userspring@i.ua");
-        user.setPassword("uSer159753");
+        user.setEmail("user@i.ua");
+        user.setPassword("user321");
         user.setRoles(Set.of(userRole));
         userService.add(user);
     }
