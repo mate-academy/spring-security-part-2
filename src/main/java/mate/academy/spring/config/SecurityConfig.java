@@ -31,19 +31,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/register").permitAll()
-                .antMatchers(HttpMethod.POST, "/cinema-halls", "/movies", "/movie-sessions")
-                .hasRole(ADMIN)
-                .antMatchers(HttpMethod.GET, "/users/by-email").hasRole(ADMIN)
-                .antMatchers(HttpMethod.PUT, "/movie-sessions/").hasRole(ADMIN)
-                .antMatchers(HttpMethod.DELETE, "/movie-sessions/").hasRole(ADMIN)
-                .antMatchers(HttpMethod.POST, "/orders/complete").hasRole(USER)
-                .antMatchers(HttpMethod.GET, "/orders", "/shopping-carts/by-user").hasRole(USER)
-                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions").hasRole(USER)
-                .antMatchers(HttpMethod.GET, "/movies", "/cinema-halls",
-                        "/movie-sessions/available")
-                .hasAnyRole(USER, ADMIN).anyRequest().authenticated().and()
-                .formLogin()
-                .permitAll().and()
+                .antMatchers(HttpMethod.POST, "/cinema-halls/*", "/movies/*",
+                        "/movie-sessions/*").hasRole(ADMIN)
+                .antMatchers(HttpMethod.GET, "/users/by-email/*").hasRole(ADMIN)
+                .antMatchers(HttpMethod.PUT, "/movie-sessions/*").hasRole(ADMIN)
+                .antMatchers(HttpMethod.DELETE, "/movie-sessions/*").hasRole(ADMIN)
+                .antMatchers(HttpMethod.POST, "/orders/complete/*").hasRole(USER)
+                .antMatchers(HttpMethod.GET, "/orders/*", "/shopping-carts/by-user/*").hasRole(USER)
+                .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions/*").hasRole(USER)
+                .antMatchers(HttpMethod.GET, "/movies/*", "/cinema-halls/*",
+                        "/movie-sessions/available/*")
+                .hasAnyRole(USER, ADMIN).anyRequest()
+                .authenticated().and()
+                .formLogin().permitAll().and()
                 .httpBasic()
                 .and().csrf().disable();
     }
