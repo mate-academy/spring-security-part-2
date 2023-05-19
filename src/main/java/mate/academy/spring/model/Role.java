@@ -13,17 +13,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "roles")
 public class Role {
-    public enum RoleName {
-        USER,
-        ADMIN;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 255, unique = true)
     @Enumerated(EnumType.STRING)
     private RoleName roleName;
+
+    public enum RoleName {
+        USER,
+        ADMIN;
+    }
 
     public Role() {
     }
@@ -57,13 +57,12 @@ public class Role {
             return false;
         }
         Role role = (Role) o;
-        return Objects.equals(id, role.id)
-                && roleName == role.roleName;
+        return roleName == role.roleName;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, roleName);
+        return roleName.hashCode();
     }
 
     @Override
