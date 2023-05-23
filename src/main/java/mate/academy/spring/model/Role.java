@@ -1,6 +1,5 @@
 package mate.academy.spring.model;
 
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -47,12 +46,12 @@ public class Role {
             return false;
         }
         Role role = (Role) o;
-        return Objects.equals(id, role.id) && roleName == role.roleName;
+        return roleName == role.roleName;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, roleName);
+        return roleName.hashCode();
     }
 
     @Override
