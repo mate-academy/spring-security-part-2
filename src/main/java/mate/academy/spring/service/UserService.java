@@ -1,7 +1,8 @@
 package mate.academy.spring.service;
 
-import java.util.Optional;
 import mate.academy.spring.model.User;
+
+import java.util.Optional;
 
 public interface UserService {
     User add(User user);
