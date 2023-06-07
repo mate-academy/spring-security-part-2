@@ -1,10 +1,11 @@
 package mate.academy.spring.security;
 
+import static org.springframework.security.core.userdetails.User.withUsername;
+
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
 import org.springframework.security.core.userdetails.User.UserBuilder;
-import static org.springframework.security.core.userdetails.User.withUsername;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
