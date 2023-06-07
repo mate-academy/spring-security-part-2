@@ -1,10 +1,9 @@
-package mate.academy.spring.controller;
+package mate.academy.spring.util;
 
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
-import mate.academy.spring.service.AuthenticationService;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
 import org.springframework.stereotype.Component;
@@ -12,14 +11,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataInitializer {
     private final RoleService roleService;
-    private final AuthenticationService authenticationService;
-    private UserService userService;
+    private final UserService userService;
 
     public DataInitializer(RoleService roleService,
-                            AuthenticationService authenticationService,
                             UserService userService) {
         this.roleService = roleService;
-        this.authenticationService = authenticationService;
         this.userService = userService;
     }
 

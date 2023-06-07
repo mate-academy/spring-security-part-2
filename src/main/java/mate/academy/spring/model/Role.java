@@ -1,5 +1,6 @@
 package mate.academy.spring.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,6 +17,7 @@ public class Role {
     private Long id;
 
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "role_name", unique = true)
     private RoleName roleName;
 
     public Long getId() {
@@ -36,5 +38,12 @@ public class Role {
 
     public enum RoleName {
         USER, ADMIN
+    }
+
+    @Override
+    public String toString() {
+        return "Role{"
+                + "id=" + id
+                + ", roleName=" + roleName + '}';
     }
 }
