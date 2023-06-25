@@ -1,12 +1,12 @@
 package mate.academy.spring.model;
 
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Objects;
 
 @Entity
 public class Role {
@@ -47,8 +47,8 @@ public class Role {
         }
 
         Role otherRole = (Role) other;
-        return otherRole.id.equals(id) &&
-                otherRole.roleName.equals(roleName);
+        return otherRole.id.equals(id)
+                && otherRole.roleName.equals(roleName);
     }
 
     @Override

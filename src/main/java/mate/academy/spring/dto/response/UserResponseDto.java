@@ -1,8 +1,7 @@
 package mate.academy.spring.dto.response;
 
-import mate.academy.spring.model.Role;
-
 import java.util.Set;
+import mate.academy.spring.model.Role;
 
 public class UserResponseDto {
     private Long id;
