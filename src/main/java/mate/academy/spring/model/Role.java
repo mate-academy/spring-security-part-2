@@ -6,6 +6,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Role {
@@ -33,5 +34,25 @@ public class Role {
 
     public static enum RoleName {
         ADMIN, USER
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+
+        if (!(other instanceof Role)) {
+            return false;
+        }
+
+        Role otherRole = (Role) other;
+        return otherRole.id.equals(id) &&
+                otherRole.roleName.equals(roleName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, roleName);
     }
 }
