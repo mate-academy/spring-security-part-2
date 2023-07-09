@@ -2,9 +2,6 @@ package mate.academy.spring.config;
 
 import java.util.Properties;
 import javax.sql.DataSource;
-import mate.academy.spring.service.RoleService;
-import mate.academy.spring.service.UserService;
-import mate.academy.spring.util.DataInitializer;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -53,10 +50,5 @@ public class AppConfig {
     @Bean
     public PasswordEncoder getEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public DataInitializer dataInitializer(RoleService roleService, UserService userService) {
-        return new DataInitializer(roleService, userService);
     }
 }
