@@ -33,7 +33,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
         userBuilder.password(user.getPassword());
         userBuilder.authorities(user.getRoles().stream()
                 .map(Role::getRoleName)
-                .toArray(Role.RoleName[]::new));
+                .toArray(String[]::new));
         return userBuilder.build();
     }
 }

@@ -1,5 +1,6 @@
 package mate.academy.spring.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -7,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "roles")
@@ -16,6 +16,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "role")
     private RoleName roleName;
 
     public Long getId() {
@@ -34,13 +35,7 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public enum RoleName implements GrantedAuthority {
-        ADMIN,
-        USER;
-
-        @Override
-        public String getAuthority() {
-            return "ROLE_" + this.name();
-        }
+    public enum RoleName {
+        ADMIN, USER
     }
 }
