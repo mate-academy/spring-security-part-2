@@ -24,11 +24,11 @@ public class DataInitializer {
         roleService.add(new Role(Role.RoleName.USER));
         User admin = new User();
         admin.setEmail("admin@example.com");
-        admin.setPassword("123456");
+        admin.setPassword("12345678");
         admin.setRoles(Set.of(roleService.getByName("ADMIN")));
         User user = new User();
         user.setEmail("user@example.com");
-        user.setPassword("123456");
+        user.setPassword("12345678");
         user.setRoles(Set.of(roleService.getByName("USER")));
         userService.add(admin);
         userService.add(user);
