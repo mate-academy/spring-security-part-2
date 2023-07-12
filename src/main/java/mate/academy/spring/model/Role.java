@@ -1,5 +1,6 @@
 package mate.academy.spring.model;
 
+import java.util.NoSuchElementException;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -51,6 +52,15 @@ public class Role {
 
     public enum RoleName {
         ROLE_ADMIN,
-        ROLE_USER
+        ROLE_USER;
+
+        public static Role.RoleName getByName(String roleName) {
+            for (Role.RoleName name : Role.RoleName.values()) {
+                if (name.name().equals(roleName)) {
+                    return name;
+                }
+            }
+            throw new NoSuchElementException("No such role: " + roleName);
+        }
     }
 }
