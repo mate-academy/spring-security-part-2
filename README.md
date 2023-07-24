@@ -43,7 +43,7 @@ public void inject() {
     userRole.setRoleName(Role.RoleName.USER);
     roleService.add(userRole);
     User user = new User();
-    user.setEmail("admin@i.ua");
+    user.setEmail("admin@i.ua");?
     user.setPassword("admin123");
     user.setRoles(Set.of(adminRole));
     userService.add(user);
