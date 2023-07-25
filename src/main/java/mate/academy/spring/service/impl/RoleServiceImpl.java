@@ -2,6 +2,7 @@ package mate.academy.spring.service.impl;
 
 import static mate.academy.spring.model.Role.RoleName;
 
+import java.util.NoSuchElementException;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.service.RoleService;
@@ -22,6 +23,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getByName(String roleName) {
-        return roleDao.getByName(RoleName.getByRoleName(roleName)).get();
+        return roleDao.getByName(RoleName.getByRoleName(roleName)).orElseThrow(
+                () -> new NoSuchElementException("Can't find role by name: " + roleName));
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
+    private static final String DEFAULT_ROLE = "USER";
     private final UserService userService;
     private final ShoppingCartService shoppingCartService;
     private final RoleService roleService;
@@ -27,7 +28,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
-        user.setRoles(Set.of(roleService.getByName("USER")));
+        user.setRoles(Set.of(roleService.getByName(DEFAULT_ROLE)));
         userService.add(user);
         shoppingCartService.registerNewShoppingCart(user);
         return user;
