@@ -28,11 +28,15 @@ public class CustomUserDetailsService implements UserDetailsService {
         Optional<User> userOptional = userService.findByEmail(username);
         User user = userOptional.orElseThrow(() ->
                 new UsernameNotFoundException("Can't find user with email: " + username));
-        UserBuilder builder = withUsername(username);
+
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getRoleName().name()))
                 .collect(Collectors.toList());
-        builder.authorities(authorities);
-        return builder.build();
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
+                user.getPassword(),
+                authorities
+        );
     }
 }
