@@ -2,6 +2,7 @@ package mate.academy.spring.model;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,6 +18,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "role")
     private RoleName roleName;
 
     public Role() {
@@ -36,10 +38,6 @@ public class Role {
 
     public RoleName getRoleName() {
         return roleName;
-    }
-
-    public void setRoleName(RoleName roleName) {
-        this.roleName = roleName;
     }
 
     public enum RoleName {

@@ -1,5 +1,3 @@
 .idea/*
 *.iml
 target/*
-src/main/java/mate/academy/spring/controller/TestInjectController.java
-src/main/java/mate/academy/spring/config/DataInitializer.java

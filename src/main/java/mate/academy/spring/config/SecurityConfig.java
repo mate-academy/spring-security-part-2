@@ -31,32 +31,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,
                         "/cinema-halls",
                         "/movies",
-                        "/movie-sessions/available")
-                .hasAnyRole("ADMIN", "USER")
+                        "/movie-sessions/available").hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.GET,
-                        "/users/by-email")
-                .hasRole("ADMIN")
+                        "/users/by-email").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST,
                         "/cinema-halls",
                         "/movies",
-                        "/movie-sessions")
-                .hasRole("ADMIN")
+                        "/movie-sessions").hasRole("ADMIN")
                 .antMatchers(HttpMethod.PUT,
-                        "/movie-sessions/**")
-                .hasRole("ADMIN")
+                        "/movie-sessions/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,
-                        "/movie-sessions/**")
-                .hasRole("ADMIN")
+                        "/movie-sessions/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,
                         "/orders",
-                        "/shopping-carts/by-user")
-                .hasRole("USER")
+                        "/shopping-carts/by-user").hasRole("USER")
                 .antMatchers(HttpMethod.POST,
-                        "/orders/complete")
-                .hasRole("USER")
+                        "/orders/complete").hasRole("USER")
                 .antMatchers(HttpMethod.PUT,
-                        "/shopping-carts/movie-sessions")
-                .hasRole("USER")
+                        "/shopping-carts/movie-sessions").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
