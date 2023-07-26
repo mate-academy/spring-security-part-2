@@ -17,9 +17,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @ComponentScan(basePackages = "mate.academy.spring")
 public class AppConfig {
     private final Environment environment;
+
     public AppConfig(Environment environment) {
         this.environment = environment;
     }
+
     @Bean
     public DataSource getDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
@@ -29,6 +31,7 @@ public class AppConfig {
         dataSource.setPassword(environment.getProperty("db.password"));
         return dataSource;
     }
+
     @Bean
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
