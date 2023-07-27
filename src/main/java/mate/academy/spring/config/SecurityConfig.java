@@ -31,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/cinema-halls").hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.POST,"/cinema-halls").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/movies").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/movies").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/movie-sessions/available")
                 .hasAnyRole("ADMIN", "USER")
                 .antMatchers(HttpMethod.POST, "/movie-sessions/available").hasRole("ADMIN")

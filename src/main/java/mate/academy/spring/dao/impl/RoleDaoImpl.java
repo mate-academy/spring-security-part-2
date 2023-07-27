@@ -7,37 +7,14 @@ import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
 
-    public RoleDaoImpl(SessionFactory factory, Class<Role> clazz) {
-        super(factory, clazz);
-    }
-
-    @Override
-    public Role add(Role role) {
-        Transaction transaction = null;
-        Session session = null;
-        try {
-            session = factory.openSession();
-            transaction = session.beginTransaction();
-            session.save(role);
-            transaction.commit();
-            return role;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DataProcessingException("Can't insert a role: " + role, e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
+    public RoleDaoImpl(SessionFactory factory) {
+        super(factory, Role.class);
     }
 
     @Override

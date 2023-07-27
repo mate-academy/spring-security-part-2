@@ -20,8 +20,8 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role getByName(Role.RoleName name) throws NoSuchElementException {
-        return roleDao.getByName(name).orElseThrow(
+    public Role getByName(String name) throws NoSuchElementException {
+        return roleDao.getByName(Role.RoleName.valueOf(name)).orElseThrow(
                 () -> new NoSuchElementException("There is no such role " + name));
     }
 }
