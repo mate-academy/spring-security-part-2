@@ -1,6 +1,5 @@
 package mate.academy.spring.model;
 
-import java.util.NoSuchElementException;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
