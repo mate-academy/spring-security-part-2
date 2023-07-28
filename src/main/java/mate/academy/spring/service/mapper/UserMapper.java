@@ -1,6 +1,9 @@
 package mate.academy.spring.service.mapper;
 
+import java.util.HashSet;
+import java.util.Set;
 import mate.academy.spring.dto.response.UserResponseDto;
+import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +14,11 @@ public class UserMapper implements ResponseDtoMapper<UserResponseDto, User> {
         UserResponseDto responseDto = new UserResponseDto();
         responseDto.setId(user.getId());
         responseDto.setEmail(user.getEmail());
-        responseDto.setRoles(user.getRoles());
+        Set<String> roles = new HashSet<>();
+        user.getRoles().stream()
+                .map(Role::getAuthority)
+                .forEach(roles::add);
+        responseDto.setRoles(roles);
         return responseDto;
     }
 }
