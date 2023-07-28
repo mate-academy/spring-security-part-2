@@ -22,13 +22,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> userOptional = userService.findByEmail(username);
         if (userOptional.isEmpty()) {
-            throw new UsernameNotFoundException("User not found");
+            throw new UsernameNotFoundException("User: " + username + "not found");
         }
         User user = userOptional.get();
         UserBuilder builder = withUsername(username);
         builder.password(user.getPassword());
         builder.authorities(user.getRoles().stream()
-                .map(r -> "ROLE_" + r.getRoleName().name()).toArray(String[]::new));
+                .map(role -> "ROLE_" + role.getRoleName().name()).toArray(String[]::new));
         return builder.build();
     }
 }
