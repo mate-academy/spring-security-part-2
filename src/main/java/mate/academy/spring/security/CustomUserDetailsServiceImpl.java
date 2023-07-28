@@ -21,15 +21,12 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username)
+    public UserDetails loadUserByUsername(String userEmail)
             throws UsernameNotFoundException {
-        Optional<User> optionalUser = userService.findByEmail(username);
-        if (optionalUser.isEmpty()) {
-            throw new UsernameNotFoundException("User not found");
-        }
-        User user = optionalUser.orElseThrow();
-        UserBuilder userBuilder =
-                withUsername(username);
+        Optional<User> optionalUser = userService.findByEmail(userEmail);
+        User user = optionalUser.orElseThrow(
+                () -> new UsernameNotFoundException("Can't find user with email: " + userEmail));
+        UserBuilder userBuilder = withUsername(userEmail);
         userBuilder.password(user.getPassword());
         userBuilder.authorities(user.getRoles().stream()
                 .map(Role::getRoleName)
