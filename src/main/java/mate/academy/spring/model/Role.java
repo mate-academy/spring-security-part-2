@@ -48,15 +48,6 @@ public class Role {
                 + ", roleName=" + roleName + '}';
     }
 
-    public static Role.RoleName getName(String roleName) {
-        for (Role.RoleName name : Role.RoleName.values()) {
-            if (name.name().equals(roleName)) {
-                return name;
-            }
-        }
-        throw new NoSuchElementException("No such role: " + roleName);
-    }
-
     public enum RoleName {
         ADMIN,
         USER
