@@ -1,9 +1,6 @@
 package mate.academy.spring.config;
 
-import java.util.Set;
-import javax.annotation.PostConstruct;
 import mate.academy.spring.model.Role;
-import mate.academy.spring.model.User;
 import mate.academy.spring.service.RoleService;
 import mate.academy.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,31 +16,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder encoder;
-    private final RoleService roleService;
-    private final UserService userService;
 
     public SecurityConfig(UserDetailsService userDetailsService, PasswordEncoder encoder,
                           RoleService roleService, UserService userService) {
         this.userDetailsService = userDetailsService;
         this.encoder = encoder;
-        this.roleService = roleService;
-        this.userService = userService;
-    }
-
-    @PostConstruct
-    public void inject() {
-        Role adminRole = new Role();
-        adminRole.setName(Role.RoleNames.ADMIN);
-        roleService.add(adminRole);
-        Role userRole = new Role();
-        userRole.setName(Role.RoleNames.USER);
-        roleService.add(userRole);
-        User user = new User();
-        user.setEmail("admin@i.ua");
-        user.setPassword("admin123");
-        user.setRoles(Set.of(adminRole));
-        userService.add(user);
-        System.out.println("First admin - admin@i.ua with password -admin123 has been injected.");
     }
 
     @Autowired
@@ -56,22 +33,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/register", "/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/cinema-halls", "/movies",
-                        "/movie-sessions/available").hasAnyAuthority(Role.RoleNames
-                        .ADMIN.name(), Role.RoleNames.USER.name())
+                        "/movie-sessions/available").hasAnyAuthority(Role.RoleName
+                        .ADMIN.name(), Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.GET, "/users/by-email")
-                .hasAnyAuthority(Role.RoleNames.ADMIN.name())
+                .hasAnyAuthority(Role.RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.GET, "/shopping-carts/by-user", "/orders")
-                .hasRole(Role.RoleNames.USER.name())
+                .hasRole(Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}")
-                .hasAnyAuthority(Role.RoleNames.ADMIN.name())
+                .hasAnyAuthority(Role.RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}")
-                .hasAnyAuthority(Role.RoleNames.ADMIN.name())
+                .hasAnyAuthority(Role.RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.POST, "/cinema-halls", "/movies",
-                        "/movie-sessions").hasAnyAuthority(Role.RoleNames.ADMIN.name())
+                        "/movie-sessions").hasAnyAuthority(Role.RoleName.ADMIN.name())
                 .antMatchers(HttpMethod.PUT, "/shopping-carts/movie-sessions")
-                .hasAnyAuthority(Role.RoleNames.USER.name())
+                .hasAnyAuthority(Role.RoleName.USER.name())
                 .antMatchers(HttpMethod.POST, "/orders/complete")
-                .hasAnyAuthority(Role.RoleNames.USER.name())
+                .hasAnyAuthority(Role.RoleName.USER.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
