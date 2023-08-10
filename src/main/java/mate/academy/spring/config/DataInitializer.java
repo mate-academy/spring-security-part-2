@@ -18,18 +18,19 @@ public class DataInitializer {
         this.roleService = roleService;
     }
 
-    @PostConstruct
+    //@PostConstruct
     public void inject() {
-        Role adminRole = new Role();
-        adminRole.setRoleName(Role.RoleName.ADMIN);
-        roleService.add(adminRole);
-        Role userRole = new Role();
-        userRole.setRoleName(Role.RoleName.USER);
-        roleService.add(userRole);
+//        Role adminRole = new Role();
+//        adminRole.setRoleName(Role.RoleName.ADMIN);
+//        roleService.add(adminRole);
+//        Role userRole = new Role();
+//        userRole.setRoleName(Role.RoleName.USER);
+//        roleService.add(userRole);
+        Role byName = roleService.getByName(Role.RoleName.ADMIN.name());
         User user = new User();
-        user.setEmail("testUser@i.ua");
-        user.setPassword("1");
-        user.setRoles(Set.of(userRole));
+        user.setEmail("admin1@i.ua");
+        user.setPassword("admin");
+        user.setRoles(Set.of(byName));
         userService.add(user);
     }
 }
