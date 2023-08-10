@@ -1,6 +1,5 @@
 package mate.academy.spring.dao.impl;
 
-import javax.management.Query;
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.RoleDao;
 import mate.academy.spring.exception.DataProcessingException;

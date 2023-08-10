@@ -15,7 +15,8 @@ public class DataInitializer {
     private final RoleService roleService;
     private final ShoppingCartService shoppingCartService;
 
-    public DataInitializer(UserService userService, RoleService roleService, ShoppingCartService shoppingCartService) {
+    public DataInitializer(UserService userService,
+                           RoleService roleService, ShoppingCartService shoppingCartService) {
         this.userService = userService;
         this.roleService = roleService;
         this.shoppingCartService = shoppingCartService;

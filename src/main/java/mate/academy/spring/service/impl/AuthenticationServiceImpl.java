@@ -17,7 +17,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final RoleService roleService;
 
     public AuthenticationServiceImpl(UserService userService,
-                                     ShoppingCartService shoppingCartService, RoleService roleService) {
+                                     ShoppingCartService shoppingCartService,
+                                     RoleService roleService) {
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
         this.roleService = roleService;
