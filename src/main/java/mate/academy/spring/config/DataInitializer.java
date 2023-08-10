@@ -5,6 +5,7 @@ import javax.annotation.PostConstruct;
 import mate.academy.spring.model.Role;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.RoleService;
+import mate.academy.spring.service.ShoppingCartService;
 import mate.academy.spring.service.UserService;
 import org.springframework.stereotype.Component;
 
@@ -12,25 +13,28 @@ import org.springframework.stereotype.Component;
 public class DataInitializer {
     private final UserService userService;
     private final RoleService roleService;
+    private final ShoppingCartService shoppingCartService;
 
-    public DataInitializer(UserService userService, RoleService roleService) {
+    public DataInitializer(UserService userService, RoleService roleService, ShoppingCartService shoppingCartService) {
         this.userService = userService;
         this.roleService = roleService;
+        this.shoppingCartService = shoppingCartService;
     }
 
-    //@PostConstruct
+    @PostConstruct
     public void inject() {
-//        Role adminRole = new Role();
-//        adminRole.setRoleName(Role.RoleName.ADMIN);
-//        roleService.add(adminRole);
-//        Role userRole = new Role();
-//        userRole.setRoleName(Role.RoleName.USER);
-//        roleService.add(userRole);
-        Role byName = roleService.getByName(Role.RoleName.ADMIN.name());
+        Role adminRole = new Role();
+        adminRole.setRoleName(Role.RoleName.ADMIN);
+        roleService.add(adminRole);
+        Role userRole = new Role();
+        userRole.setRoleName(Role.RoleName.USER);
+        roleService.add(userRole);
+        Role roleFromDB = roleService.getByName(Role.RoleName.USER.name());
         User user = new User();
-        user.setEmail("admin1@i.ua");
-        user.setPassword("admin");
-        user.setRoles(Set.of(byName));
-        userService.add(user);
+        user.setEmail("user@i.ua");
+        user.setPassword("user");
+        user.setRoles(Set.of(roleFromDB));
+        User userFromDB = userService.add(user);
+        shoppingCartService.registerNewShoppingCart(userFromDB);
     }
 }
