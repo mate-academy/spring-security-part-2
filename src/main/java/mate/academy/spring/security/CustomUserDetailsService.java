@@ -1,4 +1,4 @@
-package mate.academy.spring.service.impl;
+package mate.academy.spring.security;
 
 import java.util.Optional;
 import mate.academy.spring.model.User;
