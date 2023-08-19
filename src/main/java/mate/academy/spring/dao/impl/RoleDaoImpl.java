@@ -27,5 +27,4 @@ public class RoleDaoImpl extends AbstractDao<Role> implements RoleDao {
             throw new DataProcessingException("Role " + name + " not found", e);
         }
     }
-
 }
