@@ -1,5 +1,6 @@
 # Cinema App
 
+```
 POST: /register - all
 GET: /cinema-halls - user/admin
 POST: /cinema-halls - admin
@@ -33,4 +34,5 @@ public void inject() {
     user.setRoles(Set.of(adminRole));
     userService.add(user);
 }
-```
+
+
