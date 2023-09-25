@@ -2,6 +2,7 @@ package mate.academy.spring.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.validation.Valid;
 import mate.academy.spring.dto.request.MovieSessionRequestDto;
 import mate.academy.spring.dto.response.MovieSessionResponseDto;
@@ -47,14 +48,14 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
-    public List<MovieSessionResponseDto> findAvailableSessions(@RequestParam Long movieId,
+    public List<MovieSessionResponseDto> getAllAvailable(@RequestParam Long movieId,
                                                 @RequestParam
             @DateTimeFormat(pattern = DateTimePatternUtil.DATE_PATTERN)
                                                         LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date)
                 .stream()
                 .map(movieSessionResponseDtoMapper::mapToDto)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
